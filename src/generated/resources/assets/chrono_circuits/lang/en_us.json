@@ -1,3 +1,4 @@
 {
-  "block.chrono_circuits.copper_pressure_plate": "Copper Pressure Plate"
+  "block.chrono_circuits.copper_pressure_plate": "Copper Pressure Plate",
+  "block.chrono_circuits.light_detector": "Light Detector"
 }

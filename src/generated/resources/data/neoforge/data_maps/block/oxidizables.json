@@ -1,0 +1,13 @@
+{
+  "values": {
+    "chrono_circuits:copper_pressure_plate": {
+      "next_oxidation_stage": "chrono_circuits:exposed_copper_pressure_plate"
+    },
+    "chrono_circuits:exposed_copper_pressure_plate": {
+      "next_oxidation_stage": "chrono_circuits:weathered_copper_pressure_plate"
+    },
+    "chrono_circuits:weathered_copper_pressure_plate": {
+      "next_oxidation_stage": "chrono_circuits:oxidized_copper_pressure_plate"
+    }
+  }
+}

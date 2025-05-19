@@ -2,18 +2,16 @@ package net.lawliet.chrono_circuit.datagen;
 
 import com.mojang.logging.LogUtils;
 import net.lawliet.chrono_circuit.ChronoCircuits;
+import net.lawliet.chrono_circuit.datagen.datamap.DataMapGenerator;
 import net.lawliet.chrono_circuit.datagen.lang.LanguageGenerator;
 import net.lawliet.chrono_circuit.datagen.model.ModelGenerator;
 import net.lawliet.chrono_circuit.datagen.recipes.CraftingRecipeGenerator;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.slf4j.Logger;
-
-import java.util.concurrent.CompletableFuture;
 
 @EventBusSubscriber(modid = ChronoCircuits.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class ClientDatagen {
@@ -28,6 +26,7 @@ public class ClientDatagen {
         generator.addProvider(true,new LanguageGenerator(packOutput,"en_us"));
         event.createProvider(ModelGenerator::new);
         event.createProvider(CraftingRecipeGenerator.Runner::new);
+        event.createProvider(DataMapGenerator::new);
 
 
     }
