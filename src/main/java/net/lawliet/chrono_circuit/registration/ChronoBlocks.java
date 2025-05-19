@@ -1,6 +1,6 @@
 package net.lawliet.chrono_circuit.registration;
 
-import net.lawliet.chrono_circuit.blocks.CopperPressurePlate;
+import net.lawliet.chrono_circuit.blocks.CopperPressurePlate.PlayerPressurePlate;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Block;
@@ -20,8 +20,8 @@ public class ChronoBlocks {
 
     //blocks
     static {
-        COPPER_PRESSURE_PLATE = ChronoRegistries.BLOCKS.registerBlock("player_only_pressure_plate",
-                properties -> new CopperPressurePlate(BlockSetType.COPPER,properties),
+        COPPER_PRESSURE_PLATE = ChronoRegistries.BLOCKS.registerBlock("copper_pressure_plate",
+                properties -> new PlayerPressurePlate(BlockSetType.COPPER,properties,200),
                 BlockBehaviour.Properties.of()
                         .mapColor(MapColor.COLOR_ORANGE)
                         .strength(0.5F)
@@ -34,7 +34,7 @@ public class ChronoBlocks {
 
     //block items
     static {
-        COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem("player_only_pressure_plate",COPPER_PRESSURE_PLATE);
+        COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem("copper_pressure_plate",COPPER_PRESSURE_PLATE);
     }
 
     public static void addCreative(BuildCreativeModeTabContentsEvent event) {

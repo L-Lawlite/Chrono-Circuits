@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "chrono_circuits:crafting/player_only_pressure_plate"
+        "recipe": "chrono_circuits:crafting/copper_pressure_plate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "chrono_circuits:crafting/player_only_pressure_plate"
+      "chrono_circuits:crafting/copper_pressure_plate"
     ]
   }
 }

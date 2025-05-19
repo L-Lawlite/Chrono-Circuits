@@ -1,5 +1,7 @@
 package net.lawliet.chrono_circuit.registration;
 
+//import net.lawliet.chrono_circuit.blockEntity.copperHopper.CopperHopperBlock;
+//import net.lawliet.chrono_circuit.blockEntity.copperHopper.CopperHopperBlockEntity;
 import net.lawliet.chrono_circuit.blockEntity.lightDetector.LightDetectorBlock;
 import net.lawliet.chrono_circuit.blockEntity.lightDetector.LightDetectorBlockEntity;
 import net.minecraft.world.item.BlockItem;
@@ -23,6 +25,10 @@ public class ChronoBlockEntityTypes {
     public static final DeferredItem<BlockItem> LIGHT_DETECTOR_BLOCK_ITEM;
     public static final Supplier<BlockEntityType<LightDetectorBlockEntity>> LIGHT_DETECTOR_BLOCK_ENTITY;
 
+//    public static final DeferredBlock<Block> COPPER_HOPPER_BLOCK;
+//    public static final DeferredItem<BlockItem> COPPER_HOPPER_BLOCK_ITEM;
+//    public static final Supplier<BlockEntityType<CopperHopperBlockEntity>> COPPER_HOPPER_BLOCK_ENTITY;
+
     static {
         LIGHT_DETECTOR_BLOCK = ChronoRegistries.BLOCKS.registerBlock(
                 "light_detector",
@@ -33,10 +39,21 @@ public class ChronoBlockEntityTypes {
                         .instrument(NoteBlockInstrument.BASS)
                         .sound(SoundType.CREAKING_HEART)
         );
+//        COPPER_HOPPER_BLOCK = ChronoRegistries.BLOCKS.registerBlock(
+//                "copper_hopper",
+//                CopperHopperBlock::new,
+//                BlockBehaviour.Properties.of()
+//                        .mapColor(MapColor.COLOR_ORANGE)
+//                        .requiresCorrectToolForDrops()
+//                        .strength(3.0F,4.8F)
+//                        .noOcclusion()
+//                        .sound(SoundType.COPPER)
+//        );
     }
 
     static {
         LIGHT_DETECTOR_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(LIGHT_DETECTOR_BLOCK);
+//        COPPER_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(COPPER_HOPPER_BLOCK);
     }
 
     static {
@@ -48,5 +65,12 @@ public class ChronoBlockEntityTypes {
 
                 )
         );
+//        COPPER_HOPPER_BLOCK_ENTITY = ChronoRegistries.BLOCK_ENTITY_TYPES.register(
+//                "copper_hopper_block_entity",
+//                () -> new BlockEntityType<>(
+//                        CopperHopperBlockEntity::new,
+//                        COPPER_HOPPER_BLOCK.get()
+//                )
+//        );
     }
 }
