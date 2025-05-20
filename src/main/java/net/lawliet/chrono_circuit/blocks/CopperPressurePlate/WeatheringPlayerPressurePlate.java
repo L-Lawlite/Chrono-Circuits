@@ -10,39 +10,41 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BasePressurePlateBlock;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
-
 import javax.annotation.Nullable;
 
-public class PlayerPressurePlate extends BasePressurePlateBlock {
-    public static final MapCodec<PlayerPressurePlate> CODEC = RecordCodecBuilder
+public class WeatheringPlayerPressurePlate extends BasePressurePlateBlock implements WeatheringCopper {
+    public static final MapCodec<WeatheringPlayerPressurePlate> CODEC = RecordCodecBuilder
             .mapCodec((inst) -> inst.group(
+                    WeatheringCopper.WeatherState.CODEC.fieldOf("weathering_state")
+                            .forGetter(ChangeOverTimeBlock::getAge),
                     BlockSetType.CODEC.fieldOf("block_set_type")
                             .forGetter(pressurePlate -> pressurePlate.type),
                     propertiesCodec(),
                     Codec.INT.optionalFieldOf("tick_delay",0)
                             .forGetter(pressurePlate -> pressurePlate.tickDelay))
-                    .apply(inst, PlayerPressurePlate::new));
+                    .apply(inst, WeatheringPlayerPressurePlate::new));
     protected int tickDelay;
+    private final WeatheringCopper.WeatherState weatherState;
     public static final BooleanProperty POWERED;
 
 
-    public PlayerPressurePlate(BlockSetType type, Properties properties, int tickDelay) {
+    public WeatheringPlayerPressurePlate(WeatheringCopper.WeatherState weatherState, BlockSetType type, Properties properties, int tickDelay) {
         super(properties,type);
         this.tickDelay = tickDelay;
+        this.weatherState = weatherState;
         this.registerDefaultState(this.stateDefinition.any().setValue(POWERED, false));
 
     }
 
-    public PlayerPressurePlate(BlockSetType type, Properties properties) {
-        this(type,properties,20);
+    public WeatheringPlayerPressurePlate(WeatheringCopper.WeatherState weatherState, BlockSetType type, Properties properties) {
+        this(weatherState,type,properties,20);
     }
 
     @Override
@@ -61,7 +63,7 @@ public class PlayerPressurePlate extends BasePressurePlateBlock {
     }
 
     @Override
-    protected MapCodec<? extends PlayerPressurePlate> codec() {
+    protected MapCodec<WeatheringPlayerPressurePlate> codec() {
         return CODEC;
     }
 
@@ -104,6 +106,21 @@ public class PlayerPressurePlate extends BasePressurePlateBlock {
             level.scheduleTick(new BlockPos(pos),this,this.tickDelay);
         }
 
+    }
+
+    @Override
+    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        this.changeOverTime(state,level,pos,random);
+    }
+
+    @Override
+    protected boolean isRandomlyTicking(BlockState state) {
+        return WeatheringCopper.getNext(state.getBlock()).isPresent();
+    }
+
+    @Override
+    public WeatherState getAge() {
+        return this.weatherState;
     }
 
     static {
