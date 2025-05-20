@@ -3,5 +3,8 @@
   "block.chrono_circuits.exposed_copper_pressure_plate": "Exposed Copper Pressure Plate",
   "block.chrono_circuits.light_detector": "Light Detector",
   "block.chrono_circuits.oxidized_copper_pressure_plate": "Oxidized Copper Pressure Plate",
+  "block.chrono_circuits.waxed_copper_pressure_plate": "Waxed Copper Pressure Plate",
+  "block.chrono_circuits.waxed_exposed_copper_pressure_plate": "Waxed Exposed Copper Pressure Plate",
+  "block.chrono_circuits.waxed_weathered_copper_pressure_plate": "Waxed Weathered Copper Pressure Plate",
   "block.chrono_circuits.weathered_copper_pressure_plate": "Weathered Copper Pressure Plate"
 }
