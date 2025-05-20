@@ -12,14 +12,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.neoforged.neoforge.common.DataMapHooks;
-
 import javax.annotation.Nullable;
-import java.util.Optional;
 
-public class PlayerPressurePlate extends PressurePlateBlock implements ChangeOverTimeBlock<WeatheringCopper.WeatherState> {
+public class PlayerPressurePlate extends BasePressurePlateBlock implements WeatheringCopper {
     public static final MapCodec<PlayerPressurePlate> CODEC = RecordCodecBuilder
             .mapCodec((inst) -> inst.group(
                     WeatheringCopper.WeatherState.CODEC.fieldOf("weathering_state")
@@ -32,15 +32,19 @@ public class PlayerPressurePlate extends PressurePlateBlock implements ChangeOve
                     .apply(inst, PlayerPressurePlate::new));
     protected int tickDelay;
     private final WeatheringCopper.WeatherState weatherState;
+    public static final BooleanProperty POWERED;
+
 
     public PlayerPressurePlate(WeatheringCopper.WeatherState weatherState, BlockSetType type, Properties properties, int tickDelay) {
-        super(type, properties);
+        super(properties,type);
         this.tickDelay = tickDelay;
         this.weatherState = weatherState;
+        this.registerDefaultState(this.stateDefinition.any().setValue(POWERED, false));
+
     }
 
     public PlayerPressurePlate(WeatheringCopper.WeatherState weatherState,BlockSetType type, Properties properties) {
-        this(weatherState,type,properties,0);
+        this(weatherState,type,properties,20);
     }
 
     @Override
@@ -49,12 +53,31 @@ public class PlayerPressurePlate extends PressurePlateBlock implements ChangeOve
     }
 
     @Override
+    protected int getSignalForState(BlockState state) {
+        return state.getValue(POWERED) ? 15 : 0;
+    }
+
+    @Override
+    protected BlockState setSignalForState(BlockState state, int strength) {
+        return state.setValue(POWERED, strength > 0);
+    }
+
+    @Override
+    protected MapCodec<PlayerPressurePlate> codec() {
+        return CODEC;
+    }
+
+    @Override
     protected void tick(BlockState state, ServerLevel serverLevel, BlockPos pos, RandomSource randomSource) {
         int i = this.getSignalForState(state);
         if (i > 0) {
-            serverLevel.scheduleTick(pos,this,this.tickDelay);
             this.checkPressed((Entity)null, serverLevel, pos, state, i);
         }
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(POWERED);
     }
 
     private void checkPressed(@Nullable Entity entity, Level level, BlockPos pos, BlockState state, int currentSignal) {
@@ -77,27 +100,31 @@ public class PlayerPressurePlate extends PressurePlateBlock implements ChangeOve
         }
 
         if (flag1) {
-            level.scheduleTick(new BlockPos(pos), this, this.getPressedTime());
+            level.scheduleTick(new BlockPos(pos), this, Math.max(this.getPressedTime(),this.tickDelay));
+        }
+        else {
+            level.scheduleTick(new BlockPos(pos),this,this.tickDelay);
         }
 
     }
 
     @Override
-    public Optional<BlockState> getNext(BlockState blockState) {
-        return  getNext(blockState.getBlock()).map((state) -> state.withPropertiesOf(blockState));
-    }
-
-    private static Optional<Block> getNext(Block block) {
-        return Optional.ofNullable(DataMapHooks.getNextOxidizedStage(block));
+    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        this.changeOverTime(state,level,pos,random);
     }
 
     @Override
-    public float getChanceModifier() {
-        return this.getAge() == WeatheringCopper.WeatherState.UNAFFECTED ? 0.75F : 1.0F;
+    protected boolean isRandomlyTicking(BlockState state) {
+        return WeatheringCopper.getNext(state.getBlock()).isPresent();
     }
 
     @Override
-    public WeatheringCopper.WeatherState getAge() {
+    public WeatherState getAge() {
         return this.weatherState;
     }
+
+    static {
+        POWERED = BlockStateProperties.POWERED;
+    }
+
 }

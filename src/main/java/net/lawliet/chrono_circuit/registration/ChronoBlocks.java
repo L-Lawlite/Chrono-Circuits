@@ -44,7 +44,7 @@ public class ChronoBlocks {
         );
 
         EXPOSED_COPPER_PRESSURE_PLATE = ChronoRegistries.BLOCKS.registerBlock("exposed_copper_pressure_plate",
-                properties -> new PlayerPressurePlate(WeatheringCopper.WeatherState.EXPOSED,BlockSetType.COPPER,properties,20),
+                properties -> new PlayerPressurePlate(WeatheringCopper.WeatherState.EXPOSED,BlockSetType.COPPER,properties,40),
                 BlockBehaviour.Properties.of()
                         .strength(0.5F)
                         .forceSolidOn()
@@ -56,7 +56,7 @@ public class ChronoBlocks {
         );
 
         WEATHERED_COPPER_PRESSURE_PLATE = ChronoRegistries.BLOCKS.registerBlock("weathered_copper_pressure_plate",
-                properties -> new PlayerPressurePlate(WeatheringCopper.WeatherState.WEATHERED,BlockSetType.COPPER,properties,40),
+                properties -> new PlayerPressurePlate(WeatheringCopper.WeatherState.WEATHERED,BlockSetType.COPPER,properties,80),
                 BlockBehaviour.Properties.of()
                         .strength(0.5F)
                         .forceSolidOn()
@@ -68,7 +68,7 @@ public class ChronoBlocks {
         );
 
         OXIDIZED_COPPER_PRESSURE_PLATE = ChronoRegistries.BLOCKS.registerBlock("oxidized_copper_pressure_plate",
-                properties -> new PlayerPressurePlate(WeatheringCopper.WeatherState.OXIDIZED,BlockSetType.COPPER,properties,80),
+                properties -> new PlayerPressurePlate(WeatheringCopper.WeatherState.OXIDIZED,BlockSetType.COPPER,properties,160),
                 BlockBehaviour.Properties.of()
                         .strength(0.5F)
                         .forceSolidOn()
