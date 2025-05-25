@@ -2,6 +2,7 @@ package net.lawliet.chrono_circuit.registration;
 
 import net.lawliet.chrono_circuit.ChronoCircuits;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
@@ -18,6 +19,9 @@ public class ChronoRegistries {
 
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE,ChronoCircuits.MODID);
 
+    public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(Registries.MENU,ChronoCircuits.MODID);
+
+
     public static void init(IEventBus modEventBus) {
         ChronoBlocks.init();
         ChronoBlockEntityTypes.init();
@@ -32,6 +36,7 @@ public class ChronoRegistries {
 
         BLOCK_ENTITY_TYPES.register(modEventBus);
 
+        MENU_TYPES.register(modEventBus);
     }
 
 }

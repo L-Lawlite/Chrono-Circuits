@@ -1,6 +1,6 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-package net.lawliet.chrono_circuit.blockEntity.copperHopper;
+package net.lawliet.chrono_circuit.blockEntity.hopper;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 
