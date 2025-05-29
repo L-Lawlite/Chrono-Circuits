@@ -13,7 +13,7 @@ public class CopperHopperMenu extends AbstractHopperMenu {
     private static final int CONTAINER_SIZE = CONTAINER_ROW * CONTAINER_COLUMN;
 
     public CopperHopperMenu(int containerId, Inventory playerInventory) {
-        super(ChronoBlockEntityTypes.COPPER_HOPPER_MENU.get(), containerId, playerInventory, new SimpleContainer(CONTAINER_SIZE));
+        this(containerId, playerInventory, new SimpleContainer(CONTAINER_SIZE));
     }
 
     public CopperHopperMenu(int containerId, Inventory playerInventory, Container container) {

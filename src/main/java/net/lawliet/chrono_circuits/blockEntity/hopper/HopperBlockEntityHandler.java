@@ -1,4 +1,4 @@
-package net.lawliet.chrono_circuits.blockEntity.hopper.copperHopper;
+package net.lawliet.chrono_circuits.blockEntity.hopper;
 
 import net.minecraft.core.Direction;
 import net.minecraft.world.Container;

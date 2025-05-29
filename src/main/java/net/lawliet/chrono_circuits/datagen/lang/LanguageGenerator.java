@@ -5,7 +5,10 @@ import net.lawliet.chrono_circuits.registration.ChronoBlockEntityTypes;
 import net.lawliet.chrono_circuits.registration.ChronoBlocks;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.LanguageProvider;
+
+import java.util.function.Supplier;
 
 public class LanguageGenerator extends LanguageProvider {
 
@@ -28,14 +31,16 @@ public class LanguageGenerator extends LanguageProvider {
         this.addBlock(ChronoBlockEntityTypes.LIGHT_DETECTOR_BLOCK,"Light Detector");
 
 
-        this.addBlock(ChronoBlockEntityTypes.COPPER_HOPPER_BLOCK,"Copper Hopper");
-        this.addBlock(ChronoBlockEntityTypes.EXPOSED_COPPER_HOPPER_BLOCK,"Exposed Copper Hopper");
-        this.addBlock(ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK,"Weathered Copper Hopper");
-        this.addBlock(ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK,"Oxidized Copper Hopper");
-        this.add(BuiltInRegistries.BLOCK.getKey(ChronoBlockEntityTypes.COPPER_HOPPER_BLOCK.get()).toLanguageKey("container"),"Copper Hopper");
-        this.add(BuiltInRegistries.BLOCK.getKey(ChronoBlockEntityTypes.EXPOSED_COPPER_HOPPER_BLOCK.get()).toLanguageKey("container"),"Exposed Copper Hopper");
-        this.add(BuiltInRegistries.BLOCK.getKey(ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK.get()).toLanguageKey("container"),"Weathered Copper Hopper");
-        this.add(BuiltInRegistries.BLOCK.getKey(ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK.get()).toLanguageKey("container"),"Oxidized Copper Hopper");
+       HopperHelper(ChronoBlockEntityTypes.COPPER_HOPPER_BLOCK,"Copper Hopper");
+       HopperHelper(ChronoBlockEntityTypes.EXPOSED_COPPER_HOPPER_BLOCK,"Exposed Copper Hopper");
+       HopperHelper(ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK,"Weathered Copper Hopper");
+       HopperHelper(ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK,"Oxidized Copper Hopper");
+       HopperHelper(ChronoBlockEntityTypes.GOLD_HOPPER_BLOCK,"Gold Hopper");
 
+    }
+
+    private void HopperHelper(Supplier<? extends Block> key, String name) {
+        this.addBlock(key,name);
+        this.add(BuiltInRegistries.BLOCK.getKey(key.get()).toLanguageKey("container"),name);
     }
 }

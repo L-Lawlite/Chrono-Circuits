@@ -1,4 +1,4 @@
-package net.lawliet.chrono_circuits.blockEntity.hopper.copperHopper;
+package net.lawliet.chrono_circuits.blockEntity.hopper.goldHopper;
 
 import net.lawliet.chrono_circuits.blockEntity.hopper.HopperBlockEntityHandler;
 import net.lawliet.chrono_circuits.registration.ChronoBlockEntityTypes;
@@ -11,7 +11,10 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.*;
+import net.minecraft.world.Container;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.WorldlyContainerHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -23,7 +26,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ChestBlock;
 import net.minecraft.world.level.block.HopperBlock;
-import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.ChestBlockEntity;
+import net.minecraft.world.level.block.entity.Hopper;
+import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -34,17 +40,17 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.BooleanSupplier;
 
-public class CopperHopperBlockEntity extends RandomizableContainerBlockEntity implements Hopper {
-    public static final int MOVE_ITEM_SPEED = 14;
-    public static final int HOPPER_CONTAINER_SIZE = 10;
+public class GoldHopperBlockEntity extends RandomizableContainerBlockEntity implements Hopper {
+    public static final int MOVE_ITEM_SPEED = 2;
+    public static final int HOPPER_CONTAINER_SIZE = 2;
     private static final int[][] CACHED_SLOTS = new int[54][];
     private NonNullList<ItemStack> items;
     private int cooldownTime;
     private long tickedGameTime;
     private Direction facing;
 
-    public CopperHopperBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ChronoBlockEntityTypes.COPPER_HOPPER_BLOCK_ENTITY.get(), pos, blockState);
+    public GoldHopperBlockEntity(BlockPos pos, BlockState blockState) {
+        super(ChronoBlockEntityTypes.GOLD_HOPPER_BLOCK_ENTITY.get(), pos, blockState);
         this.items = NonNullList.withSize(HOPPER_CONTAINER_SIZE, ItemStack.EMPTY);
         this.cooldownTime = -1;
         this.facing = blockState.getValue(HopperBlock.FACING);
@@ -101,7 +107,7 @@ public class CopperHopperBlockEntity extends RandomizableContainerBlockEntity im
         return  Component.translatable(blockId.toLanguageKey("container"));
     }
 
-    public static void pushItemsTick(Level level, BlockPos pos, BlockState state, CopperHopperBlockEntity be) {
+    public static void pushItemsTick(Level level, BlockPos pos, BlockState state, GoldHopperBlockEntity be) {
         --be.cooldownTime;
         be.tickedGameTime = level.getGameTime();
         if (!be.isOnCooldown()) {
@@ -111,7 +117,7 @@ public class CopperHopperBlockEntity extends RandomizableContainerBlockEntity im
 
     }
 
-    private static boolean tryMoveItems(Level level, BlockPos pos, BlockState state, CopperHopperBlockEntity be, BooleanSupplier validator) {
+    private static boolean tryMoveItems(Level level, BlockPos pos, BlockState state, GoldHopperBlockEntity be, BooleanSupplier validator) {
         if (level.isClientSide) {
             return false;
         }
@@ -145,7 +151,7 @@ public class CopperHopperBlockEntity extends RandomizableContainerBlockEntity im
         return true;
     }
 
-    private static boolean ejectItems(Level level, BlockPos pos, CopperHopperBlockEntity blockEntity) {
+    private static boolean ejectItems(Level level, BlockPos pos, GoldHopperBlockEntity blockEntity) {
         ContainerOrHandler containerOrHandler = getContainerOrHandlerAt(level, pos.relative(blockEntity.facing), blockEntity.facing.getOpposite());
         if (containerOrHandler.isEmpty()) {
             return false;
@@ -222,7 +228,7 @@ public class CopperHopperBlockEntity extends RandomizableContainerBlockEntity im
         return true;
     }
 
-    public static boolean suckInItems(Level level, CopperHopperBlockEntity hopper) {
+    public static boolean suckInItems(Level level, GoldHopperBlockEntity hopper) {
         BlockPos blockpos = BlockPos.containing(hopper.getLevelX(), hopper.getLevelY() + (double)1.0F, hopper.getLevelZ());
         BlockState blockstate = level.getBlockState(blockpos);
         ContainerOrHandler containerOrHandler = getSourceContainerOrHandler(level, hopper, blockpos, blockstate);
@@ -351,10 +357,10 @@ public class CopperHopperBlockEntity extends RandomizableContainerBlockEntity im
             }
 
             if (flag) {
-                if (flag1 && destination instanceof CopperHopperBlockEntity hopperblockentity1) {
+                if (flag1 && destination instanceof GoldHopperBlockEntity hopperblockentity1) {
                     if (!hopperblockentity1.isOnCustomCooldown()) {
                         int k = 0;
-                        if (source instanceof CopperHopperBlockEntity hopperblockentity) {
+                        if (source instanceof GoldHopperBlockEntity hopperblockentity) {
                             if (hopperblockentity1.tickedGameTime >= hopperblockentity.tickedGameTime) {
                                 k = 1;
                             }
@@ -372,7 +378,7 @@ public class CopperHopperBlockEntity extends RandomizableContainerBlockEntity im
     }
 
     @Nullable
-    private static Container getAttachedContainer(Level level, BlockPos pos, CopperHopperBlockEntity blockEntity) {
+    private static Container getAttachedContainer(Level level, BlockPos pos, GoldHopperBlockEntity blockEntity) {
         return getContainerAt(level, pos.relative(blockEntity.facing));
     }
 
@@ -430,7 +436,7 @@ public class CopperHopperBlockEntity extends RandomizableContainerBlockEntity im
         return !list.isEmpty() ? (Container)list.get(level.random.nextInt(list.size())) : null;
     }
 
-    private static ContainerOrHandler getSourceContainerOrHandler(Level level, CopperHopperBlockEntity hopper, BlockPos pos, BlockState state) {
+    private static ContainerOrHandler getSourceContainerOrHandler(Level level, GoldHopperBlockEntity hopper, BlockPos pos, BlockState state) {
         return getContainerOrHandlerAt(level, pos, state, hopper.getLevelX(), hopper.getLevelY() + (double)1.0F, hopper.getLevelZ(), Direction.DOWN);
     }
 
@@ -494,7 +500,7 @@ public class CopperHopperBlockEntity extends RandomizableContainerBlockEntity im
         this.items = items;
     }
 
-    public static void entityInside(Level level, BlockPos pos, BlockState state, Entity entity, CopperHopperBlockEntity blockEntity) {
+    public static void entityInside(Level level, BlockPos pos, BlockState state, Entity entity, GoldHopperBlockEntity blockEntity) {
         if (entity instanceof ItemEntity itementity) {
             if (!itementity.getItem().isEmpty() && entity.getBoundingBox().move(-pos.getX(), -pos.getY(), -pos.getZ()).intersects(blockEntity.getSuckAabb())) {
                 tryMoveItems(level, pos, state, blockEntity, () -> addItem(blockEntity, itementity));
@@ -505,7 +511,7 @@ public class CopperHopperBlockEntity extends RandomizableContainerBlockEntity im
 
     @Override
     protected AbstractContainerMenu createMenu(int id, Inventory player) {
-        return new CopperHopperMenu(id, player, this);
+        return new GoldHopperMenu(id, player, this);
     }
 
     public long getLastUpdateTime() {

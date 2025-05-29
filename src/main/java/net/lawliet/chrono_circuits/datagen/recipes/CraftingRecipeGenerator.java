@@ -28,7 +28,7 @@ public class CraftingRecipeGenerator extends RecipeProvider {
                 .save(this.output, String.valueOf(ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID,"crafting/" + ChronoBlocks.COPPER_PRESSURE_PLATE_ITEM.getId().getPath())));
 
         ShapedRecipeBuilder
-                .shaped(this.registries.lookupOrThrow(Registries.ITEM),RecipeCategory.REDSTONE, ChronoBlockEntityTypes.COPPER_HOPPER_BLOCK)
+                .shaped(this.registries.lookupOrThrow(Registries.ITEM),RecipeCategory.REDSTONE, ChronoBlockEntityTypes.COPPER_HOPPER_BLOCK_ITEM.asItem())
                 .define('C', Tags.Items.CHESTS)
                 .define('I', Items.COPPER_BLOCK)
                 .define('H', Items.HONEYCOMB)
@@ -38,7 +38,7 @@ public class CraftingRecipeGenerator extends RecipeProvider {
                 .unlockedBy("has_copper_block", this.has(Tags.Items.STORAGE_BLOCKS_COPPER))
                 .save(this.output);
         ShapedRecipeBuilder
-                .shaped(this.registries.lookupOrThrow(Registries.ITEM),RecipeCategory.REDSTONE, ChronoBlockEntityTypes.EXPOSED_COPPER_HOPPER_BLOCK)
+                .shaped(this.registries.lookupOrThrow(Registries.ITEM),RecipeCategory.REDSTONE, ChronoBlockEntityTypes.EXPOSED_COPPER_HOPPER_BLOCK_ITEM.asItem())
                 .define('C', Tags.Items.CHESTS)
                 .define('I', Items.EXPOSED_COPPER)
                 .define('H', Items.HONEYCOMB)
@@ -48,7 +48,7 @@ public class CraftingRecipeGenerator extends RecipeProvider {
                 .unlockedBy("has_copper_block", this.has(Tags.Items.STORAGE_BLOCKS_COPPER))
                 .save(this.output);
         ShapedRecipeBuilder
-                .shaped(this.registries.lookupOrThrow(Registries.ITEM),RecipeCategory.REDSTONE, ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK)
+                .shaped(this.registries.lookupOrThrow(Registries.ITEM),RecipeCategory.REDSTONE, ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK_ITEM.asItem())
                 .define('C', Tags.Items.CHESTS)
                 .define('I', Items.WEATHERED_COPPER)
                 .define('H', Items.HONEYCOMB)
@@ -58,14 +58,22 @@ public class CraftingRecipeGenerator extends RecipeProvider {
                 .unlockedBy("has_copper_block", this.has(Tags.Items.STORAGE_BLOCKS_COPPER))
                 .save(this.output);
         ShapedRecipeBuilder
-                .shaped(this.registries.lookupOrThrow(Registries.ITEM),RecipeCategory.REDSTONE, ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK)
+                .shaped(this.registries.lookupOrThrow(Registries.ITEM),RecipeCategory.REDSTONE, ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK_ITEM.asItem())
                 .define('C', Tags.Items.CHESTS)
                 .define('I', Items.OXIDIZED_COPPER)
-                .define('H', Items.HONEYCOMB)
-                .pattern("IHI")
+                .pattern("I I")
                 .pattern("ICI")
                 .pattern(" I ")
                 .unlockedBy("has_copper_block", this.has(Tags.Items.STORAGE_BLOCKS_COPPER))
+                .save(this.output);
+        ShapedRecipeBuilder
+                .shaped(this.registries.lookupOrThrow(Registries.ITEM),RecipeCategory.REDSTONE, ChronoBlockEntityTypes.GOLD_HOPPER_BLOCK_ITEM.asItem())
+                .define('C', Tags.Items.CHESTS)
+                .define('I', Tags.Items.INGOTS_GOLD)
+                .pattern("I I")
+                .pattern("ICI")
+                .pattern(" I ")
+                .unlockedBy("has_gold", this.has(Tags.Items.INGOTS_GOLD))
                 .save(this.output);
     }
 
