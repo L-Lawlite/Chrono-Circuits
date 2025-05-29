@@ -149,11 +149,10 @@ public class CopperHopperBlockEntity extends RandomizableContainerBlockEntity im
         if (containerOrHandler.isEmpty()) {
             return false;
         }
-        if(containerOrHandler.container() == null) {
-            assert containerOrHandler.itemHandler() != null;
+        Container container = containerOrHandler.container();
+        if(container == null) {
             return HopperBlockEntityHandler.insertHook(blockEntity, containerOrHandler.itemHandler());
         }
-        Container container = containerOrHandler.container();
         Direction direction = blockEntity.facing.getOpposite();
         if (isFullContainer(container, direction)) {
             return false;
