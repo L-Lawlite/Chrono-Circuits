@@ -1,0 +1,8 @@
+{
+  "parent": "chrono_circuits:block/template_hopper",
+  "textures": {
+    "top": "chrono_circuits:block/gold_hopper_top",
+    "side": "chrono_circuits:block/gold_hopper_outside",
+    "inside": "chrono_circuits:block/gold_hopper_inside"
+  }
+}

@@ -3,6 +3,7 @@
   "block.chrono_circuits.copper_pressure_plate": "Copper Pressure Plate",
   "block.chrono_circuits.exposed_copper_hopper": "Exposed Copper Hopper",
   "block.chrono_circuits.exposed_copper_pressure_plate": "Exposed Copper Pressure Plate",
+  "block.chrono_circuits.gold_hopper": "Gold Hopper",
   "block.chrono_circuits.light_detector": "Light Detector",
   "block.chrono_circuits.oxidized_copper_hopper": "Oxidized Copper Hopper",
   "block.chrono_circuits.oxidized_copper_pressure_plate": "Oxidized Copper Pressure Plate",
@@ -13,6 +14,7 @@
   "block.chrono_circuits.weathered_copper_pressure_plate": "Weathered Copper Pressure Plate",
   "container.chrono_circuits.copper_hopper": "Copper Hopper",
   "container.chrono_circuits.exposed_copper_hopper": "Exposed Copper Hopper",
+  "container.chrono_circuits.gold_hopper": "Gold Hopper",
   "container.chrono_circuits.oxidized_copper_hopper": "Oxidized Copper Hopper",
   "container.chrono_circuits.weathered_copper_hopper": "Weathered Copper Hopper"
 }

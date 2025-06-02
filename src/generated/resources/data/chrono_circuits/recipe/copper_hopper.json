@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": "#c:chests",
+    "H": "minecraft:honeycomb",
+    "I": "minecraft:copper_block"
+  },
+  "pattern": [
+    "IHI",
+    "ICI",
+    " I "
+  ],
+  "result": {
+    "count": 1,
+    "id": "chrono_circuits:copper_hopper"
+  }
+}

@@ -16,8 +16,10 @@ import net.minecraft.client.data.models.model.ModelLocationUtils;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
@@ -36,16 +38,17 @@ public class ModelGenerator extends ModelProvider {
         CopperPressurePlateModelGenerator(blockModels,ChronoBlocks.WAXED_EXPOSED_COPPER_PRESSURE_PLATE.get(),Blocks.EXPOSED_COPPER);
         CopperPressurePlateModelGenerator(blockModels,ChronoBlocks.WAXED_WEATHERED_COPPER_PRESSURE_PLATE.get(),Blocks.WEATHERED_COPPER);
 
-        ResourceLocation resourcelocation = TextureMapping.getBlockTexture(Blocks.DAYLIGHT_DETECTOR, "_side");
-        TextureMapping texturemapping = (new TextureMapping()).put(TextureSlot.TOP, TextureMapping.getBlockTexture(Blocks.DAYLIGHT_DETECTOR, "_top")).put(TextureSlot.SIDE, resourcelocation);
-        TextureMapping texturemapping1 = (new TextureMapping()).put(TextureSlot.TOP, TextureMapping.getBlockTexture(Blocks.DAYLIGHT_DETECTOR, "_inverted_top")).put(TextureSlot.SIDE, resourcelocation);
-        blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(ChronoBlockEntityTypes.LIGHT_DETECTOR_BLOCK.get()).with(PropertyDispatch.property(BlockStateProperties.LIGHT_STATE)
-                .select(LightState.SKY, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.DAYLIGHT_DETECTOR.create(ChronoBlockEntityTypes.LIGHT_DETECTOR_BLOCK.get(), texturemapping, blockModels.modelOutput)))
-                .select(LightState.BLOCK, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.DAYLIGHT_DETECTOR.create(ModelLocationUtils.getModelLocation(ChronoBlockEntityTypes.LIGHT_DETECTOR_BLOCK.get(), "_inverted"), texturemapping1, blockModels.modelOutput)))
-                .select(LightState.SKY_AND_BLOCK, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.DAYLIGHT_DETECTOR.create(ModelLocationUtils.getModelLocation(ChronoBlockEntityTypes.LIGHT_DETECTOR_BLOCK.get(), "_inverted2"), texturemapping1, blockModels.modelOutput)))
-        ))
-        ;
+        createLightDetector(blockModels);
+        createHopper(blockModels,ChronoBlockEntityTypes.COPPER_HOPPER_BLOCK.get(),ChronoBlockEntityTypes.COPPER_HOPPER_BLOCK_ITEM.get());
+        createHopper(blockModels,ChronoBlockEntityTypes.EXPOSED_COPPER_HOPPER_BLOCK.get(),ChronoBlockEntityTypes.EXPOSED_COPPER_HOPPER_BLOCK_ITEM.get());
+        createHopper(blockModels,ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK.get(),ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK_ITEM.get());
+        createHopper(blockModels,ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK.get(),ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK_ITEM.get());
+        createHopper(blockModels,ChronoBlockEntityTypes.GOLD_HOPPER_BLOCK.get(),ChronoBlockEntityTypes.GOLD_HOPPER_BLOCK_ITEM.get());
+
+        createHopper(blockModels,ChronoBlockEntityTypes.PIPE_BLOCK.get(),ChronoBlockEntityTypes.PIPE_BLOCK_ITEM.get());
+//        blockModels.copyModel(ChronoBlockEntityTypes.PIPE_BLOCK.get(),Blocks.HOPPER);
     }
+
     private void CopperPressurePlateModelGenerator(BlockModelGenerators blockModels, Block pressurePlateBlock, Block textureMappingBlock) {
         TextureMapping texturemapping = TextureMapping.defaultTexture(textureMappingBlock);
         ResourceLocation pressurePlateUp = ModelTemplates.PRESSURE_PLATE_UP.create(pressurePlateBlock, texturemapping, blockModels.modelOutput);
@@ -53,5 +56,23 @@ public class ModelGenerator extends ModelProvider {
         blockModels.blockStateOutput.accept(
             BlockModelGenerators.createPressurePlate(pressurePlateBlock,pressurePlateUp, pressurePlateDown)
         );
+    }
+
+    public void createHopper(BlockModelGenerators blockModels, Block hopperBlock, Item hopperItem) {
+        ResourceLocation resourcelocation = ModelLocationUtils.getModelLocation(hopperBlock);
+        ResourceLocation resourcelocation1 = ModelLocationUtils.getModelLocation(hopperBlock, "_side");
+        blockModels.registerSimpleFlatItemModel(hopperItem);
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(hopperBlock).with(PropertyDispatch.property(net.minecraft.world.level.block.state.properties.BlockStateProperties.FACING_HOPPER).select(Direction.DOWN, Variant.variant().with(VariantProperties.MODEL, resourcelocation)).select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, resourcelocation1)).select(Direction.EAST, Variant.variant().with(VariantProperties.MODEL, resourcelocation1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)).select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, resourcelocation1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180)).select(Direction.WEST, Variant.variant().with(VariantProperties.MODEL, resourcelocation1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))));
+    }
+
+    private void createLightDetector(BlockModelGenerators blockModels) {
+        ResourceLocation resourcelocation = TextureMapping.getBlockTexture(Blocks.DAYLIGHT_DETECTOR, "_side");
+        TextureMapping texturemapping = (new TextureMapping()).put(TextureSlot.TOP, TextureMapping.getBlockTexture(Blocks.DAYLIGHT_DETECTOR, "_top")).put(TextureSlot.SIDE, resourcelocation);
+        TextureMapping texturemapping1 = (new TextureMapping()).put(TextureSlot.TOP, TextureMapping.getBlockTexture(Blocks.DAYLIGHT_DETECTOR, "_inverted_top")).put(TextureSlot.SIDE, resourcelocation);
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(ChronoBlockEntityTypes.LIGHT_DETECTOR_BLOCK.get()).with(PropertyDispatch.property(BlockStateProperties.LIGHT_STATE)
+                .select(LightState.SKY, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.DAYLIGHT_DETECTOR.create(ChronoBlockEntityTypes.LIGHT_DETECTOR_BLOCK.get(), texturemapping, blockModels.modelOutput)))
+                .select(LightState.BLOCK, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.DAYLIGHT_DETECTOR.create(ModelLocationUtils.getModelLocation(ChronoBlockEntityTypes.LIGHT_DETECTOR_BLOCK.get(), "_inverted"), texturemapping1, blockModels.modelOutput)))
+                .select(LightState.SKY_AND_BLOCK, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.DAYLIGHT_DETECTOR.create(ModelLocationUtils.getModelLocation(ChronoBlockEntityTypes.LIGHT_DETECTOR_BLOCK.get(), "_inverted2"), texturemapping1, blockModels.modelOutput)))
+        ));
     }
 }
