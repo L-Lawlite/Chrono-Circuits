@@ -6,12 +6,16 @@ import net.lawliet.chrono_circuits.blockEntity.hopper.copperHopper.CopperHopperM
 import net.lawliet.chrono_circuits.blockEntity.hopper.goldHopper.GoldHopperBlock;
 import net.lawliet.chrono_circuits.blockEntity.hopper.goldHopper.GoldHopperBlockEntity;
 import net.lawliet.chrono_circuits.blockEntity.hopper.goldHopper.GoldHopperMenu;
+import net.lawliet.chrono_circuits.blockEntity.hopper.pipe.PipeBlock;
+import net.lawliet.chrono_circuits.blockEntity.hopper.pipe.PipeBlockEntity;
+import net.lawliet.chrono_circuits.blockEntity.hopper.pipe.PipeMenu;
 import net.lawliet.chrono_circuits.blockEntity.lightDetector.LightDetectorBlock;
 import net.lawliet.chrono_circuits.blockEntity.lightDetector.LightDetectorBlockEntity;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -46,11 +50,17 @@ public class ChronoBlockEntityTypes {
     public static final DeferredBlock<Block> GOLD_HOPPER_BLOCK;
     public static final DeferredItem<BlockItem> GOLD_HOPPER_BLOCK_ITEM;
 
+    public static final DeferredBlock<Block> PIPE_BLOCK;
+    public static final DeferredItem<BlockItem> PIPE_BLOCK_ITEM;
+
     public static final Supplier<BlockEntityType<CopperHopperBlockEntity>> COPPER_HOPPER_BLOCK_ENTITY;
     public static final Supplier<MenuType<CopperHopperMenu>> COPPER_HOPPER_MENU;
 
     public static final Supplier<BlockEntityType<GoldHopperBlockEntity>> GOLD_HOPPER_BLOCK_ENTITY;
     public static final Supplier<MenuType<GoldHopperMenu>> GOLD_HOPPER_MENU;
+
+    public static final Supplier<BlockEntityType<PipeBlockEntity>> PIPE_BLOCK_ENTITY;
+    public static final Supplier<MenuType<PipeMenu>> PIPE_MENU;
 
 
     static {
@@ -112,6 +122,11 @@ public class ChronoBlockEntityTypes {
                         .strength(3.0F,4.8F)
                         .noOcclusion()
         );
+        PIPE_BLOCK = ChronoRegistries.BLOCKS.registerBlock(
+                "pipe",
+                PipeBlock::new,
+                BlockBehaviour.Properties.ofFullCopy(Blocks.HOPPER)
+        );
     }
 
     static {
@@ -121,6 +136,8 @@ public class ChronoBlockEntityTypes {
         WEATHERED_COPPER_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WEATHERED_COPPER_HOPPER_BLOCK);
         OXIDIZED_COPPER_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(OXIDIZED_COPPER_HOPPER_BLOCK);
         GOLD_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(GOLD_HOPPER_BLOCK);
+        PIPE_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(PIPE_BLOCK);
+
     }
 
     static {
@@ -149,11 +166,19 @@ public class ChronoBlockEntityTypes {
                         GOLD_HOPPER_BLOCK.get()
                         )
         );
+        PIPE_BLOCK_ENTITY = ChronoRegistries.BLOCK_ENTITY_TYPES.register(
+                "pipe",
+                () -> new BlockEntityType<>(
+                        PipeBlockEntity::new,
+                        PIPE_BLOCK.get()
+                )
+        );
     }
 
     //MENU
     static {
         COPPER_HOPPER_MENU = ChronoRegistries.MENU_TYPES.register("copper_hopper_menu", () -> new MenuType<>(CopperHopperMenu::new, FeatureFlags.DEFAULT_FLAGS));
         GOLD_HOPPER_MENU = ChronoRegistries.MENU_TYPES.register("gold_hopper_menu", () -> new MenuType<>(GoldHopperMenu::new, FeatureFlags.DEFAULT_FLAGS));
+        PIPE_MENU = ChronoRegistries.MENU_TYPES.register("pipe_menu", () -> new MenuType<>(PipeMenu::new, FeatureFlags.DEFAULT_FLAGS));
     }
 }
