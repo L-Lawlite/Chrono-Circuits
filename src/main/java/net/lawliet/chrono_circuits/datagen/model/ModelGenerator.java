@@ -62,8 +62,8 @@ public class ModelGenerator extends ModelProvider {
                 .put(TextureSlot.TOP,topTexture)
                 .put(TextureSlot.SIDE,outsideTexture)
                 .put(TextureSlot.INSIDE,insideTexture);
-        ResourceLocation resourcelocation = ChronoModelTemplates.HOPPER.create(hopperBlock,textureMapping, blockModels.modelOutput);
-        ResourceLocation resourcelocation1 = ChronoModelTemplates.HOPPER_SIDE.createWithSuffix(hopperBlock,"_side",textureMapping, blockModels.modelOutput);
+        ResourceLocation resourcelocation = ChronoCircuitsModelTemplates.HOPPER.create(hopperBlock,textureMapping, blockModels.modelOutput);
+        ResourceLocation resourcelocation1 = ChronoCircuitsModelTemplates.HOPPER_SIDE.createWithSuffix(hopperBlock,"_side",textureMapping, blockModels.modelOutput);
         blockModels.registerSimpleFlatItemModel(hopperItem);
         blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(hopperBlock).with(PropertyDispatch.property(net.minecraft.world.level.block.state.properties.BlockStateProperties.FACING_HOPPER).select(Direction.DOWN, Variant.variant().with(VariantProperties.MODEL, resourcelocation)).select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, resourcelocation1)).select(Direction.EAST, Variant.variant().with(VariantProperties.MODEL, resourcelocation1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)).select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, resourcelocation1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180)).select(Direction.WEST, Variant.variant().with(VariantProperties.MODEL, resourcelocation1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))));
 

@@ -2,6 +2,7 @@ package net.lawliet.chrono_circuits.datagen;
 
 import com.mojang.logging.LogUtils;
 import net.lawliet.chrono_circuits.ChronoCircuits;
+import net.lawliet.chrono_circuits.datagen.Tags.BlockTags.ChronoCircuitsBlockTagProvider;
 import net.lawliet.chrono_circuits.datagen.datamap.DataMapGenerator;
 import net.lawliet.chrono_circuits.datagen.lang.LanguageGenerator;
 import net.lawliet.chrono_circuits.datagen.lootTables.ChronoCircuitsLootTableSubProvider;
@@ -46,6 +47,8 @@ public class ClientDatagen {
                 ),
                 lookupProvider
         ));
+
+        event.createProvider(ChronoCircuitsBlockTagProvider::new);
 
 
     }

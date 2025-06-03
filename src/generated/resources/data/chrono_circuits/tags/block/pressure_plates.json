@@ -1,0 +1,11 @@
+{
+  "values": [
+    "chrono_circuits:copper_pressure_plate",
+    "chrono_circuits:exposed_copper_pressure_plate",
+    "chrono_circuits:weathered_copper_pressure_plate",
+    "chrono_circuits:oxidized_copper_pressure_plate",
+    "chrono_circuits:waxed_copper_pressure_plate",
+    "chrono_circuits:waxed_exposed_copper_pressure_plate",
+    "chrono_circuits:waxed_weathered_copper_pressure_plate"
+  ]
+}

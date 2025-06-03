@@ -3,16 +3,15 @@
   "category": "redstone",
   "key": {
     "C": "#c:chests",
-    "H": "minecraft:honeycomb",
-    "I": "minecraft:copper_block"
+    "I": "#c:ingots/iron"
   },
   "pattern": [
-    "IHI",
+    "I I",
     "ICI",
-    " I "
+    "I I"
   ],
   "result": {
-    "count": 4,
-    "id": "chrono_circuits:copper_hopper"
+    "count": 1,
+    "id": "chrono_circuits:pipe"
   }
 }

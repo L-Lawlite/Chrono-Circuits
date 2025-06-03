@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "A": "#c:gems/amethyst",
+    "D": "minecraft:daylight_detector"
+  },
+  "pattern": [
+    " A ",
+    "ADA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "chrono_circuits:light_detector"
+  }
+}

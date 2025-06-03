@@ -4,7 +4,7 @@ import net.minecraft.client.data.models.model.ModelTemplate;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureSlot;
 
-public class ChronoModelTemplates {
+public class ChronoCircuitsModelTemplates {
     public static final ModelTemplate HOPPER;
     public static final ModelTemplate HOPPER_SIDE;
 

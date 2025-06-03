@@ -1,0 +1,9 @@
+{
+  "values": [
+    "chrono_circuits:copper_hopper",
+    "chrono_circuits:exposed_copper_hopper",
+    "chrono_circuits:weathered_copper_hopper",
+    "chrono_circuits:oxidized_copper_hopper",
+    "chrono_circuits:gold_hopper"
+  ]
+}

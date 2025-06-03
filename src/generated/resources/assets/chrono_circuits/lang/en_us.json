@@ -7,6 +7,7 @@
   "block.chrono_circuits.light_detector": "Light Detector",
   "block.chrono_circuits.oxidized_copper_hopper": "Oxidized Copper Hopper",
   "block.chrono_circuits.oxidized_copper_pressure_plate": "Oxidized Copper Pressure Plate",
+  "block.chrono_circuits.pipe": "Item Pipe",
   "block.chrono_circuits.waxed_copper_pressure_plate": "Waxed Copper Pressure Plate",
   "block.chrono_circuits.waxed_exposed_copper_pressure_plate": "Waxed Exposed Copper Pressure Plate",
   "block.chrono_circuits.waxed_weathered_copper_pressure_plate": "Waxed Weathered Copper Pressure Plate",
@@ -16,5 +17,6 @@
   "container.chrono_circuits.exposed_copper_hopper": "Exposed Copper Hopper",
   "container.chrono_circuits.gold_hopper": "Gold Hopper",
   "container.chrono_circuits.oxidized_copper_hopper": "Oxidized Copper Hopper",
+  "container.chrono_circuits.pipe": "Item Pipe",
   "container.chrono_circuits.weathered_copper_hopper": "Weathered Copper Hopper"
 }

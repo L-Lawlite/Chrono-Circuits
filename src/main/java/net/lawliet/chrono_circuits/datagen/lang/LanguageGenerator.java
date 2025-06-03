@@ -37,6 +37,8 @@ public class LanguageGenerator extends LanguageProvider {
        HopperHelper(ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK,"Oxidized Copper Hopper");
        HopperHelper(ChronoBlockEntityTypes.GOLD_HOPPER_BLOCK,"Gold Hopper");
 
+       HopperHelper(ChronoBlockEntityTypes.PIPE_BLOCK,"Item Pipe");
+
     }
 
     private void HopperHelper(Supplier<? extends Block> key, String name) {
