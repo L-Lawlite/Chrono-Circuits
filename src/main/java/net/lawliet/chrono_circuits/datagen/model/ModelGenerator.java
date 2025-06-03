@@ -42,7 +42,6 @@ public class ModelGenerator extends ModelProvider {
         createHopper(blockModels,ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK.get(),ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK_ITEM.get());
         createHopper(blockModels,ChronoBlockEntityTypes.GOLD_HOPPER_BLOCK.get(),ChronoBlockEntityTypes.GOLD_HOPPER_BLOCK_ITEM.get());
         blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(ChronoBlockEntityTypes.PIPE_BLOCK.get(),ResourceLocation.parse("chrono_circuits:block/pipe")));
-//        createHopper(blockModels,ChronoBlockEntityTypes.PIPE_BLOCK.get(),ChronoBlockEntityTypes.PIPE_BLOCK_ITEM.get());
     }
 
     private void CopperPressurePlateModelGenerator(BlockModelGenerators blockModels, Block pressurePlateBlock, Block textureMappingBlock) {

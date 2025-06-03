@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
-    "C": "#c:chests",
+    "C": "#c:chests/wooden",
     "H": "minecraft:honeycomb",
     "I": "minecraft:weathered_copper"
   },

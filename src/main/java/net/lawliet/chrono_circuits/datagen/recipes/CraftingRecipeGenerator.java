@@ -29,7 +29,7 @@ public class CraftingRecipeGenerator extends RecipeProvider {
 
         ShapedRecipeBuilder
                 .shaped(this.registries.lookupOrThrow(Registries.ITEM),RecipeCategory.REDSTONE, ChronoBlockEntityTypes.COPPER_HOPPER_BLOCK_ITEM.asItem(), 4)
-                .define('C', Tags.Items.CHESTS)
+                .define('C', Tags.Items.CHESTS_WOODEN)
                 .define('I', Items.COPPER_BLOCK)
                 .define('H', Items.HONEYCOMB)
                 .pattern("IHI")
@@ -39,7 +39,7 @@ public class CraftingRecipeGenerator extends RecipeProvider {
                 .save(this.output);
         ShapedRecipeBuilder
                 .shaped(this.registries.lookupOrThrow(Registries.ITEM),RecipeCategory.REDSTONE, ChronoBlockEntityTypes.EXPOSED_COPPER_HOPPER_BLOCK_ITEM.asItem(), 4)
-                .define('C', Tags.Items.CHESTS)
+                .define('C', Tags.Items.CHESTS_WOODEN)
                 .define('I', Items.EXPOSED_COPPER)
                 .define('H', Items.HONEYCOMB)
                 .pattern("IHI")
@@ -49,7 +49,7 @@ public class CraftingRecipeGenerator extends RecipeProvider {
                 .save(this.output);
         ShapedRecipeBuilder
                 .shaped(this.registries.lookupOrThrow(Registries.ITEM),RecipeCategory.REDSTONE, ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK_ITEM.asItem(), 4)
-                .define('C', Tags.Items.CHESTS)
+                .define('C', Tags.Items.CHESTS_WOODEN)
                 .define('I', Items.WEATHERED_COPPER)
                 .define('H', Items.HONEYCOMB)
                 .pattern("IHI")
@@ -59,7 +59,7 @@ public class CraftingRecipeGenerator extends RecipeProvider {
                 .save(this.output);
         ShapedRecipeBuilder
                 .shaped(this.registries.lookupOrThrow(Registries.ITEM),RecipeCategory.REDSTONE, ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK_ITEM.asItem(), 4)
-                .define('C', Tags.Items.CHESTS)
+                .define('C', Tags.Items.CHESTS_WOODEN)
                 .define('I', Items.OXIDIZED_COPPER)
                 .pattern("I I")
                 .pattern("ICI")
@@ -68,7 +68,7 @@ public class CraftingRecipeGenerator extends RecipeProvider {
                 .save(this.output);
         ShapedRecipeBuilder
                 .shaped(this.registries.lookupOrThrow(Registries.ITEM),RecipeCategory.REDSTONE, ChronoBlockEntityTypes.GOLD_HOPPER_BLOCK_ITEM.asItem())
-                .define('C', Tags.Items.CHESTS)
+                .define('C', Tags.Items.CHESTS_WOODEN)
                 .define('I', Tags.Items.INGOTS_GOLD)
                 .pattern("I I")
                 .pattern("ICI")
@@ -78,7 +78,7 @@ public class CraftingRecipeGenerator extends RecipeProvider {
         ShapedRecipeBuilder
                 .shaped(this.registries.lookupOrThrow(Registries.ITEM),RecipeCategory.REDSTONE,ChronoBlockEntityTypes.PIPE_BLOCK_ITEM.asItem())
                 .define('I', Tags.Items.INGOTS_IRON)
-                .define('C', Tags.Items.CHESTS)
+                .define('C', Tags.Items.CHESTS_WOODEN)
                 .pattern("I I")
                 .pattern("ICI")
                 .pattern("I I")
