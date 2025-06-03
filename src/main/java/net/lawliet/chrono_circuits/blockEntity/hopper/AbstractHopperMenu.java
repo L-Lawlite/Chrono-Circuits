@@ -12,6 +12,7 @@ public abstract class AbstractHopperMenu extends AbstractContainerMenu {
     protected static int CONTAINER_SIZE = 0;
     protected final Container hopper;
 
+
     public AbstractHopperMenu(MenuType<?> menuType,int containerId, Inventory playerInventory, Container container) {
         super(menuType, containerId);
         this.hopper = container;
@@ -19,7 +20,6 @@ public abstract class AbstractHopperMenu extends AbstractContainerMenu {
         container.startOpen(playerInventory.player);
 
         this.addHopperSlots(container);
-        this.addStandardInventorySlots(playerInventory, 8, 51);
     }
 
     protected abstract void addHopperSlots(Container container);

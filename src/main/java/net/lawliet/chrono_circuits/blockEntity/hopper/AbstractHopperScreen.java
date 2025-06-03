@@ -13,7 +13,11 @@ public abstract class AbstractHopperScreen extends AbstractContainerScreen<Abstr
         super(menu, playerInventory, title);
     }
 
-
+    @Override
+    public void render(GuiGraphics guiGraphics, int x, int y, float v) {
+        super.render(guiGraphics, x, y, v);
+        this.renderTooltip(guiGraphics, x, y);
+    }
 
     @Override
     protected void renderBg(GuiGraphics guiGraphics, float v, int i, int i1) {

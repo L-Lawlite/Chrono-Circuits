@@ -11,5 +11,7 @@ public class GoldHopperScreen extends AbstractHopperScreen {
     public GoldHopperScreen(AbstractHopperMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
         this.GUI_TEXTURE = ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID,"textures/gui/container/gold_hopper.png");
+        this.imageHeight = 132;
+        this.inventoryLabelY = this.imageHeight - 92;
     }
 }

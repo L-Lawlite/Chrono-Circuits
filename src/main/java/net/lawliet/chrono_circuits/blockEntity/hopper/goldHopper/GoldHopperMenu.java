@@ -16,13 +16,15 @@ public class GoldHopperMenu extends AbstractHopperMenu {
 
     public GoldHopperMenu(int containerId, Inventory playerInventory, Container container) {
         super(ChronoBlockEntityTypes.GOLD_HOPPER_MENU.get(),containerId, playerInventory, container);
+        this.addStandardInventorySlots(playerInventory, 8, 51);
+
     }
 
 
     @Override
     protected void addHopperSlots(Container container) {
         for (int i = 0; i < CONTAINER_SIZE; i++) {
-            this.addSlot(new Slot(container, i, 44 + i * 18, 20));
+            this.addSlot(new Slot(container, i, 71 + i * 18, 20));
         }
 
     }

@@ -263,7 +263,7 @@ public class PipeBlockEntity extends RandomizableContainerBlockEntity implements
         ItemStack itemstack = container.getItem(slot);
         if (!itemstack.isEmpty() && canTakeItemFromContainer(hopper, container, itemstack, slot, direction)) {
             int i = itemstack.getCount();
-            ItemStack itemstack1 = addItem(container, hopper, container.removeItem(slot, 1), (Direction)null);
+            ItemStack itemstack1 = addItem(container, hopper, container.removeItem(slot, 16), (Direction)null);
             if (itemstack1.isEmpty()) {
                 container.setChanged();
                 return true;

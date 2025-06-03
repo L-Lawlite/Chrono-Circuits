@@ -16,11 +16,13 @@ public class PipeMenu extends AbstractHopperMenu {
 
     public PipeMenu(int containerId, Inventory playerInventory, Container container) {
         super(ChronoBlockEntityTypes.PIPE_MENU.get(),containerId, playerInventory, container);
+        this.addStandardInventorySlots(playerInventory, 8, 84);
+
     }
 
 
     @Override
     protected void addHopperSlots(Container container) {
-        this.addSlot(new Slot(container, 0, 44, 20));
+        this.addSlot(new Slot(container, 0, 80, 35));
     }
 }
