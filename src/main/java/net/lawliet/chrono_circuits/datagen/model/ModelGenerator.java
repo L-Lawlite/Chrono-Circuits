@@ -41,7 +41,7 @@ public class ModelGenerator extends ModelProvider {
         createHopper(blockModels,ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK.get(),ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK_ITEM.get());
         createHopper(blockModels,ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK.get(),ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK_ITEM.get());
         createHopper(blockModels,ChronoBlockEntityTypes.GOLD_HOPPER_BLOCK.get(),ChronoBlockEntityTypes.GOLD_HOPPER_BLOCK_ITEM.get());
-        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(ChronoBlockEntityTypes.PIPE_BLOCK.get(),ResourceLocation.parse("chrono_circuits:block/pipe")));
+        createPipe(blockModels,ChronoBlockEntityTypes.PIPE_BLOCK.get(),ChronoBlockEntityTypes.PIPE_BLOCK_ITEM.get());
     }
 
     private void CopperPressurePlateModelGenerator(BlockModelGenerators blockModels, Block pressurePlateBlock, Block textureMappingBlock) {
@@ -64,22 +64,53 @@ public class ModelGenerator extends ModelProvider {
         ResourceLocation resourcelocation = ChronoCircuitsModelTemplates.HOPPER.create(hopperBlock,textureMapping, blockModels.modelOutput);
         ResourceLocation resourcelocation1 = ChronoCircuitsModelTemplates.HOPPER_SIDE.createWithSuffix(hopperBlock,"_side",textureMapping, blockModels.modelOutput);
         blockModels.registerSimpleFlatItemModel(hopperItem);
-        blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(hopperBlock).with(PropertyDispatch.property(net.minecraft.world.level.block.state.properties.BlockStateProperties.FACING_HOPPER).select(Direction.DOWN, Variant.variant().with(VariantProperties.MODEL, resourcelocation)).select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, resourcelocation1)).select(Direction.EAST, Variant.variant().with(VariantProperties.MODEL, resourcelocation1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)).select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, resourcelocation1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180)).select(Direction.WEST, Variant.variant().with(VariantProperties.MODEL, resourcelocation1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))));
+        blockModels.blockStateOutput.accept(
+                MultiVariantGenerator
+                        .multiVariant(hopperBlock)
+                        .with(PropertyDispatch.property(net.minecraft.world.level.block.state.properties.BlockStateProperties.FACING_HOPPER)
+                                .select(Direction.DOWN, Variant.variant().with(VariantProperties.MODEL, resourcelocation)).
+                                select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, resourcelocation1))
+                                .select(Direction.EAST, Variant.variant().with(VariantProperties.MODEL, resourcelocation1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                                .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, resourcelocation1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                                .select(Direction.WEST, Variant.variant().with(VariantProperties.MODEL, resourcelocation1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))));
 
     }
 
     private void createLightDetector(BlockModelGenerators blockModels) {
-        ResourceLocation resourcelocation = TextureMapping.getBlockTexture(Blocks.DAYLIGHT_DETECTOR, "_side");
-        TextureMapping texturemapping = new TextureMapping()
-                .put(TextureSlot.TOP, TextureMapping.getBlockTexture(Blocks.DAYLIGHT_DETECTOR, "_top"))
-                .put(TextureSlot.SIDE, resourcelocation);
-        TextureMapping texturemapping1 = new TextureMapping()
-                .put(TextureSlot.TOP, TextureMapping.getBlockTexture(Blocks.DAYLIGHT_DETECTOR, "_inverted_top"))
-                .put(TextureSlot.SIDE, resourcelocation);
-        blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(ChronoBlockEntityTypes.LIGHT_DETECTOR_BLOCK.get()).with(PropertyDispatch.property(BlockStateProperties.LIGHT_STATE)
-                .select(LightState.SKY, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.DAYLIGHT_DETECTOR.create(ChronoBlockEntityTypes.LIGHT_DETECTOR_BLOCK.get(), texturemapping, blockModels.modelOutput)))
-                .select(LightState.BLOCK, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.DAYLIGHT_DETECTOR.create(ModelLocationUtils.getModelLocation(ChronoBlockEntityTypes.LIGHT_DETECTOR_BLOCK.get(), "_inverted"), texturemapping1, blockModels.modelOutput)))
-                .select(LightState.SKY_AND_BLOCK, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.DAYLIGHT_DETECTOR.create(ModelLocationUtils.getModelLocation(ChronoBlockEntityTypes.LIGHT_DETECTOR_BLOCK.get(), "_inverted2"), texturemapping1, blockModels.modelOutput)))
+        Block lightDetector = ChronoBlockEntityTypes.LIGHT_DETECTOR_BLOCK.get();
+        ResourceLocation sideBoth = TextureMapping.getBlockTexture(lightDetector, "_side_both");
+        ResourceLocation sideSky = TextureMapping.getBlockTexture(lightDetector, "_side_sky");
+        ResourceLocation sideBlock = TextureMapping.getBlockTexture(lightDetector, "_side_block");
+
+        ResourceLocation topBoth = TextureMapping.getBlockTexture(lightDetector, "_top_both");
+        ResourceLocation topSky = TextureMapping.getBlockTexture(lightDetector, "_top_sky");
+        ResourceLocation topBlock = TextureMapping.getBlockTexture(lightDetector, "_top_block");
+
+        ResourceLocation bottom = TextureMapping.getBlockTexture(lightDetector, "_top_bottom");
+
+
+        TextureMapping bothMapping = new TextureMapping()
+                .put(TextureSlot.TOP, topBoth)
+                .put(TextureSlot.SIDE, sideBoth)
+                .put(TextureSlot.BOTTOM, bottom);
+        TextureMapping skyMapping = new TextureMapping()
+                .put(TextureSlot.TOP, topSky)
+                .put(TextureSlot.SIDE, sideSky)
+                .put(TextureSlot.BOTTOM, bottom);
+        TextureMapping blockMapping = new TextureMapping()
+                .put(TextureSlot.TOP, topBlock)
+                .put(TextureSlot.SIDE, sideBlock)
+                .put(TextureSlot.BOTTOM, bottom);
+
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(lightDetector).with(PropertyDispatch.property(BlockStateProperties.LIGHT_STATE)
+                .select(LightState.SKY, Variant.variant().with(VariantProperties.MODEL, ChronoCircuitsModelTemplates.LIGHT_DETECTOR.create(ModelLocationUtils.getModelLocation(lightDetector,"_sky"), skyMapping, blockModels.modelOutput)))
+                .select(LightState.BLOCK, Variant.variant().with(VariantProperties.MODEL, ChronoCircuitsModelTemplates.LIGHT_DETECTOR.create(ModelLocationUtils.getModelLocation(lightDetector, "_block"), blockMapping, blockModels.modelOutput)))
+                .select(LightState.SKY_AND_BLOCK, Variant.variant().with(VariantProperties.MODEL, ChronoCircuitsModelTemplates.LIGHT_DETECTOR.create(lightDetector, bothMapping, blockModels.modelOutput)))
         ));
+    }
+
+    public void createPipe(BlockModelGenerators blockModels, Block pipeBlock, Item pipeItem) {
+        blockModels.registerSimpleFlatItemModel(pipeItem);
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(pipeBlock,ResourceLocation.parse("chrono_circuits:block/pipe")));
     }
 }

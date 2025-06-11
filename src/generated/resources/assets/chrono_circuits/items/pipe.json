@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "chrono_circuits:block/pipe"
+    "model": "chrono_circuits:item/pipe"
   }
 }

@@ -1,13 +1,13 @@
 {
   "variants": {
     "light_state=block": {
-      "model": "chrono_circuits:block/light_detector_inverted"
+      "model": "chrono_circuits:block/light_detector_block"
     },
     "light_state=sky": {
-      "model": "chrono_circuits:block/light_detector"
+      "model": "chrono_circuits:block/light_detector_sky"
     },
     "light_state=sky_and_block": {
-      "model": "chrono_circuits:block/light_detector_inverted2"
+      "model": "chrono_circuits:block/light_detector"
     }
   }
 }
