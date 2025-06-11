@@ -1,0 +1,8 @@
+{
+  "parent": "chrono_circuits:block/template_light_detector",
+  "textures": {
+    "bottom": "chrono_circuits:block/light_detector_top_bottom",
+    "side": "chrono_circuits:block/light_detector_side_block",
+    "top": "chrono_circuits:block/light_detector_top_block"
+  }
+}
