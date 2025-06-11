@@ -70,8 +70,12 @@ public class ModelGenerator extends ModelProvider {
 
     private void createLightDetector(BlockModelGenerators blockModels) {
         ResourceLocation resourcelocation = TextureMapping.getBlockTexture(Blocks.DAYLIGHT_DETECTOR, "_side");
-        TextureMapping texturemapping = (new TextureMapping()).put(TextureSlot.TOP, TextureMapping.getBlockTexture(Blocks.DAYLIGHT_DETECTOR, "_top")).put(TextureSlot.SIDE, resourcelocation);
-        TextureMapping texturemapping1 = (new TextureMapping()).put(TextureSlot.TOP, TextureMapping.getBlockTexture(Blocks.DAYLIGHT_DETECTOR, "_inverted_top")).put(TextureSlot.SIDE, resourcelocation);
+        TextureMapping texturemapping = new TextureMapping()
+                .put(TextureSlot.TOP, TextureMapping.getBlockTexture(Blocks.DAYLIGHT_DETECTOR, "_top"))
+                .put(TextureSlot.SIDE, resourcelocation);
+        TextureMapping texturemapping1 = new TextureMapping()
+                .put(TextureSlot.TOP, TextureMapping.getBlockTexture(Blocks.DAYLIGHT_DETECTOR, "_inverted_top"))
+                .put(TextureSlot.SIDE, resourcelocation);
         blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(ChronoBlockEntityTypes.LIGHT_DETECTOR_BLOCK.get()).with(PropertyDispatch.property(BlockStateProperties.LIGHT_STATE)
                 .select(LightState.SKY, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.DAYLIGHT_DETECTOR.create(ChronoBlockEntityTypes.LIGHT_DETECTOR_BLOCK.get(), texturemapping, blockModels.modelOutput)))
                 .select(LightState.BLOCK, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.DAYLIGHT_DETECTOR.create(ModelLocationUtils.getModelLocation(ChronoBlockEntityTypes.LIGHT_DETECTOR_BLOCK.get(), "_inverted"), texturemapping1, blockModels.modelOutput)))
