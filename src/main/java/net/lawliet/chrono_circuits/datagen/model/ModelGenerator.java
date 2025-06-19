@@ -8,6 +8,7 @@ import net.lawliet.chrono_circuits.registration.ChronoBlocks;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
+import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.*;
 import net.minecraft.client.data.models.model.ModelLocationUtils;
 import net.minecraft.client.data.models.model.ModelTemplates;
@@ -46,8 +47,12 @@ public class ModelGenerator extends ModelProvider {
 
     public void CopperPressurePlateModelGenerator(BlockModelGenerators blockModels, Block pressurePlateBlock, Block textureMappingBlock) {
         TextureMapping texturemapping = TextureMapping.defaultTexture(textureMappingBlock);
-        ResourceLocation pressurePlateUp = ModelTemplates.PRESSURE_PLATE_UP.create(pressurePlateBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation pressurePlateDown = ModelTemplates.PRESSURE_PLATE_DOWN.create(pressurePlateBlock, texturemapping, blockModels.modelOutput);
+        MultiVariant pressurePlateUp = BlockModelGenerators.plainVariant(
+                ModelTemplates.PRESSURE_PLATE_UP.create(pressurePlateBlock,texturemapping,blockModels.modelOutput)
+        );
+        MultiVariant pressurePlateDown = BlockModelGenerators.plainVariant(
+                ModelTemplates.PRESSURE_PLATE_DOWN.create(pressurePlateBlock, texturemapping, blockModels.modelOutput)
+        );
         blockModels.blockStateOutput.accept(
             BlockModelGenerators.createPressurePlate(pressurePlateBlock,pressurePlateUp, pressurePlateDown)
         );
@@ -61,18 +66,20 @@ public class ModelGenerator extends ModelProvider {
                 .put(TextureSlot.TOP,topTexture)
                 .put(TextureSlot.SIDE,outsideTexture)
                 .put(TextureSlot.INSIDE,insideTexture);
-        ResourceLocation resourcelocation = ChronoCircuitsModelTemplates.HOPPER.create(hopperBlock,textureMapping, blockModels.modelOutput);
-        ResourceLocation resourcelocation1 = ChronoCircuitsModelTemplates.HOPPER_SIDE.createWithSuffix(hopperBlock,"_side",textureMapping, blockModels.modelOutput);
+        MultiVariant hopperDown = BlockModelGenerators.plainVariant(ChronoCircuitsModelTemplates.HOPPER.create(hopperBlock,textureMapping,blockModels.modelOutput));
+        MultiVariant hopperSide = BlockModelGenerators.plainVariant(ChronoCircuitsModelTemplates.HOPPER_SIDE.createWithSuffix(hopperBlock,"_side",textureMapping,blockModels.modelOutput));
+
+
         blockModels.registerSimpleFlatItemModel(hopperItem);
         blockModels.blockStateOutput.accept(
                 MultiVariantGenerator
-                        .multiVariant(hopperBlock)
-                        .with(PropertyDispatch.property(net.minecraft.world.level.block.state.properties.BlockStateProperties.FACING_HOPPER)
-                                .select(Direction.DOWN, Variant.variant().with(VariantProperties.MODEL, resourcelocation)).
-                                select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, resourcelocation1))
-                                .select(Direction.EAST, Variant.variant().with(VariantProperties.MODEL, resourcelocation1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-                                .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, resourcelocation1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-                                .select(Direction.WEST, Variant.variant().with(VariantProperties.MODEL, resourcelocation1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))));
+                        .dispatch(hopperBlock)
+                        .with(PropertyDispatch.initial(net.minecraft.world.level.block.state.properties.BlockStateProperties.FACING_HOPPER)
+                                .select(Direction.DOWN, hopperDown).
+                                select(Direction.NORTH, hopperSide)
+                                .select(Direction.EAST, hopperSide.with(BlockModelGenerators.Y_ROT_90))
+                                .select(Direction.SOUTH, hopperSide.with(BlockModelGenerators.Y_ROT_180))
+                                .select(Direction.WEST, hopperSide.with(BlockModelGenerators.Y_ROT_270))));
 
     }
 
@@ -102,15 +109,20 @@ public class ModelGenerator extends ModelProvider {
                 .put(TextureSlot.SIDE, sideBlock)
                 .put(TextureSlot.BOTTOM, bottom);
 
-        blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(lightDetector).with(PropertyDispatch.property(BlockStateProperties.LIGHT_STATE)
-                .select(LightState.SKY, Variant.variant().with(VariantProperties.MODEL, ChronoCircuitsModelTemplates.LIGHT_DETECTOR.create(ModelLocationUtils.getModelLocation(lightDetector,"_sky"), skyMapping, blockModels.modelOutput)))
-                .select(LightState.BLOCK, Variant.variant().with(VariantProperties.MODEL, ChronoCircuitsModelTemplates.LIGHT_DETECTOR.create(ModelLocationUtils.getModelLocation(lightDetector, "_block"), blockMapping, blockModels.modelOutput)))
-                .select(LightState.SKY_AND_BLOCK, Variant.variant().with(VariantProperties.MODEL, ChronoCircuitsModelTemplates.LIGHT_DETECTOR.create(lightDetector, bothMapping, blockModels.modelOutput)))
+        MultiVariant bothVariant = BlockModelGenerators.plainVariant(ChronoCircuitsModelTemplates.LIGHT_DETECTOR.create(ModelLocationUtils.getModelLocation(lightDetector), bothMapping, blockModels.modelOutput));
+        MultiVariant skyVariant = BlockModelGenerators.plainVariant(ChronoCircuitsModelTemplates.LIGHT_DETECTOR.create(ModelLocationUtils.getModelLocation(lightDetector,"_sky"), skyMapping, blockModels.modelOutput));
+        MultiVariant blockVariant = BlockModelGenerators.plainVariant(ChronoCircuitsModelTemplates.LIGHT_DETECTOR.create(ModelLocationUtils.getModelLocation(lightDetector,"_block"), blockMapping, blockModels.modelOutput));
+
+
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(lightDetector).with(PropertyDispatch.initial(BlockStateProperties.LIGHT_STATE)
+                .select(LightState.SKY, skyVariant)
+                .select(LightState.BLOCK, blockVariant)
+                .select(LightState.SKY_AND_BLOCK, bothVariant)
         ));
     }
 
     public void createPipe(BlockModelGenerators blockModels, Block pipeBlock, Item pipeItem) {
         blockModels.registerSimpleFlatItemModel(pipeItem);
-        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(pipeBlock,ResourceLocation.parse("chrono_circuits:block/pipe")));
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(pipeBlock,BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(ChronoBlockEntityTypes.PIPE_BLOCK.get()))));
     }
 }

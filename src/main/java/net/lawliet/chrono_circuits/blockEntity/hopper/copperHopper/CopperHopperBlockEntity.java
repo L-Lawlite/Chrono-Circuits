@@ -39,14 +39,13 @@ public class CopperHopperBlockEntity extends RandomizableContainerBlockEntity im
     public static final int HOPPER_CONTAINER_SIZE = 10;
     private static final int[][] CACHED_SLOTS = new int[54][];
     private NonNullList<ItemStack> items;
-    private int cooldownTime;
+    private int cooldownTime = -1;
     private long tickedGameTime;
     private Direction facing;
 
     public CopperHopperBlockEntity(BlockPos pos, BlockState blockState) {
         super(ChronoBlockEntityTypes.COPPER_HOPPER_BLOCK_ENTITY.get(), pos, blockState);
         this.items = NonNullList.withSize(HOPPER_CONTAINER_SIZE, ItemStack.EMPTY);
-        this.cooldownTime = -1;
         this.facing = blockState.getValue(HopperBlock.FACING);
     }
 
@@ -58,7 +57,7 @@ public class CopperHopperBlockEntity extends RandomizableContainerBlockEntity im
             ContainerHelper.loadAllItems(compoundTag, this.items, provider);
         }
 
-        this.cooldownTime = compoundTag.getInt("TransferCooldown");
+        this.cooldownTime = compoundTag.getIntOr("TransferCooldown",-1);
     }
 
     @Override
