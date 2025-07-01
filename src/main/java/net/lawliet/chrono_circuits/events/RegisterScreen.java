@@ -9,7 +9,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
-@EventBusSubscriber(modid = ChronoCircuits.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = ChronoCircuits.MODID)
 public class RegisterScreen {
     @SubscribeEvent
     public static void registerScreen(RegisterMenuScreensEvent event) {
