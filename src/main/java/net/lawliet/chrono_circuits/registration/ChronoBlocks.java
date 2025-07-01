@@ -3,7 +3,7 @@ package net.lawliet.chrono_circuits.registration;
 import net.lawliet.chrono_circuits.blocks.CopperPressurePlate.PlayerPressurePlate;
 import net.lawliet.chrono_circuits.blocks.CopperPressurePlate.WeatheringPlayerPressurePlate;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.WeatheringCopper;
@@ -12,7 +12,6 @@ import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
-import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 
@@ -93,18 +92,6 @@ public class ChronoBlocks {
         WAXED_WEATHERED_COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem("waxed_weathered_copper_pressure_plate", WAXED_WEATHERED_COPPER_PRESSURE_PLATE);
     }
 
-    public static void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS) {
-            event.accept(COPPER_PRESSURE_PLATE_ITEM);
-            event.accept(EXPOSED_COPPER_PRESSURE_PLATE_ITEM);
-            event.accept(WEATHERED_COPPER_PRESSURE_PLATE_ITEM);
-            event.accept(OXIDIZED_COPPER_PRESSURE_PLATE_ITEM);
-            event.accept(WAXED_COPPER_PRESSURE_PLATE_ITEM);
-            event.accept(WAXED_EXPOSED_COPPER_PRESSURE_PLATE_ITEM);
-            event.accept(WAXED_WEATHERED_COPPER_PRESSURE_PLATE_ITEM);
-        }
-    }
-
     private static BlockBehaviour.Properties copperPressurePlateDefaultProperties() {
         return BlockBehaviour.Properties.of()
                 .strength(0.5F)
@@ -116,4 +103,14 @@ public class ChronoBlocks {
     }
 
     public static void init() {}
+
+    public static void addCreative(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
+        output.accept(COPPER_PRESSURE_PLATE_ITEM);
+        output.accept(EXPOSED_COPPER_PRESSURE_PLATE_ITEM);
+        output.accept(WEATHERED_COPPER_PRESSURE_PLATE_ITEM);
+        output.accept(OXIDIZED_COPPER_PRESSURE_PLATE_ITEM);
+        output.accept(WAXED_COPPER_PRESSURE_PLATE_ITEM);
+        output.accept(WAXED_EXPOSED_COPPER_PRESSURE_PLATE_ITEM);
+        output.accept(WAXED_WEATHERED_COPPER_PRESSURE_PLATE_ITEM);
+    }
 }

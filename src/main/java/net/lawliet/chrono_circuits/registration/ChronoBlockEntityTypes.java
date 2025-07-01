@@ -14,6 +14,7 @@ import net.lawliet.chrono_circuits.blockEntity.lightDetector.LightDetectorBlockE
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
@@ -71,7 +72,8 @@ public class ChronoBlockEntityTypes {
                         .mapColor(MapColor.QUARTZ)
                         .strength(0.2F)
                         .instrument(NoteBlockInstrument.BASS)
-                        .sound(SoundType.CREAKING_HEART)
+                        .sound(SoundType.WOOD)
+                        .ignitedByLava()
         );
         COPPER_HOPPER_BLOCK = ChronoRegistries.BLOCKS.registerBlock(
                 "copper_hopper",
@@ -180,5 +182,15 @@ public class ChronoBlockEntityTypes {
         COPPER_HOPPER_MENU = ChronoRegistries.MENU_TYPES.register("copper_hopper_menu", () -> new MenuType<>(CopperHopperMenu::new, FeatureFlags.DEFAULT_FLAGS));
         GOLD_HOPPER_MENU = ChronoRegistries.MENU_TYPES.register("gold_hopper_menu", () -> new MenuType<>(GoldHopperMenu::new, FeatureFlags.DEFAULT_FLAGS));
         PIPE_MENU = ChronoRegistries.MENU_TYPES.register("pipe_menu", () -> new MenuType<>(PipeMenu::new, FeatureFlags.DEFAULT_FLAGS));
+    }
+
+    public static void addCreative(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
+        output.accept(LIGHT_DETECTOR_BLOCK_ITEM);
+        output.accept(COPPER_HOPPER_BLOCK_ITEM);
+        output.accept(EXPOSED_COPPER_HOPPER_BLOCK_ITEM);
+        output.accept(WEATHERED_COPPER_HOPPER_BLOCK_ITEM);
+        output.accept(OXIDIZED_COPPER_HOPPER_BLOCK_ITEM);
+        output.accept(GOLD_HOPPER_BLOCK_ITEM);
+        output.accept(PIPE_BLOCK_ITEM);
     }
 }
