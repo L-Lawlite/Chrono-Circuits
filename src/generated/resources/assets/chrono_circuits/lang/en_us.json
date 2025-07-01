@@ -18,5 +18,6 @@
   "container.chrono_circuits.gold_hopper": "Gold Hopper",
   "container.chrono_circuits.oxidized_copper_hopper": "Oxidized Copper Hopper",
   "container.chrono_circuits.pipe": "Item Pipe",
-  "container.chrono_circuits.weathered_copper_hopper": "Weathered Copper Hopper"
+  "container.chrono_circuits.weathered_copper_hopper": "Weathered Copper Hopper",
+  "itemGroup.chrono_circuits": "Chrono Circuits"
 }

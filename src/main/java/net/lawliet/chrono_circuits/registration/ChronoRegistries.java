@@ -21,22 +21,19 @@ public class ChronoRegistries {
 
     public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(Registries.MENU,ChronoCircuits.MODID);
 
-
     public static void init(IEventBus modEventBus) {
         ChronoBlocks.init();
         ChronoBlockEntityTypes.init();
-
-        modEventBus.addListener(ChronoBlocks::addCreative);
+        ChronoCreativeModeTabs.init();
 
         BLOCKS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
         ITEMS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
         CHRONO_CIRCUITS_MOD_TAB.register(modEventBus);
-
         BLOCK_ENTITY_TYPES.register(modEventBus);
-
         MENU_TYPES.register(modEventBus);
+
     }
 
 }

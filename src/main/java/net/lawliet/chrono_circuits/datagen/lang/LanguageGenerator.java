@@ -39,6 +39,8 @@ public class LanguageGenerator extends LanguageProvider {
 
        HopperHelper(ChronoBlockEntityTypes.PIPE_BLOCK,"Item Pipe");
 
+       this.add("itemGroup.chrono_circuits", "Chrono Circuits");
+
     }
 
     private void HopperHelper(Supplier<? extends Block> key, String name) {
