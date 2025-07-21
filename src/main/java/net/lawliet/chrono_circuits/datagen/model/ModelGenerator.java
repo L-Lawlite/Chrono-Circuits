@@ -16,9 +16,12 @@ import net.minecraft.client.data.models.model.TextureSlot;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+
+import static net.minecraft.client.data.models.BlockModelGenerators.createHorizontalFacingDispatchAlt;
 
 public class ModelGenerator extends ModelProvider {
     public ModelGenerator(PackOutput output) {
@@ -42,9 +45,37 @@ public class ModelGenerator extends ModelProvider {
         createHopper(blockModels,ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK.get(),ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK_ITEM.get());
         createHopper(blockModels,ChronoBlockEntityTypes.GOLD_HOPPER_BLOCK.get(),ChronoBlockEntityTypes.GOLD_HOPPER_BLOCK_ITEM.get());
         createPipe(blockModels,ChronoBlockEntityTypes.PIPE_BLOCK.get(),ChronoBlockEntityTypes.PIPE_BLOCK_ITEM.get());
+
+        createRepeater(blockModels, ChronoBlocks.COPPER_GRATED_REPEATER.get(), ChronoBlocks.COPPER_GRATED_REPEATER_ITEM.get());
     }
 
-    public void CopperPressurePlateModelGenerator(BlockModelGenerators blockModels, Block pressurePlateBlock, Block textureMappingBlock) {
+    public static void createRepeater(BlockModelGenerators blockModels, Block block, BlockItem blockItem) {
+        blockModels.registerSimpleFlatItemModel(blockItem);
+        blockModels.blockStateOutput
+                .accept(
+                        MultiVariantGenerator.multiVariant(block)
+                                .with(
+                                        PropertyDispatch.properties(net.minecraft.world.level.block.state.properties.BlockStateProperties.DELAY, net.minecraft.world.level.block.state.properties.BlockStateProperties.LOCKED, net.minecraft.world.level.block.state.properties.BlockStateProperties.POWERED)
+                                                .generate((delay, locked, powered) -> {
+                                                    StringBuilder stringbuilder = new StringBuilder();
+                                                    stringbuilder.append('_').append(delay).append("tick");
+                                                    if (powered) {
+                                                        stringbuilder.append("_on");
+                                                    }
+
+                                                    if (locked) {
+                                                        stringbuilder.append("_locked");
+                                                    }
+
+                                                    return Variant.variant()
+                                                            .with(VariantProperties.MODEL, TextureMapping.getBlockTexture(block, stringbuilder.toString()));
+                                                })
+                                )
+                                .with(createHorizontalFacingDispatchAlt())
+                );
+    }
+
+    public static void CopperPressurePlateModelGenerator(BlockModelGenerators blockModels, Block pressurePlateBlock, Block textureMappingBlock) {
         TextureMapping texturemapping = TextureMapping.defaultTexture(textureMappingBlock);
         ResourceLocation pressurePlateUp = ModelTemplates.PRESSURE_PLATE_UP.create(pressurePlateBlock, texturemapping, blockModels.modelOutput);
         ResourceLocation pressurePlateDown = ModelTemplates.PRESSURE_PLATE_DOWN.create(pressurePlateBlock, texturemapping, blockModels.modelOutput);
@@ -53,7 +84,7 @@ public class ModelGenerator extends ModelProvider {
         );
     }
 
-    public void createHopper(BlockModelGenerators blockModels, Block hopperBlock, Item hopperItem) {
+    public static void createHopper(BlockModelGenerators blockModels, Block hopperBlock, Item hopperItem) {
         ResourceLocation topTexture = TextureMapping.getBlockTexture(hopperBlock,"_top");
         ResourceLocation outsideTexture = TextureMapping.getBlockTexture(hopperBlock,"_outside");
         ResourceLocation insideTexture = TextureMapping.getBlockTexture(hopperBlock,"_inside");
@@ -76,7 +107,7 @@ public class ModelGenerator extends ModelProvider {
 
     }
 
-    private void createLightDetector(BlockModelGenerators blockModels) {
+    private static void createLightDetector(BlockModelGenerators blockModels) {
         Block lightDetector = ChronoBlockEntityTypes.LIGHT_DETECTOR_BLOCK.get();
         ResourceLocation sideBoth = TextureMapping.getBlockTexture(lightDetector, "_side_both");
         ResourceLocation sideSky = TextureMapping.getBlockTexture(lightDetector, "_side_sky");
@@ -109,7 +140,7 @@ public class ModelGenerator extends ModelProvider {
         ));
     }
 
-    public void createPipe(BlockModelGenerators blockModels, Block pipeBlock, Item pipeItem) {
+    public static void createPipe(BlockModelGenerators blockModels, Block pipeBlock, Item pipeItem) {
         blockModels.registerSimpleFlatItemModel(pipeItem);
         blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(pipeBlock,ResourceLocation.parse("chrono_circuits:block/pipe")));
     }
