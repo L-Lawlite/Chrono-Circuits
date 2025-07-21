@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/chrono_circuitstemplate_copper_grated_redstone_torch_unlit",
+  "parent": "chrono_circuits:block/template_copper_grated_redstone_torch_unlit",
   "textures": {
     "copper_grate": "chrono_circuits:block/weathered_copper_grated_redstone_torch"
   }

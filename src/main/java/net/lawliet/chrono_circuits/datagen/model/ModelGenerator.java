@@ -112,7 +112,7 @@ public class ModelGenerator extends ModelProvider {
                                                 .select(ComparatorMode.SUBTRACT, true,BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(block, "_on_subtract")))
                                 )
                                 .with(BlockModelGenerators.ROTATION_HORIZONTAL_FACING_ALT))
-                ;
+        ;
     }
 
     public void CopperPressurePlateModelGenerator(Block pressurePlateBlock, Block textureMappingBlock) {
@@ -124,7 +124,7 @@ public class ModelGenerator extends ModelProvider {
                 ModelTemplates.PRESSURE_PLATE_DOWN.create(pressurePlateBlock, texturemapping, blockModels.modelOutput)
         );
         blockModels.blockStateOutput.accept(
-            BlockModelGenerators.createPressurePlate(pressurePlateBlock,pressurePlateUp, pressurePlateDown)
+                BlockModelGenerators.createPressurePlate(pressurePlateBlock,pressurePlateUp, pressurePlateDown)
         );
     }
 

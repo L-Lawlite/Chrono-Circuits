@@ -28,10 +28,26 @@ public class LanguageGenerator extends LanguageProvider {
         this.addBlock(ChronoBlocks.WAXED_WEATHERED_COPPER_PRESSURE_PLATE,"Waxed Weathered Copper Pressure Plate");
         this.addBlock(ChronoBlocks.WAXED_OXIDIZED_COPPER_PRESSURE_PLATE,"Waxed Oxidized Copper Pressure Plate");
 
-
         this.addBlock(ChronoBlockEntityTypes.LIGHT_DETECTOR_BLOCK,"Light Detector");
+
         this.addBlock(ChronoBlocks.COPPER_GRATED_REPEATER, "Copper Grated Repeater");
+        this.addBlock(ChronoBlocks.EXPOSED_COPPER_GRATED_REPEATER, "exposed Copper Grated Repeater");
+        this.addBlock(ChronoBlocks.WEATHERED_COPPER_GRATED_REPEATER, "Weathered Copper Grated Repeater");
+        this.addBlock(ChronoBlocks.OXIDIZED_COPPER_GRATED_REPEATER, "Oxidized Copper Grated Repeater");
+        this.addBlock(ChronoBlocks.WAXED_COPPER_GRATED_REPEATER, "Waxed Copper Grated Repeater");
+        this.addBlock(ChronoBlocks.WAXED_EXPOSED_COPPER_GRATED_REPEATER, "Waxed Exposed Copper Grated Repeater");
+        this.addBlock(ChronoBlocks.WAXED_WEATHERED_COPPER_GRATED_REPEATER, "Waxed Weathered Copper Grated Repeater");
+        this.addBlock(ChronoBlocks.WAXED_OXIDIZED_COPPER_GRATED_REPEATER, "Waxed Oxidized Copper Grated Repeater");
+
         this.addBlock(ChronoBlockEntityTypes.COPPER_GRATED_COMPARATOR, "Copper Grated Comparator");
+        this.addBlock(ChronoBlockEntityTypes.EXPOSED_COPPER_GRATED_COMPARATOR, "Exposed Copper Grated Comparator");
+        this.addBlock(ChronoBlockEntityTypes.WEATHERED_COPPER_GRATED_COMPARATOR, "Weathered Copper Grated Comparator");
+        this.addBlock(ChronoBlockEntityTypes.OXIDIZED_COPPER_GRATED_COMPARATOR, "Oxidized Copper Grated Comparator");
+        this.addBlock(ChronoBlockEntityTypes.WAXED_COPPER_GRATED_COMPARATOR, "Waxed Copper Grated Comparator");
+        this.addBlock(ChronoBlockEntityTypes.WAXED_EXPOSED_COPPER_GRATED_COMPARATOR, "Waxed Exposed Copper Grated Comparator");
+        this.addBlock(ChronoBlockEntityTypes.WAXED_OXIDIZED_COPPER_GRATED_COMPARATOR, "Waxed Oxidized Copper Grated Comparator");
+        this.addBlock(ChronoBlockEntityTypes.WAXED_WEATHERED_COPPER_GRATED_COMPARATOR, "Waxed Weathered Copper Grated Comparator");
+
 
         this.addBlock(ChronoBlocks.COPPER_GRATED_REDSTONE_TORCH, "Copper Grated Torch");
         this.addBlock(ChronoBlocks.EXPOSED_COPPER_GRATED_REDSTONE_TORCH, "Exposed Copper Grated Redstone Torch");
@@ -55,6 +71,10 @@ public class LanguageGenerator extends LanguageProvider {
         HopperHelper(ChronoBlockEntityTypes.EXPOSED_COPPER_HOPPER_BLOCK,"Exposed Copper Hopper");
         HopperHelper(ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK,"Weathered Copper Hopper");
         HopperHelper(ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK,"Oxidized Copper Hopper");
+        HopperHelper(ChronoBlockEntityTypes.WAXED_COPPER_HOPPER_BLOCK,"Waxed Copper Hopper");
+        HopperHelper(ChronoBlockEntityTypes.WAXED_EXPOSED_COPPER_HOPPER_BLOCK,"Waxed Exposed Copper Hopper");
+        HopperHelper(ChronoBlockEntityTypes.WAXED_WEATHERED_COPPER_HOPPER_BLOCK,"Waxed Weathered Copper Hopper");
+        HopperHelper(ChronoBlockEntityTypes.WAXED_OXIDIZED_COPPER_HOPPER_BLOCK,"Waxed Oxidized Copper Hopper");
         HopperHelper(ChronoBlockEntityTypes.GOLD_HOPPER_BLOCK,"Gold Hopper");
 
         HopperHelper(ChronoBlockEntityTypes.PIPE_BLOCK,"Item Pipe");

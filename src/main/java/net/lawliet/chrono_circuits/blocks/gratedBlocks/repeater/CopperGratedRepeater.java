@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
@@ -16,11 +17,14 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class CopperGratedRepeater extends RepeaterBlock implements SimpleWaterloggedBlock {
     @SuppressWarnings("unused")
     public static final MapCodec<CopperGratedRepeater> CODEC = simpleCodec(CopperGratedRepeater::new);
     public static final BooleanProperty WATERLOGGED;
+    private static final VoxelShape SHAPE;
 
     public CopperGratedRepeater(Properties properties) {
         super(properties);
@@ -61,7 +65,13 @@ public class CopperGratedRepeater extends RepeaterBlock implements SimpleWaterlo
         builder.add(FACING, DELAY, LOCKED, POWERED, WATERLOGGED);
     }
 
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return SHAPE;
+    }
+
     static {
         WATERLOGGED = BlockStateProperties.WATERLOGGED;
+        SHAPE = Block.box(0.0F, 0.0F, 0.0F, 16.0F, 3.0F, 16.0F);
     }
 }

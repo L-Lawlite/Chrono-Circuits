@@ -1,7 +1,7 @@
 {
   "values": [
     "#chrono_circuits:pressure_plates",
-    "#chrono_circuits:hopper",
+    "#chrono_circuits:hoppers",
     "#chrono_circuits:pipes"
   ]
 }

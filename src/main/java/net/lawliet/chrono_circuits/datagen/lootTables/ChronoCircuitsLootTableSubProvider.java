@@ -49,7 +49,16 @@ public class ChronoCircuitsLootTableSubProvider extends BlockLootSubProvider {
         this.dropSelf(ChronoBlocks.WAXED_EXPOSED_COPPER_GRATED_REPEATER.get());
         this.dropSelf(ChronoBlocks.WAXED_WEATHERED_COPPER_GRATED_REPEATER.get());
         this.dropSelf(ChronoBlocks.WAXED_OXIDIZED_COPPER_GRATED_REPEATER.get());
+
         this.dropSelf(ChronoBlockEntityTypes.COPPER_GRATED_COMPARATOR.get());
+        this.dropSelf(ChronoBlockEntityTypes.EXPOSED_COPPER_GRATED_COMPARATOR.get());
+        this.dropSelf(ChronoBlockEntityTypes.WEATHERED_COPPER_GRATED_COMPARATOR.get());
+        this.dropSelf(ChronoBlockEntityTypes.OXIDIZED_COPPER_GRATED_COMPARATOR.get());
+        this.dropSelf(ChronoBlockEntityTypes.WAXED_COPPER_GRATED_COMPARATOR.get());
+        this.dropSelf(ChronoBlockEntityTypes.WAXED_EXPOSED_COPPER_GRATED_COMPARATOR.get());
+        this.dropSelf(ChronoBlockEntityTypes.WAXED_OXIDIZED_COPPER_GRATED_COMPARATOR.get());
+        this.dropSelf(ChronoBlockEntityTypes.WAXED_WEATHERED_COPPER_GRATED_COMPARATOR.get());
+
 
         this.dropSelf(ChronoBlocks.COPPER_GRATED_REDSTONE_TORCH.get());
         this.dropSelf(ChronoBlocks.EXPOSED_COPPER_GRATED_REDSTONE_TORCH.get());
