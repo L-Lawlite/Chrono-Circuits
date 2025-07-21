@@ -2,6 +2,7 @@ package net.lawliet.chrono_circuits.registration;
 
 import net.lawliet.chrono_circuits.blocks.CopperPressurePlate.PlayerPressurePlate;
 import net.lawliet.chrono_circuits.blocks.CopperPressurePlate.WeatheringPlayerPressurePlate;
+import net.lawliet.chrono_circuits.blocks.gratedBlocks.repeater.CopperGratedRepeater;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
@@ -37,6 +38,10 @@ public class ChronoBlocks {
 
     public static final DeferredBlock<Block> WAXED_WEATHERED_COPPER_PRESSURE_PLATE;
     public static final DeferredItem<BlockItem> WAXED_WEATHERED_COPPER_PRESSURE_PLATE_ITEM;
+
+    public static final DeferredBlock<Block> COPPER_GRATED_REPEATER;
+    public static final DeferredItem<BlockItem> COPPER_GRATED_REPEATER_ITEM;
+
 
     //blocks
     static {
@@ -79,6 +84,10 @@ public class ChronoBlocks {
                 copperPressurePlateDefaultProperties()
                         .mapColor(MapColor.WARPED_STEM)
                 );
+        COPPER_GRATED_REPEATER = ChronoRegistries.BLOCKS.registerBlock("copper_grated_repeater",
+                CopperGratedRepeater::new,
+                BlockBehaviour.Properties.of().instabreak().sound(SoundType.COPPER).pushReaction(PushReaction.DESTROY)
+                );
     }
 
     //block items
@@ -90,6 +99,7 @@ public class ChronoBlocks {
         WAXED_COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem("waxed_copper_pressure_plate", WAXED_COPPER_PRESSURE_PLATE);
         WAXED_EXPOSED_COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem("waxed_exposed_copper_pressure_plate", WAXED_EXPOSED_COPPER_PRESSURE_PLATE);
         WAXED_WEATHERED_COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem("waxed_weathered_copper_pressure_plate", WAXED_WEATHERED_COPPER_PRESSURE_PLATE);
+        COPPER_GRATED_REPEATER_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem("copper_grated_repeater", COPPER_GRATED_REPEATER);
     }
 
     private static BlockBehaviour.Properties copperPressurePlateDefaultProperties() {
@@ -104,6 +114,7 @@ public class ChronoBlocks {
 
     public static void init() {}
 
+    @SuppressWarnings("unused")
     public static void addCreative(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
         output.accept(COPPER_PRESSURE_PLATE_ITEM);
         output.accept(EXPOSED_COPPER_PRESSURE_PLATE_ITEM);
@@ -112,5 +123,6 @@ public class ChronoBlocks {
         output.accept(WAXED_COPPER_PRESSURE_PLATE_ITEM);
         output.accept(WAXED_EXPOSED_COPPER_PRESSURE_PLATE_ITEM);
         output.accept(WAXED_WEATHERED_COPPER_PRESSURE_PLATE_ITEM);
+        output.accept(COPPER_GRATED_REPEATER_ITEM);
     }
 }
