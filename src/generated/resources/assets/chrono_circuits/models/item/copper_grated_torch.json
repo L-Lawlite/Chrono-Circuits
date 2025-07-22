@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "chrono_circuits:block/copper_grated_torch"
+  }
+}

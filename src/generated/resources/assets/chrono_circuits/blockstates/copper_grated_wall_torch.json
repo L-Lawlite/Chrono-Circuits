@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "chrono_circuits:block/copper_grated_wall_torch"
+    },
+    "facing=north": {
+      "model": "chrono_circuits:block/copper_grated_wall_torch",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "chrono_circuits:block/copper_grated_wall_torch",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "chrono_circuits:block/copper_grated_wall_torch",
+      "y": 180
+    }
+  }
+}

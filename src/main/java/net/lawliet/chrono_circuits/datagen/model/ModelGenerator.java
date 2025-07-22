@@ -20,6 +20,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.properties.ComparatorMode;
 
 import static net.minecraft.client.data.models.BlockModelGenerators.createHorizontalFacingDispatchAlt;
 
@@ -47,6 +48,8 @@ public class ModelGenerator extends ModelProvider {
         createPipe(blockModels,ChronoBlockEntityTypes.PIPE_BLOCK.get(),ChronoBlockEntityTypes.PIPE_BLOCK_ITEM.get());
 
         createRepeater(blockModels, ChronoBlocks.COPPER_GRATED_REPEATER.get(), ChronoBlocks.COPPER_GRATED_REPEATER_ITEM.get());
+        createComparator(blockModels, ChronoBlockEntityTypes.COPPER_GRATED_COMPARATOR.get(), ChronoBlockEntityTypes.COPPER_GRATED_COMPARATOR_ITEM.get());
+        blockModels.createNormalTorch(ChronoBlocks.COPPER_GRATED_TORCH.get(), ChronoBlocks.COPPER_GRATED_WALL_TORCH.get());
     }
 
     public static void createRepeater(BlockModelGenerators blockModels, Block block, BlockItem blockItem) {
@@ -73,6 +76,11 @@ public class ModelGenerator extends ModelProvider {
                                 )
                                 .with(createHorizontalFacingDispatchAlt())
                 );
+    }
+
+    public static void createComparator(BlockModelGenerators blockModels, Block block, BlockItem blockItem) {
+        blockModels.registerSimpleFlatItemModel(blockItem);
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(createHorizontalFacingDispatchAlt()).with(PropertyDispatch.properties(net.minecraft.world.level.block.state.properties.BlockStateProperties.MODE_COMPARATOR, net.minecraft.world.level.block.state.properties.BlockStateProperties.POWERED).select(ComparatorMode.COMPARE, false, Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(block))).select(ComparatorMode.COMPARE, true, Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(block, "_on"))).select(ComparatorMode.SUBTRACT, false, Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(block, "_subtract"))).select(ComparatorMode.SUBTRACT, true, Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(block, "_on_subtract")))));
     }
 
     public static void CopperPressurePlateModelGenerator(BlockModelGenerators blockModels, Block pressurePlateBlock, Block textureMappingBlock) {
