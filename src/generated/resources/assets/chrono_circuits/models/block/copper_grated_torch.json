@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_torch",
+  "textures": {
+    "torch": "chrono_circuits:block/copper_grated_torch"
+  }
+}

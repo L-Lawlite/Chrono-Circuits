@@ -37,6 +37,8 @@ public class ChronoCircuitsLootTableSubProvider extends BlockLootSubProvider {
         this.dropSelf(ChronoBlockEntityTypes.GOLD_HOPPER_BLOCK.get());
         this.dropSelf(ChronoBlockEntityTypes.PIPE_BLOCK.get());
         this.dropSelf(ChronoBlocks.COPPER_GRATED_REPEATER.get());
+        this.dropSelf(ChronoBlockEntityTypes.COPPER_GRATED_COMPARATOR.get());
+        this.dropSelf(ChronoBlocks.COPPER_GRATED_TORCH.get());
 
 
     }

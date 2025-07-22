@@ -1,5 +1,7 @@
 {
+  "block.chrono_circuits.copper_grated_comparator": "Copper Grated Comparator",
   "block.chrono_circuits.copper_grated_repeater": "Copper Grated Repeater",
+  "block.chrono_circuits.copper_grated_torch": "Copper Grated Torch",
   "block.chrono_circuits.copper_hopper": "Copper Hopper",
   "block.chrono_circuits.copper_pressure_plate": "Copper Pressure Plate",
   "block.chrono_circuits.exposed_copper_hopper": "Exposed Copper Hopper",
@@ -20,5 +22,6 @@
   "container.chrono_circuits.oxidized_copper_hopper": "Oxidized Copper Hopper",
   "container.chrono_circuits.pipe": "Item Pipe",
   "container.chrono_circuits.weathered_copper_hopper": "Weathered Copper Hopper",
+  "item.chrono_circuits.copper_grated_torch": "Copper Grated Torch",
   "itemGroup.chrono_circuits": "Chrono Circuits"
 }

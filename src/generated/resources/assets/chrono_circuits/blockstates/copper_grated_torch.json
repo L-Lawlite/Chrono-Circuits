@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "chrono_circuits:block/copper_grated_torch"
+    }
+  }
+}
