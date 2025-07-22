@@ -2,9 +2,14 @@ package net.lawliet.chrono_circuits.registration;
 
 import net.lawliet.chrono_circuits.blocks.CopperPressurePlate.PlayerPressurePlate;
 import net.lawliet.chrono_circuits.blocks.CopperPressurePlate.WeatheringPlayerPressurePlate;
+import net.lawliet.chrono_circuits.blocks.gratedBlocks.torch.CopperGratedTorch;
 import net.lawliet.chrono_circuits.blocks.gratedBlocks.repeater.CopperGratedRepeater;
+import net.lawliet.chrono_circuits.blocks.gratedBlocks.torch.CopperGratedWallTorch;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.WeatheringCopper;
@@ -42,6 +47,10 @@ public class ChronoBlocks {
     public static final DeferredBlock<Block> COPPER_GRATED_REPEATER;
     public static final DeferredItem<BlockItem> COPPER_GRATED_REPEATER_ITEM;
 
+
+    public static final DeferredBlock<Block> COPPER_GRATED_TORCH;
+    public static final DeferredBlock<Block> COPPER_GRATED_WALL_TORCH;
+    public static final DeferredItem<BlockItem> COPPER_GRATED_TORCH_ITEM;
 
     //blocks
     static {
@@ -88,18 +97,29 @@ public class ChronoBlocks {
                 CopperGratedRepeater::new,
                 BlockBehaviour.Properties.of().instabreak().sound(SoundType.COPPER).pushReaction(PushReaction.DESTROY)
                 );
+        COPPER_GRATED_TORCH = ChronoRegistries.BLOCKS.registerBlock("copper_grated_torch",
+                properties -> new CopperGratedTorch(ParticleTypes.FLAME, properties),
+                BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel(p_220871_ -> 14).sound(SoundType.COPPER).pushReaction(PushReaction.DESTROY)
+                );
+        COPPER_GRATED_WALL_TORCH = ChronoRegistries.BLOCKS.registerBlock("copper_grated_wall_torch",
+                properties -> new CopperGratedWallTorch(ParticleTypes.FLAME, wallVariant(COPPER_GRATED_TORCH.get(), properties, true)),
+                BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel(p_220871_ -> 14).sound(SoundType.COPPER).pushReaction(PushReaction.DESTROY)
+        );
     }
+
+
 
     //block items
     static {
-        COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem("copper_pressure_plate",COPPER_PRESSURE_PLATE);
-        EXPOSED_COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem("exposed_copper_pressure_plate",EXPOSED_COPPER_PRESSURE_PLATE);
-        WEATHERED_COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem("weathered_copper_pressure_plate",WEATHERED_COPPER_PRESSURE_PLATE);
-        OXIDIZED_COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem("oxidized_copper_pressure_plate",OXIDIZED_COPPER_PRESSURE_PLATE);
-        WAXED_COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem("waxed_copper_pressure_plate", WAXED_COPPER_PRESSURE_PLATE);
-        WAXED_EXPOSED_COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem("waxed_exposed_copper_pressure_plate", WAXED_EXPOSED_COPPER_PRESSURE_PLATE);
-        WAXED_WEATHERED_COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem("waxed_weathered_copper_pressure_plate", WAXED_WEATHERED_COPPER_PRESSURE_PLATE);
-        COPPER_GRATED_REPEATER_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem("copper_grated_repeater", COPPER_GRATED_REPEATER);
+        COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(COPPER_PRESSURE_PLATE);
+        EXPOSED_COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(EXPOSED_COPPER_PRESSURE_PLATE);
+        WEATHERED_COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WEATHERED_COPPER_PRESSURE_PLATE);
+        OXIDIZED_COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(OXIDIZED_COPPER_PRESSURE_PLATE);
+        WAXED_COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WAXED_COPPER_PRESSURE_PLATE);
+        WAXED_EXPOSED_COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WAXED_EXPOSED_COPPER_PRESSURE_PLATE);
+        WAXED_WEATHERED_COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WAXED_WEATHERED_COPPER_PRESSURE_PLATE);
+        COPPER_GRATED_REPEATER_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(COPPER_GRATED_REPEATER);
+        COPPER_GRATED_TORCH_ITEM = ChronoRegistries.ITEMS.registerItem("copper_grated_torch",properties -> new StandingAndWallBlockItem(COPPER_GRATED_TORCH.get(), COPPER_GRATED_WALL_TORCH.get(), Direction.DOWN, properties));
     }
 
     private static BlockBehaviour.Properties copperPressurePlateDefaultProperties() {
@@ -110,6 +130,15 @@ public class ChronoBlocks {
                 .pushReaction(PushReaction.DESTROY)
                 .instrument(NoteBlockInstrument.BASEDRUM)
                 .sound(SoundType.COPPER);
+    }
+
+    private static BlockBehaviour.Properties wallVariant(Block baseBlock, BlockBehaviour.Properties properties, boolean overrideDescription){
+        BlockBehaviour.Properties properties1 = properties.overrideLootTable(baseBlock.getLootTable());
+        if (overrideDescription) {
+            properties1 = properties1.overrideDescription(baseBlock.getDescriptionId());
+        }
+
+        return properties1;
     }
 
     public static void init() {}
@@ -124,5 +153,6 @@ public class ChronoBlocks {
         output.accept(WAXED_EXPOSED_COPPER_PRESSURE_PLATE_ITEM);
         output.accept(WAXED_WEATHERED_COPPER_PRESSURE_PLATE_ITEM);
         output.accept(COPPER_GRATED_REPEATER_ITEM);
+        output.accept(COPPER_GRATED_TORCH_ITEM);
     }
 }

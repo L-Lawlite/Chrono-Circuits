@@ -1,5 +1,7 @@
 package net.lawliet.chrono_circuits.registration;
 
+import net.lawliet.chrono_circuits.blockEntity.gratedBlockEntity.comparator.CopperGratedComparator;
+import net.lawliet.chrono_circuits.blockEntity.gratedBlockEntity.comparator.CopperGratedComparatorBlockEntity;
 import net.lawliet.chrono_circuits.blockEntity.hopper.copperHopper.CopperHopperBlock;
 import net.lawliet.chrono_circuits.blockEntity.hopper.copperHopper.CopperHopperBlockEntity;
 import net.lawliet.chrono_circuits.blockEntity.hopper.copperHopper.CopperHopperMenu;
@@ -22,6 +24,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 
@@ -39,6 +42,7 @@ public class ChronoBlockEntityTypes {
     public static final DeferredBlock<Block> COPPER_HOPPER_BLOCK;
     public static final DeferredItem<BlockItem> COPPER_HOPPER_BLOCK_ITEM;
 
+
     public static final DeferredBlock<Block> EXPOSED_COPPER_HOPPER_BLOCK;
     public static final DeferredItem<BlockItem> EXPOSED_COPPER_HOPPER_BLOCK_ITEM;
 
@@ -48,22 +52,24 @@ public class ChronoBlockEntityTypes {
     public static final DeferredBlock<Block> OXIDIZED_COPPER_HOPPER_BLOCK;
     public static final DeferredItem<BlockItem> OXIDIZED_COPPER_HOPPER_BLOCK_ITEM;
 
-    public static final DeferredBlock<Block> GOLD_HOPPER_BLOCK;
-    public static final DeferredItem<BlockItem> GOLD_HOPPER_BLOCK_ITEM;
-
-    public static final DeferredBlock<Block> PIPE_BLOCK;
-    public static final DeferredItem<BlockItem> PIPE_BLOCK_ITEM;
-
     public static final Supplier<BlockEntityType<CopperHopperBlockEntity>> COPPER_HOPPER_BLOCK_ENTITY;
     public static final Supplier<MenuType<CopperHopperMenu>> COPPER_HOPPER_MENU;
 
+    public static final DeferredBlock<Block> GOLD_HOPPER_BLOCK;
+    public static final DeferredItem<BlockItem> GOLD_HOPPER_BLOCK_ITEM;
     public static final Supplier<BlockEntityType<GoldHopperBlockEntity>> GOLD_HOPPER_BLOCK_ENTITY;
     public static final Supplier<MenuType<GoldHopperMenu>> GOLD_HOPPER_MENU;
 
+    public static final DeferredBlock<Block> PIPE_BLOCK;
+    public static final DeferredItem<BlockItem> PIPE_BLOCK_ITEM;
     public static final Supplier<BlockEntityType<PipeBlockEntity>> PIPE_BLOCK_ENTITY;
     public static final Supplier<MenuType<PipeMenu>> PIPE_MENU;
 
+    public static final DeferredBlock<Block> COPPER_GRATED_COMPARATOR;
+    public static final DeferredItem<BlockItem> COPPER_GRATED_COMPARATOR_ITEM;
+    public static final Supplier<BlockEntityType<CopperGratedComparatorBlockEntity>> COPPER_GRATED_COMPARATOR_BLOCK_ENTITY;
 
+    //Block
     static {
         LIGHT_DETECTOR_BLOCK = ChronoRegistries.BLOCKS.registerBlock(
                 "light_detector",
@@ -129,8 +135,13 @@ public class ChronoBlockEntityTypes {
                 PipeBlock::new,
                 BlockBehaviour.Properties.ofFullCopy(Blocks.HOPPER)
         );
+        COPPER_GRATED_COMPARATOR = ChronoRegistries.BLOCKS.registerBlock("copper_grated_comparator",
+                CopperGratedComparator::new,
+                BlockBehaviour.Properties.of().instabreak().sound(SoundType.COPPER).pushReaction(PushReaction.DESTROY)
+        );
     }
 
+    //BlockItem
     static {
         LIGHT_DETECTOR_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(LIGHT_DETECTOR_BLOCK);
         COPPER_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(COPPER_HOPPER_BLOCK);
@@ -139,6 +150,8 @@ public class ChronoBlockEntityTypes {
         OXIDIZED_COPPER_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(OXIDIZED_COPPER_HOPPER_BLOCK);
         GOLD_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(GOLD_HOPPER_BLOCK);
         PIPE_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(PIPE_BLOCK);
+        COPPER_GRATED_COMPARATOR_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(COPPER_GRATED_COMPARATOR);
+
 
     }
 
@@ -175,6 +188,13 @@ public class ChronoBlockEntityTypes {
                         PIPE_BLOCK.get()
                 )
         );
+        COPPER_GRATED_COMPARATOR_BLOCK_ENTITY = ChronoRegistries.BLOCK_ENTITY_TYPES.register(
+                "copper_grated_comparator",
+                () -> new BlockEntityType<>(
+                        CopperGratedComparatorBlockEntity::new,
+                        COPPER_GRATED_COMPARATOR.get()
+                )
+        );
     }
 
     //MENU
@@ -184,6 +204,7 @@ public class ChronoBlockEntityTypes {
         PIPE_MENU = ChronoRegistries.MENU_TYPES.register("pipe_menu", () -> new MenuType<>(PipeMenu::new, FeatureFlags.DEFAULT_FLAGS));
     }
 
+    @SuppressWarnings("unused")
     public static void addCreative(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
         output.accept(LIGHT_DETECTOR_BLOCK_ITEM);
         output.accept(COPPER_HOPPER_BLOCK_ITEM);
@@ -192,5 +213,6 @@ public class ChronoBlockEntityTypes {
         output.accept(OXIDIZED_COPPER_HOPPER_BLOCK_ITEM);
         output.accept(GOLD_HOPPER_BLOCK_ITEM);
         output.accept(PIPE_BLOCK_ITEM);
+        output.accept(COPPER_GRATED_COMPARATOR_ITEM);
     }
 }
