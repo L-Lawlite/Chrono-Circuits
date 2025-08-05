@@ -54,6 +54,11 @@ public class DataMapGenerator extends DataMapProvider {
                         new Waxable(ChronoBlocks.WAXED_WEATHERED_COPPER_PRESSURE_PLATE.get()),
                         false
                 )
+                .add(
+                        ChronoBlocks.OXIDIZED_COPPER_PRESSURE_PLATE.getDelegate(),
+                        new Waxable(ChronoBlocks.WAXED_OXIDIZED_COPPER_PRESSURE_PLATE.get()),
+                        false
+                )
         ;
     }
 }
