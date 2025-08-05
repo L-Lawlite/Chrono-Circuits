@@ -25,7 +25,8 @@ public class ChronoCircuitsBlockTagProvider extends BlockTagsProvider {
                 .add(ChronoBlocks.OXIDIZED_COPPER_PRESSURE_PLATE.get())
                 .add(ChronoBlocks.WAXED_COPPER_PRESSURE_PLATE.get())
                 .add(ChronoBlocks.WAXED_EXPOSED_COPPER_PRESSURE_PLATE.get())
-                .add(ChronoBlocks.WAXED_WEATHERED_COPPER_PRESSURE_PLATE.get());
+                .add(ChronoBlocks.WAXED_WEATHERED_COPPER_PRESSURE_PLATE.get())
+                .add(ChronoBlocks.WAXED_OXIDIZED_COPPER_PRESSURE_PLATE.get());
 
         this.tag(ChronoCircuitsTags.Blocks.HOPPERS)
                 .add(ChronoBlockEntityTypes.COPPER_HOPPER_BLOCK.get())

@@ -44,6 +44,9 @@ public class ChronoBlocks {
     public static final DeferredBlock<Block> WAXED_WEATHERED_COPPER_PRESSURE_PLATE;
     public static final DeferredItem<BlockItem> WAXED_WEATHERED_COPPER_PRESSURE_PLATE_ITEM;
 
+    public static final DeferredBlock<Block> WAXED_OXIDIZED_COPPER_PRESSURE_PLATE;
+    public static final DeferredItem<BlockItem> WAXED_OXIDIZED_COPPER_PRESSURE_PLATE_ITEM;
+
     public static final DeferredBlock<Block> COPPER_GRATED_REPEATER;
     public static final DeferredItem<BlockItem> COPPER_GRATED_REPEATER_ITEM;
 
@@ -93,6 +96,11 @@ public class ChronoBlocks {
                 copperPressurePlateDefaultProperties()
                         .mapColor(MapColor.WARPED_STEM)
                 );
+        WAXED_OXIDIZED_COPPER_PRESSURE_PLATE = ChronoRegistries.BLOCKS.registerBlock("waxed_oxidized_copper_pressure_plate",
+                properties -> new PlayerPressurePlate(BlockSetType.COPPER,properties,160),
+                copperPressurePlateDefaultProperties()
+                        .mapColor(MapColor.WARPED_NYLIUM)
+        );
         COPPER_GRATED_REPEATER = ChronoRegistries.BLOCKS.registerBlock("copper_grated_repeater",
                 CopperGratedRepeater::new,
                 BlockBehaviour.Properties.of().instabreak().sound(SoundType.COPPER).pushReaction(PushReaction.DESTROY)
@@ -117,6 +125,7 @@ public class ChronoBlocks {
         OXIDIZED_COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(OXIDIZED_COPPER_PRESSURE_PLATE);
         WAXED_COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WAXED_COPPER_PRESSURE_PLATE);
         WAXED_EXPOSED_COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WAXED_EXPOSED_COPPER_PRESSURE_PLATE);
+        WAXED_OXIDIZED_COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WAXED_OXIDIZED_COPPER_PRESSURE_PLATE);
         WAXED_WEATHERED_COPPER_PRESSURE_PLATE_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WAXED_WEATHERED_COPPER_PRESSURE_PLATE);
         COPPER_GRATED_REPEATER_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(COPPER_GRATED_REPEATER);
         COPPER_GRATED_TORCH_ITEM = ChronoRegistries.ITEMS.registerItem("copper_grated_torch",properties -> new StandingAndWallBlockItem(COPPER_GRATED_TORCH.get(), COPPER_GRATED_WALL_TORCH.get(), Direction.DOWN, properties));
@@ -152,6 +161,7 @@ public class ChronoBlocks {
         output.accept(WAXED_COPPER_PRESSURE_PLATE_ITEM);
         output.accept(WAXED_EXPOSED_COPPER_PRESSURE_PLATE_ITEM);
         output.accept(WAXED_WEATHERED_COPPER_PRESSURE_PLATE_ITEM);
+        output.accept(WAXED_OXIDIZED_COPPER_PRESSURE_PLATE_ITEM);
         output.accept(COPPER_GRATED_REPEATER_ITEM);
         output.accept(COPPER_GRATED_TORCH_ITEM);
     }
