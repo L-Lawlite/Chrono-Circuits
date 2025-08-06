@@ -249,15 +249,6 @@ public class ChronoBlocks {
 
     @SuppressWarnings("unused")
     public static void addCreative(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
-        output.accept(COPPER_PRESSURE_PLATE_ITEM);
-        output.accept(EXPOSED_COPPER_PRESSURE_PLATE_ITEM);
-        output.accept(WEATHERED_COPPER_PRESSURE_PLATE_ITEM);
-        output.accept(OXIDIZED_COPPER_PRESSURE_PLATE_ITEM);
-        output.accept(WAXED_COPPER_PRESSURE_PLATE_ITEM);
-        output.accept(WAXED_EXPOSED_COPPER_PRESSURE_PLATE_ITEM);
-        output.accept(WAXED_WEATHERED_COPPER_PRESSURE_PLATE_ITEM);
-        output.accept(WAXED_OXIDIZED_COPPER_PRESSURE_PLATE_ITEM);
-        output.accept(COPPER_GRATED_REPEATER_ITEM);
-        output.accept(COPPER_GRATED_REDSTONE_TORCH_ITEM);
+        ChronoRegistries.ITEMS.getEntries().forEach(item -> output.accept(item.get()));
     }
 }

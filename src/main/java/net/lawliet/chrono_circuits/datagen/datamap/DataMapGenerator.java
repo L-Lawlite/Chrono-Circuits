@@ -34,6 +34,37 @@ public class DataMapGenerator extends DataMapProvider {
                         new Oxidizable(ChronoBlocks.OXIDIZED_COPPER_PRESSURE_PLATE.get()),
                         false
                 )
+                .add(
+                        ChronoBlocks.COPPER_GRATED_REDSTONE_TORCH.getDelegate(),
+                        new Oxidizable(ChronoBlocks.EXPOSED_COPPER_GRATED_REDSTONE_TORCH.get()),
+                        false
+                )
+                .add(
+                        ChronoBlocks.COPPER_GRATED_REDSTONE_WALL_TORCH.getDelegate(),
+                        new Oxidizable(ChronoBlocks.EXPOSED_COPPER_GRATED_REDSTONE_WALL_TORCH.get()),
+                        false
+                )
+                .add(
+                        ChronoBlocks.EXPOSED_COPPER_GRATED_REDSTONE_TORCH.getDelegate(),
+                        new Oxidizable(ChronoBlocks.WEATHERED_COPPER_GRATED_REDSTONE_TORCH.get()),
+                        false
+                )
+                .add(
+                        ChronoBlocks.EXPOSED_COPPER_GRATED_REDSTONE_WALL_TORCH.getDelegate(),
+                        new Oxidizable(ChronoBlocks.WEATHERED_COPPER_GRATED_REDSTONE_WALL_TORCH.get()),
+                        false
+                )
+                .add(
+                        ChronoBlocks.WEATHERED_COPPER_GRATED_REDSTONE_TORCH.getDelegate(),
+                        new Oxidizable(ChronoBlocks.OXIDIZED_COPPER_GRATED_REDSTONE_TORCH.get()),
+                        false
+                )
+                .add(
+                        ChronoBlocks.WEATHERED_COPPER_GRATED_REDSTONE_WALL_TORCH.getDelegate(),
+                        new Oxidizable(ChronoBlocks.OXIDIZED_COPPER_GRATED_REDSTONE_WALL_TORCH.get()),
+                        false
+                )
+
         ;
 
 
@@ -57,6 +88,46 @@ public class DataMapGenerator extends DataMapProvider {
                 .add(
                         ChronoBlocks.OXIDIZED_COPPER_PRESSURE_PLATE.getDelegate(),
                         new Waxable(ChronoBlocks.WAXED_OXIDIZED_COPPER_PRESSURE_PLATE.get()),
+                        false
+                )
+                .add(
+                        ChronoBlocks.COPPER_GRATED_REDSTONE_TORCH.getDelegate(),
+                        new Waxable(ChronoBlocks.WAXED_COPPER_GRATED_REDSTONE_TORCH.get()),
+                        false
+                )
+                .add(
+                        ChronoBlocks.EXPOSED_COPPER_GRATED_REDSTONE_TORCH.getDelegate(),
+                        new Waxable(ChronoBlocks.WAXED_EXPOSED_COPPER_GRATED_REDSTONE_TORCH.get()),
+                        false
+                )
+                .add(
+                        ChronoBlocks.WEATHERED_COPPER_GRATED_REDSTONE_TORCH.getDelegate(),
+                        new Waxable(ChronoBlocks.WAXED_WEATHERED_COPPER_GRATED_REDSTONE_TORCH.get()),
+                        false
+                )
+                .add(
+                        ChronoBlocks.OXIDIZED_COPPER_GRATED_REDSTONE_TORCH.getDelegate(),
+                        new Waxable(ChronoBlocks.WAXED_OXIDIZED_COPPER_GRATED_REDSTONE_TORCH.get()),
+                        false
+                )
+                .add(
+                        ChronoBlocks.COPPER_GRATED_REDSTONE_WALL_TORCH.getDelegate(),
+                        new Waxable(ChronoBlocks.WAXED_COPPER_GRATED_REDSTONE_WALL_TORCH.get()),
+                        false
+                )
+                .add(
+                        ChronoBlocks.EXPOSED_COPPER_GRATED_REDSTONE_WALL_TORCH.getDelegate(),
+                        new Waxable(ChronoBlocks.WAXED_EXPOSED_COPPER_GRATED_REDSTONE_WALL_TORCH.get()),
+                        false
+                )
+                .add(
+                        ChronoBlocks.WEATHERED_COPPER_GRATED_REDSTONE_WALL_TORCH.getDelegate(),
+                        new Waxable(ChronoBlocks.WAXED_WEATHERED_COPPER_GRATED_REDSTONE_WALL_TORCH.get()),
+                        false
+                )
+                .add(
+                        ChronoBlocks.OXIDIZED_COPPER_GRATED_REDSTONE_WALL_TORCH.getDelegate(),
+                        new Waxable(ChronoBlocks.WAXED_OXIDIZED_COPPER_GRATED_REDSTONE_WALL_TORCH.get()),
                         false
                 )
         ;
