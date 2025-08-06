@@ -63,12 +63,15 @@ public class ModelGenerator extends ModelProvider {
     }
 
     private void createRedstoneTorch(BlockModelGenerators blockModels, Block torch, Block wallTorch) {
-        ResourceLocation torchLit = ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID, "copper_grated_torch_lit");
-        ResourceLocation torchUnlit = ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID, "copper_grated_torch_unlit");
+        ResourceLocation torchLit = ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID, "copper_grated_redstone_torch").withPrefix("block/");
+        ResourceLocation torchUnlit = ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID, "copper_grated_redstone_torch_unlit").withPrefix("block/");
         blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(torch).with(BlockModelGenerators.createBooleanModelDispatch(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT, torchLit, torchUnlit)));
-        ResourceLocation wallTorchLit = ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID, "copper_grated_wall_torch_lit");
-        ResourceLocation wallTorchUnlit = ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID, "copper_grated_wall_torch_unlit");
+        ResourceLocation wallTorchLit = ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID, "copper_grated_redstone_wall_torch").withPrefix("block/");
+        ResourceLocation wallTorchUnlit = ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID, "copper_grated_redstone_wall_torch_unlit").withPrefix("block/");
         blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(wallTorch).with(BlockModelGenerators.createBooleanModelDispatch(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT, wallTorchLit, wallTorchUnlit)).with(BlockModelGenerators.createTorchHorizontalDispatch()));
+//        blockModels.registerSimpleFlatItemModel(torch);
+        blockModels.registerSimpleFlatItemModel(torch.asItem());
+
     }
 
     public static void createRepeater(BlockModelGenerators blockModels, Block block, BlockItem blockItem) {
