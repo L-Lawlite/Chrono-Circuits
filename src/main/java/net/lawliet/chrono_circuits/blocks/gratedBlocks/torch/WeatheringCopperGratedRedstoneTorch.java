@@ -4,14 +4,12 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SimpleWaterloggedBlock;
-import net.minecraft.world.level.block.WallTorchBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -20,17 +18,22 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import org.jetbrains.annotations.Nullable;
 
-public class CopperGratedWallTorch extends WallTorchBlock implements SimpleWaterloggedBlock {
-    public static final MapCodec<CopperGratedWallTorch> CODEC;
+public class WeatheringCopperGratedRedstoneTorch extends RedstoneTorchBlock implements SimpleWaterloggedBlock, WeatheringCopper {
+    public static final MapCodec<WeatheringCopperGratedRedstoneTorch> CODEC;
     public static final BooleanProperty WATERLOGGED;
+    private final WeatheringCopper.WeatherState weatherState;
 
+    @Override
+    public MapCodec<WeatheringCopperGratedRedstoneTorch> codec() {
+        return CODEC;
+    }
 
-    public CopperGratedWallTorch(SimpleParticleType flameParticle, Properties properties) {
-        super(flameParticle, properties);
+    public WeatheringCopperGratedRedstoneTorch(WeatherState weatherState, Properties properties) {
+        super(properties);
         this.registerDefaultState((this.stateDefinition.any())
-                .setValue(FACING, Direction.NORTH)
                 .setValue(WATERLOGGED, false)
         );
+        this.weatherState = weatherState;
     }
 
     @Override
@@ -58,11 +61,26 @@ public class CopperGratedWallTorch extends WallTorchBlock implements SimpleWater
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING,WATERLOGGED);
+        builder.add(WATERLOGGED);
     }
 
     static {
         WATERLOGGED = BlockStateProperties.WATERLOGGED;
-        CODEC = RecordCodecBuilder.mapCodec((builder -> builder.group(PARTICLE_OPTIONS_FIELD.forGetter(block -> block.flameParticle), propertiesCodec()).apply(builder, CopperGratedWallTorch::new)));
+        CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(WeatherState.CODEC.fieldOf("weathering_state").forGetter(WeatheringCopperGratedRedstoneTorch::getAge), propertiesCodec()).apply(instance, WeatheringCopperGratedRedstoneTorch::new));
+    }
+
+    @Override
+    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        this.changeOverTime(state, level, pos, random);
+    }
+
+    @Override
+    protected boolean isRandomlyTicking(BlockState state) {
+        return WeatheringCopper.getNext(state.getBlock()).isPresent();
+    }
+
+    @Override
+    public WeatherState getAge() {
+        return this.weatherState;
     }
 }
