@@ -51,7 +51,19 @@ public class ModelGenerator extends ModelProvider {
 
         createRepeater(blockModels, ChronoBlocks.COPPER_GRATED_REPEATER.get(), ChronoBlocks.COPPER_GRATED_REPEATER_ITEM.get());
         createComparator(blockModels, ChronoBlockEntityTypes.COPPER_GRATED_COMPARATOR.get(), ChronoBlockEntityTypes.COPPER_GRATED_COMPARATOR_ITEM.get());
-        blockModels.createNormalTorch(ChronoBlocks.COPPER_GRATED_TORCH.get(), ChronoBlocks.COPPER_GRATED_WALL_TORCH.get());
+        createRedstoneTorch(blockModels, ChronoBlocks.COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.COPPER_GRATED_REDSTONE_WALL_TORCH.get());
+    }
+
+    private void createRedstoneTorch(BlockModelGenerators blockModels, Block torch, Block wallTorch) {
+        TextureMapping texturemapping = TextureMapping.torch(torch);
+        TextureMapping texturemapping1 = TextureMapping.torch(TextureMapping.getBlockTexture(torch, "_off"));
+        ResourceLocation resourcelocation = ModelTemplates.REDSTONE_TORCH.create(torch, texturemapping, blockModels.modelOutput);
+        ResourceLocation resourcelocation1 = ModelTemplates.TORCH_UNLIT.createWithSuffix(torch, "_off", texturemapping1, blockModels.modelOutput);
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(torch).with(BlockModelGenerators.createBooleanModelDispatch(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT, resourcelocation, resourcelocation1)));
+        ResourceLocation resourcelocation2 = ModelTemplates.REDSTONE_WALL_TORCH.create(wallTorch, texturemapping, blockModels.modelOutput);
+        ResourceLocation resourcelocation3 = ModelTemplates.WALL_TORCH_UNLIT.createWithSuffix(wallTorch, "_off", texturemapping1, blockModels.modelOutput);
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(wallTorch).with(BlockModelGenerators.createBooleanModelDispatch(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT, resourcelocation2, resourcelocation3)).with(BlockModelGenerators.createTorchHorizontalDispatch()));
+        blockModels.registerSimpleFlatItemModel(torch);
     }
 
     public static void createRepeater(BlockModelGenerators blockModels, Block block, BlockItem blockItem) {
