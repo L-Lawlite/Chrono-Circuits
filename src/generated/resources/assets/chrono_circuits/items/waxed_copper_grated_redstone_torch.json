@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "chrono_circuits:block/waxed_copper_grated_redstone_torch"
+    "model": "chrono_circuits:item/waxed_copper_grated_redstone_torch"
   }
 }
