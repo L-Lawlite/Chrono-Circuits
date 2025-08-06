@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "chrono_circuits:copper_grated_torch_unlit"
+    },
+    "lit=true": {
+      "model": "chrono_circuits:copper_grated_torch_lit"
+    }
+  }
+}

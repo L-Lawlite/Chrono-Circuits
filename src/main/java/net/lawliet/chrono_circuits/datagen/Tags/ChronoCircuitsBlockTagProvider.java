@@ -1,7 +1,6 @@
-package net.lawliet.chrono_circuits.datagen.Tags.BlockTags;
+package net.lawliet.chrono_circuits.datagen.Tags;
 
 import net.lawliet.chrono_circuits.ChronoCircuits;
-import net.lawliet.chrono_circuits.datagen.Tags.ChronoCircuitsTags;
 import net.lawliet.chrono_circuits.registration.ChronoBlockEntityTypes;
 import net.lawliet.chrono_circuits.registration.ChronoBlocks;
 import net.minecraft.core.HolderLookup;
@@ -18,7 +17,7 @@ public class ChronoCircuitsBlockTagProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        this.tag(ChronoCircuitsTags.Blocks.PRESSURE_PLATES)
+        this.tag(ChronoCircuitsTags.Blocks.COPPER_PRESSURE_PLATES)
                 .add(ChronoBlocks.COPPER_PRESSURE_PLATE.get())
                 .add(ChronoBlocks.EXPOSED_COPPER_PRESSURE_PLATE.get())
                 .add(ChronoBlocks.WEATHERED_COPPER_PRESSURE_PLATE.get())
@@ -27,6 +26,9 @@ public class ChronoCircuitsBlockTagProvider extends BlockTagsProvider {
                 .add(ChronoBlocks.WAXED_EXPOSED_COPPER_PRESSURE_PLATE.get())
                 .add(ChronoBlocks.WAXED_WEATHERED_COPPER_PRESSURE_PLATE.get())
                 .add(ChronoBlocks.WAXED_OXIDIZED_COPPER_PRESSURE_PLATE.get());
+
+        this.tag(ChronoCircuitsTags.Blocks.PRESSURE_PLATES)
+                .addTag(ChronoCircuitsTags.Blocks.COPPER_PRESSURE_PLATES);
 
         this.tag(ChronoCircuitsTags.Blocks.HOPPERS)
                 .add(ChronoBlockEntityTypes.COPPER_HOPPER_BLOCK.get())
@@ -52,6 +54,24 @@ public class ChronoCircuitsBlockTagProvider extends BlockTagsProvider {
 
         this.tag(BlockTags.PRESSURE_PLATES)
                 .addTag(ChronoCircuitsTags.Blocks.PRESSURE_PLATES);
+
+        this.tag(ChronoCircuitsTags.Blocks.REDSTONE_TORCHES)
+                .add(ChronoBlocks.COPPER_GRATED_REDSTONE_TORCH.get())
+                .add(ChronoBlocks.COPPER_GRATED_REDSTONE_WALL_TORCH.get())
+                .add(ChronoBlocks.EXPOSED_COPPER_GRATED_REDSTONE_TORCH.get())
+                .add(ChronoBlocks.EXPOSED_COPPER_GRATED_REDSTONE_WALL_TORCH.get())
+                .add(ChronoBlocks.WEATHERED_COPPER_GRATED_REDSTONE_TORCH.get())
+                .add(ChronoBlocks.WEATHERED_COPPER_GRATED_REDSTONE_WALL_TORCH.get())
+                .add(ChronoBlocks.OXIDIZED_COPPER_GRATED_REDSTONE_TORCH.get())
+                .add(ChronoBlocks.OXIDIZED_COPPER_GRATED_REDSTONE_WALL_TORCH.get())
+                .add(ChronoBlocks.WAXED_COPPER_GRATED_REDSTONE_TORCH.get())
+                .add(ChronoBlocks.WAXED_COPPER_GRATED_REDSTONE_WALL_TORCH.get())
+                .add(ChronoBlocks.WAXED_EXPOSED_COPPER_GRATED_REDSTONE_TORCH.get())
+                .add(ChronoBlocks.WAXED_EXPOSED_COPPER_GRATED_REDSTONE_WALL_TORCH.get())
+                .add(ChronoBlocks.WAXED_WEATHERED_COPPER_GRATED_REDSTONE_TORCH.get())
+                .add(ChronoBlocks.WAXED_WEATHERED_COPPER_GRATED_REDSTONE_WALL_TORCH.get())
+                .add(ChronoBlocks.WAXED_OXIDIZED_COPPER_GRATED_REDSTONE_TORCH.get())
+                .add(ChronoBlocks.WAXED_OXIDIZED_COPPER_GRATED_REDSTONE_WALL_TORCH.get());
 
     }
 }

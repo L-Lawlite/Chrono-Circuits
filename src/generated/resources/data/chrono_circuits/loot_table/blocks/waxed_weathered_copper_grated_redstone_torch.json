@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "chrono_circuits:copper_grated_torch"
+          "name": "chrono_circuits:waxed_weathered_copper_grated_redstone_torch"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "chrono_circuits:blocks/copper_grated_torch"
+  "random_sequence": "chrono_circuits:blocks/waxed_weathered_copper_grated_redstone_torch"
 }

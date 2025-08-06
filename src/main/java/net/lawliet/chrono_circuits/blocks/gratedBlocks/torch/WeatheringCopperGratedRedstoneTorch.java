@@ -32,6 +32,7 @@ public class WeatheringCopperGratedRedstoneTorch extends RedstoneTorchBlock impl
         super(properties);
         this.registerDefaultState((this.stateDefinition.any())
                 .setValue(WATERLOGGED, false)
+                .setValue(LIT, true)
         );
         this.weatherState = weatherState;
     }
@@ -61,7 +62,7 @@ public class WeatheringCopperGratedRedstoneTorch extends RedstoneTorchBlock impl
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(WATERLOGGED);
+        builder.add(WATERLOGGED,LIT);
     }
 
     static {
