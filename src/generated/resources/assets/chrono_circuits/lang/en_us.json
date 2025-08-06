@@ -30,5 +30,13 @@
   "container.chrono_circuits.oxidized_copper_hopper": "Oxidized Copper Hopper",
   "container.chrono_circuits.pipe": "Item Pipe",
   "container.chrono_circuits.weathered_copper_hopper": "Weathered Copper Hopper",
+  "item.chrono_circuits.copper_grated_redstone_torch": "Copper Grated Torch",
+  "item.chrono_circuits.exposed_copper_grated_redstone_torch": "Exposed Copper Grated Redstone Torch",
+  "item.chrono_circuits.oxidized_copper_grated_redstone_torch": "Oxidized Copper Grated Redstone Torch",
+  "item.chrono_circuits.waxed_copper_grated_redstone_torch": "Waxed Copper Grated Redstone Torch",
+  "item.chrono_circuits.waxed_exposed_copper_grated_redstone_torch": "Waxed Exposed Copper Grated Redstone Torch",
+  "item.chrono_circuits.waxed_oxidized_copper_grated_redstone_torch": "Waxed Oxidized Copper Grated Redstone Torch",
+  "item.chrono_circuits.waxed_weathered_copper_grated_redstone_torch": "Waxed Weathered Copper Grated Redstone Torch",
+  "item.chrono_circuits.weathered_copper_grated_redstone_torch": "Weathered Copper Grated Redstone Torch",
   "itemGroup.chrono_circuits": "Chrono Circuits"
 }

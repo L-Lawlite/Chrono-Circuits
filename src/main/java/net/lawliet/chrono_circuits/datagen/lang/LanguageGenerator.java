@@ -42,8 +42,17 @@ public class LanguageGenerator extends LanguageProvider {
         this.addBlock(ChronoBlocks.WAXED_WEATHERED_COPPER_GRATED_REDSTONE_TORCH, "Waxed Weathered Copper Grated Redstone Torch");
         this.addBlock(ChronoBlocks.WAXED_OXIDIZED_COPPER_GRATED_REDSTONE_TORCH, "Waxed Oxidized Copper Grated Redstone Torch");
 
+        this.addItem(ChronoBlocks.COPPER_GRATED_REDSTONE_TORCH_ITEM, "Copper Grated Torch");
+        this.addItem(ChronoBlocks.EXPOSED_COPPER_GRATED_REDSTONE_TORCH_ITEM, "Exposed Copper Grated Redstone Torch");
+        this.addItem(ChronoBlocks.WEATHERED_COPPER_GRATED_REDSTONE_TORCH_ITEM, "Weathered Copper Grated Redstone Torch");
+        this.addItem(ChronoBlocks.OXIDIZED_COPPER_GRATED_REDSTONE_TORCH_ITEM, "Oxidized Copper Grated Redstone Torch");
+        this.addItem(ChronoBlocks.WAXED_COPPER_GRATED_REDSTONE_TORCH_ITEM, "Waxed Copper Grated Redstone Torch");
+        this.addItem(ChronoBlocks.WAXED_EXPOSED_COPPER_GRATED_REDSTONE_TORCH_ITEM, "Waxed Exposed Copper Grated Redstone Torch");
+        this.addItem(ChronoBlocks.WAXED_WEATHERED_COPPER_GRATED_REDSTONE_TORCH_ITEM, "Waxed Weathered Copper Grated Redstone Torch");
+        this.addItem(ChronoBlocks.WAXED_OXIDIZED_COPPER_GRATED_REDSTONE_TORCH_ITEM, "Waxed Oxidized Copper Grated Redstone Torch");
 
-       HopperHelper(ChronoBlockEntityTypes.COPPER_HOPPER_BLOCK,"Copper Hopper");
+
+        HopperHelper(ChronoBlockEntityTypes.COPPER_HOPPER_BLOCK,"Copper Hopper");
        HopperHelper(ChronoBlockEntityTypes.EXPOSED_COPPER_HOPPER_BLOCK,"Exposed Copper Hopper");
        HopperHelper(ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK,"Weathered Copper Hopper");
        HopperHelper(ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK,"Oxidized Copper Hopper");
