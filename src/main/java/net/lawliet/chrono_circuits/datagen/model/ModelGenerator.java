@@ -62,11 +62,12 @@ public class ModelGenerator extends ModelProvider {
     }
 
     private void createRedstoneTorch(BlockModelGenerators blockModels, Block torch, Block wallTorch) {
-        ResourceLocation torchLit = ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID, "copper_grated_redstone_torch").withPrefix("block/");
-        ResourceLocation torchUnlit = ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID, "copper_grated_redstone_torch_unlit").withPrefix("block/");
+//        ResourceLocation torchLit = ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID, "copper_grated_redstone_torch").withPrefix("block/");
+        ResourceLocation torchLit = ModelLocationUtils.getModelLocation(torch);
+        ResourceLocation torchUnlit = ModelLocationUtils.getModelLocation(torch,"_unlit");
         blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(torch).with(BlockModelGenerators.createBooleanModelDispatch(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT, torchLit, torchUnlit)));
-        ResourceLocation wallTorchLit = ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID, "copper_grated_redstone_wall_torch").withPrefix("block/");
-        ResourceLocation wallTorchUnlit = ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID, "copper_grated_redstone_wall_torch_unlit").withPrefix("block/");
+        ResourceLocation wallTorchLit = ModelLocationUtils.getModelLocation(wallTorch);
+        ResourceLocation wallTorchUnlit = ModelLocationUtils.getModelLocation(wallTorch,"_unlit");
         blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(wallTorch).with(BlockModelGenerators.createBooleanModelDispatch(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT, wallTorchLit, wallTorchUnlit)).with(BlockModelGenerators.createTorchHorizontalDispatch()));
 //        blockModels.registerSimpleFlatItemModel(torch);
         blockModels.registerSimpleFlatItemModel(torch.asItem());
