@@ -1,10 +1,10 @@
 {
   "variants": {
     "lit=false": {
-      "model": "chrono_circuits:block/copper_grated_redstone_torch_unlit"
+      "model": "chrono_circuits:block/oxidized_copper_grated_redstone_torch_unlit"
     },
     "lit=true": {
-      "model": "chrono_circuits:block/copper_grated_redstone_torch"
+      "model": "chrono_circuits:block/oxidized_copper_grated_redstone_torch"
     }
   }
 }
