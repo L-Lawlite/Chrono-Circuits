@@ -1,6 +1,6 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-package net.lawliet.chrono_circuits.datagen.Tags.BlockTags;
+package net.lawliet.chrono_circuits.datagen.Tags;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 
