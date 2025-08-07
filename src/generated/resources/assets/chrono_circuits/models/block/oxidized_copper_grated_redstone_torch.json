@@ -1,0 +1,6 @@
+{
+  "parent": "chrono_circuits:block/template_copper_grated_redstone_torch",
+  "textures": {
+    "copper_grate": "chrono_circuits:block/oxidized_copper_grated_redstone_torch"
+  }
+}
