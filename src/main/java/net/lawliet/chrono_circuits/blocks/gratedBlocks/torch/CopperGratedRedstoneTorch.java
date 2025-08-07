@@ -24,7 +24,7 @@ public class CopperGratedRedstoneTorch extends RedstoneTorchBlock implements Sim
     public static final BooleanProperty WATERLOGGED;
 
     @Override
-    public MapCodec<CopperGratedRedstoneTorch> codec() {
+    public MapCodec<? extends CopperGratedRedstoneTorch> codec() {
         return CODEC;
     }
 
