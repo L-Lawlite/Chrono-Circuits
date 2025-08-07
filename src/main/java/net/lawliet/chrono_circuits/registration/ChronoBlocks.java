@@ -5,6 +5,8 @@ import net.lawliet.chrono_circuits.blocks.CopperPressurePlate.WeatheringPlayerPr
 import net.lawliet.chrono_circuits.blocks.gratedBlocks.torch.WeatheringCopperGratedRedstoneTorch;
 import net.lawliet.chrono_circuits.blocks.gratedBlocks.repeater.CopperGratedRepeater;
 import net.lawliet.chrono_circuits.blocks.gratedBlocks.torch.WeatheringCopperGratedRedstoneWallTorch;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -250,5 +252,9 @@ public class ChronoBlocks {
     @SuppressWarnings("unused")
     public static void addCreative(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
         ChronoRegistries.ITEMS.getEntries().forEach(item -> output.accept(item.get()));
+    }
+
+    public static void modifyRenderLayer() {
+        ChronoRegistries.BLOCKS.getEntries().stream().filter(blockHolder -> blockHolder.getId().getPath().contains("grated")).forEach(block -> ItemBlockRenderTypes.setRenderLayer(block.get(), RenderType.CUTOUT));
     }
 }
