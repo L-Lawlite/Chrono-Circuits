@@ -29,9 +29,13 @@ public class ModelGenerator extends ModelProvider {
     public ModelGenerator(PackOutput output) {
         super(output, ChronoCircuits.MODID);
     }
+    private BlockModelGenerators blockModels;
+    private ItemModelGenerators itemModels;
 
     @Override
     protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
+        this.blockModels = blockModels;
+        this.itemModels = itemModels;
         CopperPressurePlateModelGenerator(blockModels,ChronoBlocks.COPPER_PRESSURE_PLATE.get(),Blocks.COPPER_BLOCK);
         CopperPressurePlateModelGenerator(blockModels,ChronoBlocks.EXPOSED_COPPER_PRESSURE_PLATE.get(),Blocks.EXPOSED_COPPER);
         CopperPressurePlateModelGenerator(blockModels,ChronoBlocks.WEATHERED_COPPER_PRESSURE_PLATE.get(),Blocks.WEATHERED_COPPER);
@@ -51,27 +55,24 @@ public class ModelGenerator extends ModelProvider {
 
         createRepeater(blockModels, ChronoBlocks.COPPER_GRATED_REPEATER.get(), ChronoBlocks.COPPER_GRATED_REPEATER_ITEM.get());
         createComparator(blockModels, ChronoBlockEntityTypes.COPPER_GRATED_COMPARATOR.get(), ChronoBlockEntityTypes.COPPER_GRATED_COMPARATOR_ITEM.get());
-        createRedstoneTorch(blockModels, ChronoBlocks.COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.COPPER_GRATED_REDSTONE_WALL_TORCH.get());
-        createRedstoneTorch(blockModels, ChronoBlocks.EXPOSED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.EXPOSED_COPPER_GRATED_REDSTONE_WALL_TORCH.get());
-        createRedstoneTorch(blockModels, ChronoBlocks.WEATHERED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.WEATHERED_COPPER_GRATED_REDSTONE_WALL_TORCH.get());
-        createRedstoneTorch(blockModels, ChronoBlocks.OXIDIZED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.OXIDIZED_COPPER_GRATED_REDSTONE_WALL_TORCH.get());
-        createRedstoneTorch(blockModels, ChronoBlocks.WAXED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.WAXED_COPPER_GRATED_REDSTONE_WALL_TORCH.get());
-        createRedstoneTorch(blockModels, ChronoBlocks.WAXED_EXPOSED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.WAXED_EXPOSED_COPPER_GRATED_REDSTONE_WALL_TORCH.get());
-        createRedstoneTorch(blockModels, ChronoBlocks.WAXED_WEATHERED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.WAXED_WEATHERED_COPPER_GRATED_REDSTONE_WALL_TORCH.get());
-        createRedstoneTorch(blockModels, ChronoBlocks.WAXED_OXIDIZED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.WAXED_OXIDIZED_COPPER_GRATED_REDSTONE_WALL_TORCH.get());
-
+        createRedstoneTorch(ChronoBlocks.COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.COPPER_GRATED_REDSTONE_WALL_TORCH.get(), ChronoBlocks.WAXED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.WAXED_COPPER_GRATED_REDSTONE_WALL_TORCH.get());
+        createRedstoneTorch(ChronoBlocks.EXPOSED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.EXPOSED_COPPER_GRATED_REDSTONE_WALL_TORCH.get(), ChronoBlocks.WAXED_EXPOSED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.WAXED_EXPOSED_COPPER_GRATED_REDSTONE_WALL_TORCH.get());
+        createRedstoneTorch(ChronoBlocks.WEATHERED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.WEATHERED_COPPER_GRATED_REDSTONE_WALL_TORCH.get(), ChronoBlocks.WAXED_WEATHERED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.WAXED_WEATHERED_COPPER_GRATED_REDSTONE_WALL_TORCH.get());
+        createRedstoneTorch(ChronoBlocks.OXIDIZED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.OXIDIZED_COPPER_GRATED_REDSTONE_WALL_TORCH.get(), ChronoBlocks.WAXED_OXIDIZED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.WAXED_OXIDIZED_COPPER_GRATED_REDSTONE_WALL_TORCH.get());
     }
 
-    private void createRedstoneTorch(BlockModelGenerators blockModels, Block torch, Block wallTorch) {
-//        ResourceLocation torchLit = ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID, "copper_grated_redstone_torch").withPrefix("block/");
-        ResourceLocation torchLit = ModelLocationUtils.getModelLocation(torch);
-        ResourceLocation torchUnlit = ModelLocationUtils.getModelLocation(torch,"_unlit");
-        blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(torch).with(BlockModelGenerators.createBooleanModelDispatch(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT, torchLit, torchUnlit)));
-        ResourceLocation wallTorchLit = ModelLocationUtils.getModelLocation(wallTorch);
-        ResourceLocation wallTorchUnlit = ModelLocationUtils.getModelLocation(wallTorch,"_unlit");
-        blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(wallTorch).with(BlockModelGenerators.createBooleanModelDispatch(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT, wallTorchLit, wallTorchUnlit)).with(BlockModelGenerators.createTorchHorizontalDispatch()));
-//        blockModels.registerSimpleFlatItemModel(torch);
-        blockModels.registerSimpleFlatItemModel(torch.asItem());
+    private void createRedstoneTorch(Block unwaxedtorch, Block unwaxedWallTorch, Block waxedtorch, Block waxedWallTorch) {
+        TextureMapping copperGrateTexture = new TextureMapping().put(ChronoCircuitsTextureSlot.COPPER_GRATE, TextureMapping.getBlockTexture(unwaxedtorch));
+        ResourceLocation torchLit = ChronoCircuitsModelTemplates.COPPER_GRATED_REDSTONE_TORCH.create(unwaxedtorch, copperGrateTexture, blockModels.modelOutput);
+        ResourceLocation torchUnlit = ChronoCircuitsModelTemplates.COPPER_GRATED_REDSTONE_TORCH_UNLIT.createWithSuffix(unwaxedtorch, "_unlit", copperGrateTexture, blockModels.modelOutput);
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(unwaxedtorch).with(BlockModelGenerators.createBooleanModelDispatch(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT, torchLit, torchUnlit)));
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(waxedtorch).with(BlockModelGenerators.createBooleanModelDispatch(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT, torchLit, torchUnlit)));
+        ResourceLocation wallTorchLit = ChronoCircuitsModelTemplates.COPPER_GRATED_REDSTONE_WALL_TORCH.create(unwaxedWallTorch, copperGrateTexture, blockModels.modelOutput);
+        ResourceLocation wallTorchUnlit = ChronoCircuitsModelTemplates.COPPER_GRATED_REDSTONE_WALL_TORCH_UNLIT.createWithSuffix(unwaxedWallTorch, "_unlit", copperGrateTexture, blockModels.modelOutput);
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(unwaxedWallTorch).with(BlockModelGenerators.createBooleanModelDispatch(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT, wallTorchLit, wallTorchUnlit)).with(BlockModelGenerators.createTorchHorizontalDispatch()));
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(waxedWallTorch).with(BlockModelGenerators.createBooleanModelDispatch(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT, wallTorchLit, wallTorchUnlit)).with(BlockModelGenerators.createTorchHorizontalDispatch()));
+        blockModels.registerSimpleFlatItemModel(unwaxedtorch.asItem());
+        itemModels.itemModelOutput.copy(unwaxedtorch.asItem(), waxedtorch.asItem());
 
     }
 

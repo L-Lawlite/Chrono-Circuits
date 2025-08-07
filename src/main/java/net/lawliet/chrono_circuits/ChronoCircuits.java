@@ -1,5 +1,6 @@
 package net.lawliet.chrono_circuits;
 
+import net.lawliet.chrono_circuits.registration.ChronoBlocks;
 import net.lawliet.chrono_circuits.registration.ChronoRegistries;
 import org.slf4j.Logger;
 
@@ -48,6 +49,7 @@ public class ChronoCircuits
     {
         // Some common setup code
         LOGGER.info("HELLO FROM COMMON SETUP");
+        ChronoBlocks.modifyRenderLayer();
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

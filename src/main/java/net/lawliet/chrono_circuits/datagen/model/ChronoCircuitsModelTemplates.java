@@ -8,11 +8,20 @@ public class ChronoCircuitsModelTemplates {
     public static final ModelTemplate HOPPER;
     public static final ModelTemplate HOPPER_SIDE;
     public static final ModelTemplate LIGHT_DETECTOR;
+    public static final ModelTemplate COPPER_GRATED_REDSTONE_TORCH;
+    public static final ModelTemplate COPPER_GRATED_REDSTONE_TORCH_UNLIT;
+    public static final ModelTemplate COPPER_GRATED_REDSTONE_WALL_TORCH;
+    public static final ModelTemplate COPPER_GRATED_REDSTONE_WALL_TORCH_UNLIT;
+
 
     static {
         HOPPER = ModelTemplates.create("chrono_circuits:template_hopper", TextureSlot.TOP,TextureSlot.SIDE,TextureSlot.INSIDE);
         HOPPER_SIDE = ModelTemplates.create("chrono_circuits:template_hopper_side", TextureSlot.TOP,TextureSlot.SIDE,TextureSlot.INSIDE);
         LIGHT_DETECTOR = ModelTemplates.create("chrono_circuits:template_light_detector",TextureSlot.TOP,TextureSlot.SIDE,TextureSlot.BOTTOM);
+        COPPER_GRATED_REDSTONE_TORCH = ModelTemplates.create("chrono_circuits:template_copper_grated_redstone_torch",ChronoCircuitsTextureSlot.COPPER_GRATE);
+        COPPER_GRATED_REDSTONE_TORCH_UNLIT = ModelTemplates.create("chrono_circuits:template_copper_grated_redstone_torch_unlit",ChronoCircuitsTextureSlot.COPPER_GRATE);
+        COPPER_GRATED_REDSTONE_WALL_TORCH = ModelTemplates.create("chrono_circuits:template_copper_grated_redstone_wall_torch",ChronoCircuitsTextureSlot.COPPER_GRATE);
+        COPPER_GRATED_REDSTONE_WALL_TORCH_UNLIT = ModelTemplates.create("chrono_circuits:template_copper_grated_redstone_wall_torch_unlit",ChronoCircuitsTextureSlot.COPPER_GRATE);
     }
 
 
