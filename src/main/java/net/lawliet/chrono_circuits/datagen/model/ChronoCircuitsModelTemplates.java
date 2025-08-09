@@ -7,7 +7,9 @@ import net.minecraft.client.data.models.model.TextureSlot;
 public class ChronoCircuitsModelTemplates {
     public static final ModelTemplate HOPPER;
     public static final ModelTemplate HOPPER_SIDE;
+
     public static final ModelTemplate LIGHT_DETECTOR;
+
     public static final ModelTemplate COPPER_GRATED_REDSTONE_TORCH;
     public static final ModelTemplate COPPER_GRATED_REDSTONE_TORCH_UNLIT;
     public static final ModelTemplate COPPER_GRATED_REDSTONE_WALL_TORCH;

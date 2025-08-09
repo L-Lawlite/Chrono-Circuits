@@ -51,16 +51,15 @@ public class LanguageGenerator extends LanguageProvider {
         this.addItem(ChronoBlocks.WAXED_WEATHERED_COPPER_GRATED_REDSTONE_TORCH_ITEM, "Waxed Weathered Copper Grated Redstone Torch");
         this.addItem(ChronoBlocks.WAXED_OXIDIZED_COPPER_GRATED_REDSTONE_TORCH_ITEM, "Waxed Oxidized Copper Grated Redstone Torch");
 
-
         HopperHelper(ChronoBlockEntityTypes.COPPER_HOPPER_BLOCK,"Copper Hopper");
-       HopperHelper(ChronoBlockEntityTypes.EXPOSED_COPPER_HOPPER_BLOCK,"Exposed Copper Hopper");
-       HopperHelper(ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK,"Weathered Copper Hopper");
-       HopperHelper(ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK,"Oxidized Copper Hopper");
-       HopperHelper(ChronoBlockEntityTypes.GOLD_HOPPER_BLOCK,"Gold Hopper");
+        HopperHelper(ChronoBlockEntityTypes.EXPOSED_COPPER_HOPPER_BLOCK,"Exposed Copper Hopper");
+        HopperHelper(ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK,"Weathered Copper Hopper");
+        HopperHelper(ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK,"Oxidized Copper Hopper");
+        HopperHelper(ChronoBlockEntityTypes.GOLD_HOPPER_BLOCK,"Gold Hopper");
 
-       HopperHelper(ChronoBlockEntityTypes.PIPE_BLOCK,"Item Pipe");
+        HopperHelper(ChronoBlockEntityTypes.PIPE_BLOCK,"Item Pipe");
 
-       this.add("itemGroup.chrono_circuits", "Chrono Circuits");
+        this.add("itemGroup.chrono_circuits", "Chrono Circuits");
 
     }
 
