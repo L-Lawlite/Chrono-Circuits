@@ -1,5 +1,6 @@
 package net.lawliet.chrono_circuits.datagen.datamap;
 
+import net.lawliet.chrono_circuits.registration.ChronoBlockEntityTypes;
 import net.lawliet.chrono_circuits.registration.ChronoBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -64,6 +65,9 @@ public class DataMapGenerator extends DataMapProvider {
                         new Oxidizable(ChronoBlocks.OXIDIZED_COPPER_GRATED_REDSTONE_WALL_TORCH.get()),
                         false
                 )
+                .add(ChronoBlockEntityTypes.COPPER_HOPPER_BLOCK.getDelegate(), new Oxidizable(ChronoBlockEntityTypes.EXPOSED_COPPER_HOPPER_BLOCK.get()), false)
+                .add(ChronoBlockEntityTypes.EXPOSED_COPPER_HOPPER_BLOCK.getDelegate(), new Oxidizable(ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK.get()), false)
+                .add(ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK.getDelegate(), new Oxidizable(ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK.get()), false)
 
         ;
 
@@ -130,6 +134,11 @@ public class DataMapGenerator extends DataMapProvider {
                         new Waxable(ChronoBlocks.WAXED_OXIDIZED_COPPER_GRATED_REDSTONE_WALL_TORCH.get()),
                         false
                 )
+                .add(ChronoBlockEntityTypes.COPPER_HOPPER_BLOCK.getDelegate(), new Waxable(ChronoBlockEntityTypes.WAXED_COPPER_HOPPER_BLOCK.get()), false)
+                .add(ChronoBlockEntityTypes.EXPOSED_COPPER_HOPPER_BLOCK.getDelegate(), new Waxable(ChronoBlockEntityTypes.WAXED_EXPOSED_COPPER_HOPPER_BLOCK.get()), false)
+                .add(ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK.getDelegate(), new Waxable(ChronoBlockEntityTypes.WAXED_WEATHERED_COPPER_HOPPER_BLOCK.get()), false)
+                .add(ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK.getDelegate(), new Waxable(ChronoBlockEntityTypes.WAXED_OXIDIZED_COPPER_HOPPER_BLOCK.get()), false)
+
         ;
     }
 }

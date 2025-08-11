@@ -2,28 +2,27 @@ package net.lawliet.chrono_circuits.datagen.model;
 
 import net.lawliet.chrono_circuits.ChronoCircuits;
 import net.lawliet.chrono_circuits.blockEntity.lightDetector.LightState;
-import net.lawliet.chrono_circuits.blockState.BlockStateProperties;
 import net.lawliet.chrono_circuits.registration.ChronoBlockEntityTypes;
 import net.lawliet.chrono_circuits.registration.ChronoBlocks;
+import net.lawliet.chrono_circuits.registration.ChronoRegistries;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.*;
-import net.minecraft.client.data.models.model.ModelLocationUtils;
-import net.minecraft.client.data.models.model.ModelTemplates;
-import net.minecraft.client.data.models.model.TextureMapping;
-import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.client.data.models.model.*;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.ComparatorMode;
 
-import static net.minecraft.client.data.models.BlockModelGenerators.createHorizontalFacingDispatchAlt;
+import java.util.stream.Stream;
 
 public class ModelGenerator extends ModelProvider {
     public ModelGenerator(PackOutput output) {
@@ -46,10 +45,10 @@ public class ModelGenerator extends ModelProvider {
         CopperPressurePlateModelGenerator(blockModels,ChronoBlocks.WAXED_OXIDIZED_COPPER_PRESSURE_PLATE.get(),Blocks.OXIDIZED_COPPER);
 
         createLightDetector(blockModels);
-        createHopper(blockModels,ChronoBlockEntityTypes.COPPER_HOPPER_BLOCK.get(),ChronoBlockEntityTypes.COPPER_HOPPER_BLOCK_ITEM.get());
-        createHopper(blockModels,ChronoBlockEntityTypes.EXPOSED_COPPER_HOPPER_BLOCK.get(),ChronoBlockEntityTypes.EXPOSED_COPPER_HOPPER_BLOCK_ITEM.get());
-        createHopper(blockModels,ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK.get(),ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK_ITEM.get());
-        createHopper(blockModels,ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK.get(),ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK_ITEM.get());
+        createHopper(ChronoBlockEntityTypes.COPPER_HOPPER_BLOCK.get(), ChronoBlockEntityTypes.WAXED_COPPER_HOPPER_BLOCK.get());
+        createHopper(ChronoBlockEntityTypes.EXPOSED_COPPER_HOPPER_BLOCK.get(), ChronoBlockEntityTypes.WAXED_EXPOSED_COPPER_HOPPER_BLOCK.get());
+        createHopper(ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK.get(), ChronoBlockEntityTypes.WAXED_WEATHERED_COPPER_HOPPER_BLOCK.get());
+        createHopper(ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK.get(), ChronoBlockEntityTypes.WAXED_OXIDIZED_COPPER_HOPPER_BLOCK.get());
         createHopper(blockModels,ChronoBlockEntityTypes.GOLD_HOPPER_BLOCK.get(),ChronoBlockEntityTypes.GOLD_HOPPER_BLOCK_ITEM.get());
         createPipe(blockModels,ChronoBlockEntityTypes.PIPE_BLOCK.get(),ChronoBlockEntityTypes.PIPE_BLOCK_ITEM.get());
 
@@ -63,17 +62,50 @@ public class ModelGenerator extends ModelProvider {
 
     private void createRedstoneTorch(Block unwaxedtorch, Block unwaxedWallTorch, Block waxedtorch, Block waxedWallTorch) {
         TextureMapping copperGrateTexture = new TextureMapping().put(ChronoCircuitsTextureSlot.COPPER_GRATE, TextureMapping.getBlockTexture(unwaxedtorch));
-        ResourceLocation torchLit = ChronoCircuitsModelTemplates.COPPER_GRATED_REDSTONE_TORCH.create(unwaxedtorch, copperGrateTexture, blockModels.modelOutput);
-        ResourceLocation torchUnlit = ChronoCircuitsModelTemplates.COPPER_GRATED_REDSTONE_TORCH_UNLIT.createWithSuffix(unwaxedtorch, "_unlit", copperGrateTexture, blockModels.modelOutput);
-        blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(unwaxedtorch).with(BlockModelGenerators.createBooleanModelDispatch(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT, torchLit, torchUnlit)));
-        blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(waxedtorch).with(BlockModelGenerators.createBooleanModelDispatch(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT, torchLit, torchUnlit)));
-        ResourceLocation wallTorchLit = ChronoCircuitsModelTemplates.COPPER_GRATED_REDSTONE_WALL_TORCH.create(unwaxedWallTorch, copperGrateTexture, blockModels.modelOutput);
-        ResourceLocation wallTorchUnlit = ChronoCircuitsModelTemplates.COPPER_GRATED_REDSTONE_WALL_TORCH_UNLIT.createWithSuffix(unwaxedWallTorch, "_unlit", copperGrateTexture, blockModels.modelOutput);
-        blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(unwaxedWallTorch).with(BlockModelGenerators.createBooleanModelDispatch(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT, wallTorchLit, wallTorchUnlit)).with(BlockModelGenerators.createTorchHorizontalDispatch()));
-        blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(waxedWallTorch).with(BlockModelGenerators.createBooleanModelDispatch(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT, wallTorchLit, wallTorchUnlit)).with(BlockModelGenerators.createTorchHorizontalDispatch()));
+        MultiVariant torchLit = BlockModelGenerators.plainVariant(ChronoCircuitsModelTemplates.COPPER_GRATED_REDSTONE_TORCH.create(unwaxedtorch, copperGrateTexture, blockModels.modelOutput));
+        MultiVariant torchUnlit = BlockModelGenerators.plainVariant(ChronoCircuitsModelTemplates.COPPER_GRATED_REDSTONE_TORCH_UNLIT.createWithSuffix(unwaxedtorch, "_unlit", copperGrateTexture, blockModels.modelOutput));
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(unwaxedtorch).with(BlockModelGenerators.createBooleanModelDispatch(BlockStateProperties.LIT, torchLit, torchUnlit)));
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(waxedtorch).with(BlockModelGenerators.createBooleanModelDispatch(BlockStateProperties.LIT, torchLit, torchUnlit)));
+        MultiVariant wallTorchLit = BlockModelGenerators.plainVariant(ChronoCircuitsModelTemplates.COPPER_GRATED_REDSTONE_WALL_TORCH.create(unwaxedWallTorch, copperGrateTexture, blockModels.modelOutput));
+        MultiVariant wallTorchUnlit = BlockModelGenerators.plainVariant(ChronoCircuitsModelTemplates.COPPER_GRATED_REDSTONE_WALL_TORCH_UNLIT.createWithSuffix(unwaxedWallTorch, "_unlit", copperGrateTexture, blockModels.modelOutput));
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(unwaxedWallTorch).with(BlockModelGenerators.createBooleanModelDispatch(BlockStateProperties.LIT, wallTorchLit, wallTorchUnlit)));
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(waxedWallTorch).with(BlockModelGenerators.createBooleanModelDispatch(BlockStateProperties.LIT, wallTorchLit, wallTorchUnlit)));
         blockModels.registerSimpleFlatItemModel(unwaxedtorch.asItem());
         itemModels.itemModelOutput.copy(unwaxedtorch.asItem(), waxedtorch.asItem());
+    }
 
+    private void createRepeater(Block unwaxedRepeater, Block waxedRepeater) {
+        blockModels.registerSimpleFlatItemModel(unwaxedRepeater.asItem());
+        itemModels.itemModelOutput.copy(unwaxedRepeater.asItem(), waxedRepeater.asItem());
+        // Need to be modified
+        blockModels.blockStateOutput.accept(
+                MultiVariantGenerator.multiVariant(unwaxedRepeater)
+                        .with(PropertyDispatch.properties(BlockStateProperties.DELAY, BlockStateProperties.LOCKED,  BlockStateProperties.POWERED).generate((delay, locked, powered) -> {
+                            StringBuilder stringBuilder = new StringBuilder();
+                            stringBuilder.append('_').append(delay).append("tick");
+                            if (powered) {
+                               stringBuilder.append("_on");
+                            }
+                            if (locked) {
+                                stringBuilder.append("_locked");
+                            }
+                            return Variant.variant().with(VariantProperties.MODEL, TextureMapping.getBlockTexture(unwaxedRepeater, stringBuilder.toString()));
+                        }))
+        );
+        blockModels.blockStateOutput.accept(
+                MultiVariantGenerator.multiVariant(waxedRepeater)
+                        .with(PropertyDispatch.properties(BlockStateProperties.DELAY, BlockStateProperties.LOCKED,  BlockStateProperties.POWERED).generate((delay, locked, powered) -> {
+                            StringBuilder stringBuilder = new StringBuilder();
+                            stringBuilder.append('_').append(delay).append("tick");
+                            if (powered) {
+                                stringBuilder.append("_on");
+                            }
+                            if (locked) {
+                                stringBuilder.append("_locked");
+                            }
+                            return Variant.variant().with(VariantProperties.MODEL, TextureMapping.getBlockTexture(unwaxedRepeater, stringBuilder.toString()));
+                        }))
+        );
     }
 
     public static void createRepeater(BlockModelGenerators blockModels, Block block, BlockItem blockItem) {
@@ -119,6 +151,40 @@ public class ModelGenerator extends ModelProvider {
             BlockModelGenerators.createPressurePlate(pressurePlateBlock,pressurePlateUp, pressurePlateDown)
         );
     }
+
+    public void createHopper(Block unwaxedHopper, Block waxedHopper) {
+        ResourceLocation topTexture = TextureMapping.getBlockTexture(unwaxedHopper,"_top");
+        ResourceLocation outsideTexture = TextureMapping.getBlockTexture(unwaxedHopper,"_outside");
+        ResourceLocation insideTexture = TextureMapping.getBlockTexture(unwaxedHopper,"_inside");
+        TextureMapping textureMapping = new TextureMapping()
+                .put(TextureSlot.TOP,topTexture)
+                .put(TextureSlot.SIDE,outsideTexture)
+                .put(TextureSlot.INSIDE,insideTexture);
+        ResourceLocation resourcelocation = ChronoCircuitsModelTemplates.HOPPER.create(unwaxedHopper,textureMapping, blockModels.modelOutput);
+        ResourceLocation resourcelocation1 = ChronoCircuitsModelTemplates.HOPPER_SIDE.createWithSuffix(unwaxedHopper,"_side",textureMapping, blockModels.modelOutput);
+        blockModels.registerSimpleFlatItemModel(unwaxedHopper.asItem());
+        itemModels.itemModelOutput.copy(unwaxedHopper.asItem(), waxedHopper.asItem());
+        blockModels.blockStateOutput.accept(
+                MultiVariantGenerator
+                        .multiVariant(unwaxedHopper)
+                        .with(PropertyDispatch.property(net.minecraft.world.level.block.state.properties.BlockStateProperties.FACING_HOPPER)
+                                .select(Direction.DOWN, Variant.variant().with(VariantProperties.MODEL, resourcelocation)).
+                                select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, resourcelocation1))
+                                .select(Direction.EAST, Variant.variant().with(VariantProperties.MODEL, resourcelocation1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                                .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, resourcelocation1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                                .select(Direction.WEST, Variant.variant().with(VariantProperties.MODEL, resourcelocation1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))));
+        blockModels.blockStateOutput.accept(
+                MultiVariantGenerator
+                        .multiVariant(waxedHopper)
+                        .with(PropertyDispatch.property(BlockStateProperties.FACING_HOPPER)
+                                .select(Direction.DOWN, Variant.variant().with(VariantProperties.MODEL, resourcelocation)).
+                                select(Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, resourcelocation1))
+                                .select(Direction.EAST, Variant.variant().with(VariantProperties.MODEL, resourcelocation1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+                                .select(Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, resourcelocation1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+                                .select(Direction.WEST, Variant.variant().with(VariantProperties.MODEL, resourcelocation1).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))));
+
+    }
+
 
     public static void createHopper(BlockModelGenerators blockModels, Block hopperBlock, Item hopperItem) {
         ResourceLocation topTexture = TextureMapping.getBlockTexture(hopperBlock,"_top");
@@ -186,5 +252,10 @@ public class ModelGenerator extends ModelProvider {
     public static void createPipe(BlockModelGenerators blockModels, Block pipeBlock, Item pipeItem) {
         blockModels.registerSimpleFlatItemModel(pipeItem);
         blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(pipeBlock,BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(ChronoBlockEntityTypes.PIPE_BLOCK.get()))));
+    }
+
+    @Override
+    protected Stream<? extends Holder<Block>> getKnownBlocks() {
+        return ChronoRegistries.BLOCKS.getEntries().stream().filter(block -> !(block.getId().getPath().contains("repeater") || block.getId().getPath().contains("comparator")));
     }
 }

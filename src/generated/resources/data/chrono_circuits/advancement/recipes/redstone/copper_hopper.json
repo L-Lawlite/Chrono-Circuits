@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_copper_block": {
+    "has_copper_ingot": {
       "conditions": {
         "items": [
           {
-            "items": "#c:storage_blocks/copper"
+            "items": "#c:ingots/copper"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_copper_block"
+      "has_copper_ingot"
     ]
   ],
   "rewards": {

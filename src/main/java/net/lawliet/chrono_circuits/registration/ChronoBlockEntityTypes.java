@@ -5,6 +5,7 @@ import net.lawliet.chrono_circuits.blockEntity.gratedBlockEntity.comparator.Copp
 import net.lawliet.chrono_circuits.blockEntity.hopper.copperHopper.CopperHopperBlock;
 import net.lawliet.chrono_circuits.blockEntity.hopper.copperHopper.CopperHopperBlockEntity;
 import net.lawliet.chrono_circuits.blockEntity.hopper.copperHopper.CopperHopperMenu;
+import net.lawliet.chrono_circuits.blockEntity.hopper.copperHopper.WeatheringCopperHopperBlock;
 import net.lawliet.chrono_circuits.blockEntity.hopper.goldHopper.GoldHopperBlock;
 import net.lawliet.chrono_circuits.blockEntity.hopper.goldHopper.GoldHopperBlockEntity;
 import net.lawliet.chrono_circuits.blockEntity.hopper.goldHopper.GoldHopperMenu;
@@ -20,6 +21,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -41,16 +43,20 @@ public class ChronoBlockEntityTypes {
 
     public static final DeferredBlock<Block> COPPER_HOPPER_BLOCK;
     public static final DeferredItem<BlockItem> COPPER_HOPPER_BLOCK_ITEM;
-
-
     public static final DeferredBlock<Block> EXPOSED_COPPER_HOPPER_BLOCK;
     public static final DeferredItem<BlockItem> EXPOSED_COPPER_HOPPER_BLOCK_ITEM;
-
     public static final DeferredBlock<Block> WEATHERED_COPPER_HOPPER_BLOCK;
     public static final DeferredItem<BlockItem> WEATHERED_COPPER_HOPPER_BLOCK_ITEM;
-
     public static final DeferredBlock<Block> OXIDIZED_COPPER_HOPPER_BLOCK;
     public static final DeferredItem<BlockItem> OXIDIZED_COPPER_HOPPER_BLOCK_ITEM;
+    public static final DeferredBlock<Block> WAXED_COPPER_HOPPER_BLOCK;
+    public static final DeferredItem<BlockItem> WAXED_COPPER_HOPPER_BLOCK_ITEM;
+    public static final DeferredBlock<Block> WAXED_EXPOSED_COPPER_HOPPER_BLOCK;
+    public static final DeferredItem<BlockItem> WAXED_EXPOSED_COPPER_HOPPER_BLOCK_ITEM;
+    public static final DeferredBlock<Block> WAXED_WEATHERED_COPPER_HOPPER_BLOCK;
+    public static final DeferredItem<BlockItem> WAXED_WEATHERED_COPPER_HOPPER_BLOCK_ITEM;
+    public static final DeferredBlock<Block> WAXED_OXIDIZED_COPPER_HOPPER_BLOCK;
+    public static final DeferredItem<BlockItem> WAXED_OXIDIZED_COPPER_HOPPER_BLOCK_ITEM;
 
     public static final Supplier<BlockEntityType<CopperHopperBlockEntity>> COPPER_HOPPER_BLOCK_ENTITY;
     public static final Supplier<MenuType<CopperHopperMenu>> COPPER_HOPPER_MENU;
@@ -83,43 +89,23 @@ public class ChronoBlockEntityTypes {
         );
         COPPER_HOPPER_BLOCK = ChronoRegistries.BLOCKS.registerBlock(
                 "copper_hopper",
-                CopperHopperBlock::new,
-                BlockBehaviour.Properties.of()
-                        .mapColor(MapColor.COLOR_ORANGE)
-                        .requiresCorrectToolForDrops()
-                        .strength(3.0F,4.8F)
-                        .noOcclusion()
-                        .sound(SoundType.COPPER)
+                properties -> new WeatheringCopperHopperBlock(WeatheringCopper.WeatherState.UNAFFECTED, properties),
+                copperHopperBlockProperties().mapColor(MapColor.COLOR_ORANGE)
         );
         EXPOSED_COPPER_HOPPER_BLOCK = ChronoRegistries.BLOCKS.registerBlock(
                 "exposed_copper_hopper",
-                CopperHopperBlock::new,
-                BlockBehaviour.Properties.of()
-                        .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
-                        .requiresCorrectToolForDrops()
-                        .strength(3.0F,4.8F)
-                        .noOcclusion()
-                        .sound(SoundType.COPPER)
+                properties -> new WeatheringCopperHopperBlock(WeatheringCopper.WeatherState.EXPOSED, properties),
+                copperHopperBlockProperties().mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
         );
         WEATHERED_COPPER_HOPPER_BLOCK = ChronoRegistries.BLOCKS.registerBlock(
                 "weathered_copper_hopper",
-                CopperHopperBlock::new,
-                BlockBehaviour.Properties.of()
-                        .mapColor(MapColor.WARPED_STEM)
-                        .requiresCorrectToolForDrops()
-                        .strength(3.0F,4.8F)
-                        .noOcclusion()
-                        .sound(SoundType.COPPER)
+                properties -> new WeatheringCopperHopperBlock(WeatheringCopper.WeatherState.WEATHERED, properties),
+                copperHopperBlockProperties().mapColor(MapColor.WARPED_STEM)
         );
         OXIDIZED_COPPER_HOPPER_BLOCK = ChronoRegistries.BLOCKS.registerBlock(
                 "oxidized_copper_hopper",
-                CopperHopperBlock::new,
-                BlockBehaviour.Properties.of()
-                        .mapColor(MapColor.WARPED_NYLIUM)
-                        .requiresCorrectToolForDrops()
-                        .strength(3.0F,4.8F)
-                        .noOcclusion()
-                        .sound(SoundType.COPPER)
+                properties -> new WeatheringCopperHopperBlock(WeatheringCopper.WeatherState.OXIDIZED, properties),
+                copperHopperBlockProperties().mapColor(MapColor.WARPED_NYLIUM)
         );
         GOLD_HOPPER_BLOCK = ChronoRegistries.BLOCKS.registerBlock(
                 "gold_hopper",
@@ -139,6 +125,22 @@ public class ChronoBlockEntityTypes {
                 CopperGratedComparator::new,
                 BlockBehaviour.Properties.of().instabreak().sound(SoundType.COPPER).pushReaction(PushReaction.DESTROY)
         );
+        WAXED_COPPER_HOPPER_BLOCK = ChronoRegistries.BLOCKS.registerBlock("waxed_copper_hopper_block",
+                CopperHopperBlock::new,
+                copperHopperBlockProperties().mapColor(MapColor.COLOR_ORANGE)
+                );
+        WAXED_EXPOSED_COPPER_HOPPER_BLOCK = ChronoRegistries.BLOCKS.registerBlock("waxed_exposed_copper_hopper_block",
+                CopperHopperBlock::new,
+                copperHopperBlockProperties().mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
+                );
+        WAXED_WEATHERED_COPPER_HOPPER_BLOCK = ChronoRegistries.BLOCKS.registerBlock("waxed_weathered_copper_hopper_block",
+                CopperHopperBlock::new,
+                copperHopperBlockProperties().mapColor(MapColor.WARPED_STEM)
+                );
+        WAXED_OXIDIZED_COPPER_HOPPER_BLOCK = ChronoRegistries.BLOCKS.registerBlock("waxed_oxidized_copper_hopper_block",
+                CopperHopperBlock::new,
+                copperHopperBlockProperties().mapColor(MapColor.WARPED_NYLIUM)
+                );
     }
 
     //BlockItem
@@ -151,8 +153,10 @@ public class ChronoBlockEntityTypes {
         GOLD_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(GOLD_HOPPER_BLOCK);
         PIPE_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(PIPE_BLOCK);
         COPPER_GRATED_COMPARATOR_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(COPPER_GRATED_COMPARATOR);
-
-
+        WAXED_COPPER_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WAXED_COPPER_HOPPER_BLOCK);
+        WAXED_EXPOSED_COPPER_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WAXED_EXPOSED_COPPER_HOPPER_BLOCK);
+        WAXED_WEATHERED_COPPER_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WAXED_WEATHERED_COPPER_HOPPER_BLOCK);
+        WAXED_OXIDIZED_COPPER_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WAXED_OXIDIZED_COPPER_HOPPER_BLOCK);
     }
 
     static {
@@ -171,7 +175,11 @@ public class ChronoBlockEntityTypes {
                         COPPER_HOPPER_BLOCK.get(),
                         EXPOSED_COPPER_HOPPER_BLOCK.get(),
                         WEATHERED_COPPER_HOPPER_BLOCK.get(),
-                        OXIDIZED_COPPER_HOPPER_BLOCK.get()
+                        OXIDIZED_COPPER_HOPPER_BLOCK.get(),
+                        WAXED_COPPER_HOPPER_BLOCK.get(),
+                        WAXED_EXPOSED_COPPER_HOPPER_BLOCK.get(),
+                        WAXED_WEATHERED_COPPER_HOPPER_BLOCK.get(),
+                        WAXED_OXIDIZED_COPPER_HOPPER_BLOCK.get()
                 )
         );
         GOLD_HOPPER_BLOCK_ENTITY = ChronoRegistries.BLOCK_ENTITY_TYPES.register(
@@ -204,6 +212,14 @@ public class ChronoBlockEntityTypes {
         PIPE_MENU = ChronoRegistries.MENU_TYPES.register("pipe_menu", () -> new MenuType<>(PipeMenu::new, FeatureFlags.DEFAULT_FLAGS));
     }
 
+    private static BlockBehaviour.Properties copperHopperBlockProperties() {
+        return BlockBehaviour.Properties.of()
+                .requiresCorrectToolForDrops()
+                .strength(3.0F,4.8F)
+                .noOcclusion()
+                .sound(SoundType.COPPER);
+    }
+
     @SuppressWarnings("unused")
     public static void addCreative(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
         output.accept(LIGHT_DETECTOR_BLOCK_ITEM);
@@ -214,5 +230,9 @@ public class ChronoBlockEntityTypes {
         output.accept(GOLD_HOPPER_BLOCK_ITEM);
         output.accept(PIPE_BLOCK_ITEM);
         output.accept(COPPER_GRATED_COMPARATOR_ITEM);
+        output.accept(WAXED_COPPER_HOPPER_BLOCK_ITEM);
+        output.accept(WAXED_EXPOSED_COPPER_HOPPER_BLOCK_ITEM);
+        output.accept(WAXED_WEATHERED_COPPER_HOPPER_BLOCK_ITEM);
+        output.accept(WAXED_OXIDIZED_COPPER_HOPPER_BLOCK_ITEM);
     }
 }

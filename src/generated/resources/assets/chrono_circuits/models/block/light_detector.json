@@ -1,5 +1,5 @@
 {
-  "parent": "chrono_circuits:block/template_light_detector",
+  "parent": "minecraft:block/chrono_circuitstemplate_light_detector",
   "textures": {
     "bottom": "chrono_circuits:block/light_detector_top_bottom",
     "side": "chrono_circuits:block/light_detector_side_both",
