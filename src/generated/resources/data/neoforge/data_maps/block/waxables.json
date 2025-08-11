@@ -6,6 +6,9 @@
     "chrono_circuits:copper_grated_redstone_wall_torch": {
       "waxed": "chrono_circuits:waxed_copper_grated_redstone_wall_torch"
     },
+    "chrono_circuits:copper_hopper": {
+      "waxed": "chrono_circuits:waxed_copper_hopper_block"
+    },
     "chrono_circuits:copper_pressure_plate": {
       "waxed": "chrono_circuits:waxed_copper_pressure_plate"
     },
@@ -14,6 +17,9 @@
     },
     "chrono_circuits:exposed_copper_grated_redstone_wall_torch": {
       "waxed": "chrono_circuits:waxed_exposed_copper_grated_redstone_wall_torch"
+    },
+    "chrono_circuits:exposed_copper_hopper": {
+      "waxed": "chrono_circuits:waxed_exposed_copper_hopper_block"
     },
     "chrono_circuits:exposed_copper_pressure_plate": {
       "waxed": "chrono_circuits:waxed_exposed_copper_pressure_plate"
@@ -24,6 +30,9 @@
     "chrono_circuits:oxidized_copper_grated_redstone_wall_torch": {
       "waxed": "chrono_circuits:waxed_oxidized_copper_grated_redstone_wall_torch"
     },
+    "chrono_circuits:oxidized_copper_hopper": {
+      "waxed": "chrono_circuits:waxed_oxidized_copper_hopper_block"
+    },
     "chrono_circuits:oxidized_copper_pressure_plate": {
       "waxed": "chrono_circuits:waxed_oxidized_copper_pressure_plate"
     },
@@ -32,6 +41,9 @@
     },
     "chrono_circuits:weathered_copper_grated_redstone_wall_torch": {
       "waxed": "chrono_circuits:waxed_weathered_copper_grated_redstone_wall_torch"
+    },
+    "chrono_circuits:weathered_copper_hopper": {
+      "waxed": "chrono_circuits:waxed_weathered_copper_hopper_block"
     },
     "chrono_circuits:weathered_copper_pressure_plate": {
       "waxed": "chrono_circuits:waxed_weathered_copper_pressure_plate"

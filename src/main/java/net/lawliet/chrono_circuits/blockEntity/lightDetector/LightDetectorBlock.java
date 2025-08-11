@@ -1,6 +1,7 @@
 package net.lawliet.chrono_circuits.blockEntity.lightDetector;
 
 import com.mojang.serialization.MapCodec;
+import net.lawliet.chrono_circuits.blockState.ChronoCircuitsBlockStateProperties;
 import net.lawliet.chrono_circuits.registration.ChronoBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -117,7 +118,7 @@ public class LightDetectorBlock extends BaseEntityBlock {
 
     static {
         POWER = BlockStateProperties.POWER;
-        LIGHT_STATE = net.lawliet.chrono_circuits.blockState.BlockStateProperties.LIGHT_STATE;
+        LIGHT_STATE = ChronoCircuitsBlockStateProperties.LIGHT_STATE;
         SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D);
     }
 }
