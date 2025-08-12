@@ -1,6 +1,7 @@
 package net.lawliet.chrono_circuits.datagen.model;
 
 import net.lawliet.chrono_circuits.ChronoCircuits;
+import net.lawliet.chrono_circuits.blockEntity.gratedBlockEntity.comparator.WeatheringCopperGratedComparator;
 import net.lawliet.chrono_circuits.blockEntity.lightDetector.LightState;
 import net.lawliet.chrono_circuits.blockState.ChronoCircuitsBlockStateProperties;
 import net.lawliet.chrono_circuits.registration.ChronoBlockEntityTypes;
@@ -19,6 +20,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.ComparatorMode;
 
@@ -150,9 +152,11 @@ public class ModelGenerator extends ModelProvider {
     public void createComparator(Block unwaxedBlock, Block waxedBlock) {
         blockModels.registerSimpleFlatItemModel(unwaxedBlock.asItem());
         itemModels.itemModelOutput.copy(unwaxedBlock.asItem(), waxedBlock.asItem());
+        WeatheringCopperGratedComparator weatheringUnwaxedBlock = (WeatheringCopperGratedComparator) unwaxedBlock;
+        String bottomPrefix = weatheringUnwaxedBlock.getAge() == WeatheringCopper.WeatherState.UNAFFECTED ? "" : weatheringUnwaxedBlock.getAge().getSerializedName() + "_";
         ResourceLocation topTexture = TextureMapping.getBlockTexture(unwaxedBlock, "_opening");
-        ResourceLocation sideTexture = TextureMapping.getBlockTexture(unwaxedBlock, "_slab");
-        ResourceLocation bottomTexture = TextureMapping.getBlockTexture(unwaxedBlock, "_bottom");
+        ResourceLocation sideTexture = ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID, "copper_grated_slab").withPrefix(bottomPrefix).withPrefix("block/");
+        ResourceLocation bottomTexture = ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID, "copper_grated_redstone_bottom").withPrefix(bottomPrefix).withPrefix("block/");
         TextureMapping textureMapping = new TextureMapping()
                 .put(TextureSlot.TOP, topTexture)
                 .put(TextureSlot.SIDE, sideTexture)

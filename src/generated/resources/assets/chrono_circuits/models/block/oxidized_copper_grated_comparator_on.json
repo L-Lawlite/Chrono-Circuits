@@ -1,8 +1,8 @@
 {
   "parent": "chrono_circuits:block/template_copper_grated_comparator_on",
   "textures": {
-    "bottom": "chrono_circuits:block/oxidized_copper_grated_comparator_bottom",
-    "side": "chrono_circuits:block/oxidized_copper_grated_comparator_slab",
+    "bottom": "chrono_circuits:block/oxidized_copper_grated_redstone_bottom",
+    "side": "chrono_circuits:block/oxidized_copper_grated_slab",
     "top": "chrono_circuits:block/oxidized_copper_grated_comparator_opening"
   }
 }
