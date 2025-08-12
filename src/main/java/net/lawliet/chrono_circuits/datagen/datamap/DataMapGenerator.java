@@ -68,7 +68,12 @@ public class DataMapGenerator extends DataMapProvider {
                 .add(ChronoBlockEntityTypes.COPPER_HOPPER_BLOCK.getDelegate(), new Oxidizable(ChronoBlockEntityTypes.EXPOSED_COPPER_HOPPER_BLOCK.get()), false)
                 .add(ChronoBlockEntityTypes.EXPOSED_COPPER_HOPPER_BLOCK.getDelegate(), new Oxidizable(ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK.get()), false)
                 .add(ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK.getDelegate(), new Oxidizable(ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK.get()), false)
-
+                .add(ChronoBlocks.COPPER_GRATED_REPEATER.getDelegate(), new Oxidizable(ChronoBlocks.EXPOSED_COPPER_GRATED_REPEATER.get()), false)
+                .add(ChronoBlocks.EXPOSED_COPPER_GRATED_REPEATER.getDelegate(), new Oxidizable(ChronoBlocks.WEATHERED_COPPER_GRATED_REPEATER.get()), false)
+                .add(ChronoBlocks.WEATHERED_COPPER_GRATED_REPEATER.getDelegate(), new Oxidizable(ChronoBlocks.OXIDIZED_COPPER_GRATED_REPEATER.get()), false)
+                .add(ChronoBlockEntityTypes.COPPER_GRATED_COMPARATOR.getDelegate(), new Oxidizable(ChronoBlockEntityTypes.EXPOSED_COPPER_GRATED_COMPARATOR.get()), false)
+                .add(ChronoBlockEntityTypes.EXPOSED_COPPER_GRATED_COMPARATOR.getDelegate(), new Oxidizable(ChronoBlockEntityTypes.WEATHERED_COPPER_GRATED_COMPARATOR.get()), false)
+                .add(ChronoBlockEntityTypes.WEATHERED_COPPER_GRATED_COMPARATOR.getDelegate(), new Oxidizable(ChronoBlockEntityTypes.OXIDIZED_COPPER_GRATED_COMPARATOR.get()), false)
         ;
 
 
@@ -138,7 +143,14 @@ public class DataMapGenerator extends DataMapProvider {
                 .add(ChronoBlockEntityTypes.EXPOSED_COPPER_HOPPER_BLOCK.getDelegate(), new Waxable(ChronoBlockEntityTypes.WAXED_EXPOSED_COPPER_HOPPER_BLOCK.get()), false)
                 .add(ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK.getDelegate(), new Waxable(ChronoBlockEntityTypes.WAXED_WEATHERED_COPPER_HOPPER_BLOCK.get()), false)
                 .add(ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK.getDelegate(), new Waxable(ChronoBlockEntityTypes.WAXED_OXIDIZED_COPPER_HOPPER_BLOCK.get()), false)
-
+                .add(ChronoBlocks.COPPER_GRATED_REPEATER.getDelegate(), new Waxable(ChronoBlocks.WAXED_COPPER_GRATED_REPEATER.get()), false)
+                .add(ChronoBlocks.EXPOSED_COPPER_GRATED_REPEATER.getDelegate(), new Waxable(ChronoBlocks.WAXED_EXPOSED_COPPER_GRATED_REPEATER.get()), false)
+                .add(ChronoBlocks.WEATHERED_COPPER_GRATED_REPEATER.getDelegate(), new Waxable(ChronoBlocks.WAXED_WEATHERED_COPPER_GRATED_REPEATER.get()), false)
+                .add(ChronoBlocks.OXIDIZED_COPPER_GRATED_REPEATER.getDelegate(), new Waxable(ChronoBlocks.WAXED_OXIDIZED_COPPER_GRATED_REPEATER.get()), false)
+                .add(ChronoBlockEntityTypes.COPPER_GRATED_COMPARATOR.getDelegate(), new Waxable(ChronoBlockEntityTypes.WAXED_COPPER_GRATED_COMPARATOR.get()), false)
+                .add(ChronoBlockEntityTypes.EXPOSED_COPPER_GRATED_COMPARATOR.getDelegate(), new Waxable(ChronoBlockEntityTypes.WAXED_EXPOSED_COPPER_GRATED_COMPARATOR.get()), false)
+                .add(ChronoBlockEntityTypes.WEATHERED_COPPER_GRATED_COMPARATOR.getDelegate(), new Waxable(ChronoBlockEntityTypes.WAXED_WEATHERED_COPPER_GRATED_COMPARATOR.get()), false)
+                .add(ChronoBlockEntityTypes.OXIDIZED_COPPER_GRATED_COMPARATOR.getDelegate(), new Waxable(ChronoBlockEntityTypes.WAXED_OXIDIZED_COPPER_GRATED_COMPARATOR.get()), false)
         ;
     }
 }

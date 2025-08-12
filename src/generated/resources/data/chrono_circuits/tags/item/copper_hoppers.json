@@ -1,0 +1,12 @@
+{
+  "values": [
+    "chrono_circuits:copper_hopper",
+    "chrono_circuits:exposed_copper_hopper",
+    "chrono_circuits:weathered_copper_hopper",
+    "chrono_circuits:oxidized_copper_hopper",
+    "chrono_circuits:waxed_copper_hopper_block",
+    "chrono_circuits:waxed_exposed_copper_hopper_block",
+    "chrono_circuits:waxed_weathered_copper_hopper_block",
+    "chrono_circuits:waxed_oxidized_copper_hopper_block"
+  ]
+}
