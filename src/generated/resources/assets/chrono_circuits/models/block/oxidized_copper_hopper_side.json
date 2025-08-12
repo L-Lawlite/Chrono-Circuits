@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/chrono_circuitstemplate_hopper_side",
+  "parent": "chrono_circuits:block/template_hopper_side",
   "textures": {
     "inside": "chrono_circuits:block/oxidized_copper_hopper_inside",
     "side": "chrono_circuits:block/oxidized_copper_hopper_outside",

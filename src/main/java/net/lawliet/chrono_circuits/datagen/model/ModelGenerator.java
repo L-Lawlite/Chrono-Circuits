@@ -55,7 +55,13 @@ public class ModelGenerator extends ModelProvider {
         createPipe(blockModels,ChronoBlockEntityTypes.PIPE_BLOCK.get(),ChronoBlockEntityTypes.PIPE_BLOCK_ITEM.get());
 
         createRepeater(ChronoBlocks.COPPER_GRATED_REPEATER.get(), ChronoBlocks.WAXED_COPPER_GRATED_REPEATER.get());
-        createComparator(blockModels, ChronoBlockEntityTypes.COPPER_GRATED_COMPARATOR.get(), ChronoBlockEntityTypes.COPPER_GRATED_COMPARATOR_ITEM.get());
+
+        createComparator(ChronoBlockEntityTypes.COPPER_GRATED_COMPARATOR.get(), ChronoBlockEntityTypes.WAXED_COPPER_GRATED_COMPARATOR.get());
+        createComparator(ChronoBlockEntityTypes.EXPOSED_COPPER_GRATED_COMPARATOR.get(), ChronoBlockEntityTypes.WAXED_EXPOSED_COPPER_GRATED_COMPARATOR.get());
+        createComparator(ChronoBlockEntityTypes.WEATHERED_COPPER_GRATED_COMPARATOR.get(), ChronoBlockEntityTypes.WAXED_WEATHERED_COPPER_GRATED_COMPARATOR.get());
+        createComparator(ChronoBlockEntityTypes.OXIDIZED_COPPER_GRATED_COMPARATOR.get(), ChronoBlockEntityTypes.WAXED_OXIDIZED_COPPER_GRATED_COMPARATOR.get());
+
+
         createRedstoneTorch(ChronoBlocks.COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.COPPER_GRATED_REDSTONE_WALL_TORCH.get(), ChronoBlocks.WAXED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.WAXED_COPPER_GRATED_REDSTONE_WALL_TORCH.get());
         createRedstoneTorch(ChronoBlocks.EXPOSED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.EXPOSED_COPPER_GRATED_REDSTONE_WALL_TORCH.get(), ChronoBlocks.WAXED_EXPOSED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.WAXED_EXPOSED_COPPER_GRATED_REDSTONE_WALL_TORCH.get());
         createRedstoneTorch(ChronoBlocks.WEATHERED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.WEATHERED_COPPER_GRATED_REDSTONE_WALL_TORCH.get(), ChronoBlocks.WAXED_WEATHERED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.WAXED_WEATHERED_COPPER_GRATED_REDSTONE_WALL_TORCH.get());
@@ -139,6 +145,45 @@ public class ModelGenerator extends ModelProvider {
     public static void createComparator(BlockModelGenerators blockModels, Block block, BlockItem blockItem) {
         blockModels.registerSimpleFlatItemModel(blockItem);
         blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(createHorizontalFacingDispatchAlt()).with(PropertyDispatch.properties(net.minecraft.world.level.block.state.properties.BlockStateProperties.MODE_COMPARATOR, net.minecraft.world.level.block.state.properties.BlockStateProperties.POWERED).select(ComparatorMode.COMPARE, false, Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(block))).select(ComparatorMode.COMPARE, true, Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(block, "_on"))).select(ComparatorMode.SUBTRACT, false, Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(block, "_subtract"))).select(ComparatorMode.SUBTRACT, true, Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(block, "_on_subtract")))));
+    }
+
+    public void createComparator(Block unwaxedBlock, Block waxedBlock) {
+        blockModels.registerSimpleFlatItemModel(unwaxedBlock.asItem());
+        itemModels.itemModelOutput.copy(unwaxedBlock.asItem(), waxedBlock.asItem());
+        ResourceLocation topTexture = TextureMapping.getBlockTexture(unwaxedBlock, "_opening");
+        ResourceLocation sideTexture = TextureMapping.getBlockTexture(unwaxedBlock, "_slab");
+        ResourceLocation bottomTexture = TextureMapping.getBlockTexture(unwaxedBlock, "_bottom");
+        TextureMapping textureMapping = new TextureMapping()
+                .put(TextureSlot.TOP, topTexture)
+                .put(TextureSlot.SIDE, sideTexture)
+                .put(TextureSlot.BOTTOM, bottomTexture);
+
+        ResourceLocation comparator = ChronoCircuitsModelTemplates.COPPER_GRATED_COMPARATOR.create(unwaxedBlock, textureMapping, blockModels.modelOutput);
+        ResourceLocation comparatorOn = ChronoCircuitsModelTemplates.COPPER_GRATED_COMPARATOR_ON.createWithSuffix(unwaxedBlock, "_on", textureMapping, blockModels.modelOutput);
+        ResourceLocation comparatorOnSubtract = ChronoCircuitsModelTemplates.COPPER_GRATED_COMPARATOR_ON_SUBTRACT.createWithSuffix(unwaxedBlock, "_on_subtract", textureMapping, blockModels.modelOutput);
+        ResourceLocation comparatorSubtract = ChronoCircuitsModelTemplates.COPPER_GRATED_COMPARATOR_SUBTRACT.createWithSuffix(unwaxedBlock, "_subtract", textureMapping, blockModels.modelOutput);
+
+        blockModels.blockStateOutput.accept(
+                MultiVariantGenerator.multiVariant(unwaxedBlock)
+                        .with(createHorizontalFacingDispatchAlt())
+                        .with(PropertyDispatch.properties(BlockStateProperties.MODE_COMPARATOR, BlockStateProperties.POWERED)
+                                .select(ComparatorMode.COMPARE, false, Variant.variant().with(VariantProperties.MODEL, comparator))
+                                .select(ComparatorMode.COMPARE, true, Variant.variant().with(VariantProperties.MODEL, comparatorOn))
+                                .select(ComparatorMode.SUBTRACT, false, Variant.variant().with(VariantProperties.MODEL, comparatorSubtract))
+                                .select(ComparatorMode.SUBTRACT, true, Variant.variant().with(VariantProperties.MODEL, comparatorOnSubtract))
+                        )
+        );
+        blockModels.blockStateOutput.accept(
+                MultiVariantGenerator.multiVariant(waxedBlock)
+                        .with(createHorizontalFacingDispatchAlt())
+                        .with(PropertyDispatch.properties(BlockStateProperties.MODE_COMPARATOR, BlockStateProperties.POWERED)
+                                .select(ComparatorMode.COMPARE, false, Variant.variant().with(VariantProperties.MODEL, comparator))
+                                .select(ComparatorMode.COMPARE, true, Variant.variant().with(VariantProperties.MODEL, comparatorOn))
+                                .select(ComparatorMode.SUBTRACT, false, Variant.variant().with(VariantProperties.MODEL, comparatorSubtract))
+                                .select(ComparatorMode.SUBTRACT, true, Variant.variant().with(VariantProperties.MODEL, comparatorOnSubtract))
+                        )
+        );
+
     }
 
     public static void CopperPressurePlateModelGenerator(BlockModelGenerators blockModels, Block pressurePlateBlock, Block textureMappingBlock) {
@@ -247,6 +292,6 @@ public class ModelGenerator extends ModelProvider {
 
     @Override
     protected Stream<? extends Holder<Block>> getKnownBlocks() {
-        return ChronoRegistries.BLOCKS.getEntries().stream().filter(block -> !(block.getId().getPath().contains("repeater") || block.getId().getPath().contains("comparator")));
+        return ChronoRegistries.BLOCKS.getEntries().stream().filter(block -> !block.getId().getPath().contains("repeater"));
     }
 }
