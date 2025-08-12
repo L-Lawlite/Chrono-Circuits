@@ -4,6 +4,7 @@ import net.lawliet.chrono_circuits.ChronoCircuits;
 import net.lawliet.chrono_circuits.blockEntity.gratedBlockEntity.comparator.WeatheringCopperGratedComparator;
 import net.lawliet.chrono_circuits.blockEntity.lightDetector.LightState;
 import net.lawliet.chrono_circuits.blockState.ChronoCircuitsBlockStateProperties;
+import net.lawliet.chrono_circuits.blocks.gratedBlocks.repeater.WeatheringCopperGratedRepeater;
 import net.lawliet.chrono_circuits.registration.ChronoBlockEntityTypes;
 import net.lawliet.chrono_circuits.registration.ChronoBlocks;
 import net.lawliet.chrono_circuits.registration.ChronoRegistries;
@@ -57,6 +58,9 @@ public class ModelGenerator extends ModelProvider {
         createPipe(blockModels,ChronoBlockEntityTypes.PIPE_BLOCK.get(),ChronoBlockEntityTypes.PIPE_BLOCK_ITEM.get());
 
         createRepeater(ChronoBlocks.COPPER_GRATED_REPEATER.get(), ChronoBlocks.WAXED_COPPER_GRATED_REPEATER.get());
+        createRepeater(ChronoBlocks.EXPOSED_COPPER_GRATED_REPEATER.get(), ChronoBlocks.WAXED_EXPOSED_COPPER_GRATED_REPEATER.get());
+        createRepeater(ChronoBlocks.WEATHERED_COPPER_GRATED_REPEATER.get(), ChronoBlocks.WAXED_WEATHERED_COPPER_GRATED_REPEATER.get());
+        createRepeater(ChronoBlocks.OXIDIZED_COPPER_GRATED_REPEATER.get(), ChronoBlocks.WAXED_OXIDIZED_COPPER_GRATED_REPEATER.get());
 
         createComparator(ChronoBlockEntityTypes.COPPER_GRATED_COMPARATOR.get(), ChronoBlockEntityTypes.WAXED_COPPER_GRATED_COMPARATOR.get());
         createComparator(ChronoBlockEntityTypes.EXPOSED_COPPER_GRATED_COMPARATOR.get(), ChronoBlockEntityTypes.WAXED_EXPOSED_COPPER_GRATED_COMPARATOR.get());
@@ -88,6 +92,33 @@ public class ModelGenerator extends ModelProvider {
         blockModels.registerSimpleFlatItemModel(unwaxedRepeater.asItem());
         itemModels.itemModelOutput.copy(unwaxedRepeater.asItem(), waxedRepeater.asItem());
         // Need to be modified
+        WeatheringCopperGratedRepeater weatheringUnwaxedBlock = (WeatheringCopperGratedRepeater) unwaxedRepeater;
+        String bottomPrefix = weatheringUnwaxedBlock.getAge() == WeatheringCopper.WeatherState.UNAFFECTED ? "" : weatheringUnwaxedBlock.getAge().getSerializedName() + "_";
+        ResourceLocation topTexture = TextureMapping.getBlockTexture(unwaxedRepeater, "_opening");
+        ResourceLocation sideTexture = ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID, "copper_grated_slab").withPrefix(bottomPrefix).withPrefix("block/");
+        ResourceLocation bottomTexture = ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID, "copper_grated_redstone_bottom").withPrefix(bottomPrefix).withPrefix("block/");
+        TextureMapping textureMapping = new TextureMapping()
+                .put(TextureSlot.TOP, topTexture)
+                .put(TextureSlot.SIDE, sideTexture)
+                .put(TextureSlot.BOTTOM, bottomTexture);
+
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_1TICK.createWithSuffix(unwaxedRepeater, "_1tick", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_1TICK_LOCKED.createWithSuffix(unwaxedRepeater, "_1tick_locked", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_1TICK_ON.createWithSuffix(unwaxedRepeater, "_1tick_on", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_1TICK_ON_LOCKED.createWithSuffix(unwaxedRepeater, "_1tick_on_locked", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_2TICK_LOCKED.createWithSuffix(unwaxedRepeater, "_2tick_locked", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_2TICK.createWithSuffix(unwaxedRepeater, "_2tick", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_2TICK_ON.createWithSuffix(unwaxedRepeater, "_2tick_on", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_2TICK_ON_LOCKED.createWithSuffix(unwaxedRepeater, "_2tick_on_locked", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_3TICK.createWithSuffix(unwaxedRepeater, "_3tick", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_3TICK_LOCKED.createWithSuffix(unwaxedRepeater, "_3tick_locked", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_3TICK_ON.createWithSuffix(unwaxedRepeater, "_3tick_on", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_3TICK_ON_LOCKED.createWithSuffix(unwaxedRepeater, "_3tick_on_locked", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_4TICK_LOCKED.createWithSuffix(unwaxedRepeater, "_4tick_locked", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_4TICK.createWithSuffix(unwaxedRepeater, "_4tick", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_4TICK_ON.createWithSuffix(unwaxedRepeater, "_4tick_on", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_4TICK_ON_LOCKED.createWithSuffix(unwaxedRepeater, "_4tick_on_locked", textureMapping, blockModels.modelOutput);
+
         blockModels.blockStateOutput.accept(
                 MultiVariantGenerator.multiVariant(unwaxedRepeater)
                         .with(PropertyDispatch.properties(BlockStateProperties.DELAY, BlockStateProperties.LOCKED,  BlockStateProperties.POWERED).generate((delay, locked, powered) -> {

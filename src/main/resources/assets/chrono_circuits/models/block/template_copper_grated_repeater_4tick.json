@@ -2,8 +2,9 @@
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"comparator": "chrono_circuits:block/repeater_grate",
-		"torch_off": "minecraft:block/redstone_torch_off"
+		"repeater": "chrono_circuits:block/repeater_grate",
+		"torch_off": "minecraft:block/redstone_torch_off",
+        "particle": "#top"
 	},
 	"elements": [
 		{
@@ -39,7 +40,7 @@
 				"east": {"uv": [1, 1, 15, 2], "texture": "#bottom"},
 				"south": {"uv": [1, 14, 15, 15], "texture": "#bottom"},
 				"west": {"uv": [1, 14, 15, 15], "texture": "#bottom"},
-				"up": {"uv": [1, 1, 15, 15], "texture": "#comparator"}
+				"up": {"uv": [1, 1, 15, 15], "texture": "#repeater"}
 			}
 		},
 		{

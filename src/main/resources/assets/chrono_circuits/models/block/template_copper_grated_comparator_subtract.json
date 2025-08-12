@@ -2,7 +2,7 @@
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"comparator": "chrono_circuits:block/comparator_on_grate",
+		"comparator": "chrono_circuits:block/comparator_grate",
 		"torch_on": "minecraft:block/redstone_torch",
 		"torch_off": "minecraft:block/redstone_torch_off",
         "particle": "#top"

@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "delay=1,locked=false,powered=false": {
+      "model": "chrono_circuits:block/exposed_copper_grated_repeater_1tick"
+    },
+    "delay=1,locked=false,powered=true": {
+      "model": "chrono_circuits:block/exposed_copper_grated_repeater_1tick_on"
+    },
+    "delay=1,locked=true,powered=false": {
+      "model": "chrono_circuits:block/exposed_copper_grated_repeater_1tick_locked"
+    },
+    "delay=1,locked=true,powered=true": {
+      "model": "chrono_circuits:block/exposed_copper_grated_repeater_1tick_on_locked"
+    },
+    "delay=2,locked=false,powered=false": {
+      "model": "chrono_circuits:block/exposed_copper_grated_repeater_2tick"
+    },
+    "delay=2,locked=false,powered=true": {
+      "model": "chrono_circuits:block/exposed_copper_grated_repeater_2tick_on"
+    },
+    "delay=2,locked=true,powered=false": {
+      "model": "chrono_circuits:block/exposed_copper_grated_repeater_2tick_locked"
+    },
+    "delay=2,locked=true,powered=true": {
+      "model": "chrono_circuits:block/exposed_copper_grated_repeater_2tick_on_locked"
+    },
+    "delay=3,locked=false,powered=false": {
+      "model": "chrono_circuits:block/exposed_copper_grated_repeater_3tick"
+    },
+    "delay=3,locked=false,powered=true": {
+      "model": "chrono_circuits:block/exposed_copper_grated_repeater_3tick_on"
+    },
+    "delay=3,locked=true,powered=false": {
+      "model": "chrono_circuits:block/exposed_copper_grated_repeater_3tick_locked"
+    },
+    "delay=3,locked=true,powered=true": {
+      "model": "chrono_circuits:block/exposed_copper_grated_repeater_3tick_on_locked"
+    },
+    "delay=4,locked=false,powered=false": {
+      "model": "chrono_circuits:block/exposed_copper_grated_repeater_4tick"
+    },
+    "delay=4,locked=false,powered=true": {
+      "model": "chrono_circuits:block/exposed_copper_grated_repeater_4tick_on"
+    },
+    "delay=4,locked=true,powered=false": {
+      "model": "chrono_circuits:block/exposed_copper_grated_repeater_4tick_locked"
+    },
+    "delay=4,locked=true,powered=true": {
+      "model": "chrono_circuits:block/exposed_copper_grated_repeater_4tick_on_locked"
+    }
+  }
+}
