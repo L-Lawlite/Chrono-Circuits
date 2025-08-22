@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "chrono_circuits:block/waxed_oxidized_copper_grated_comparator"
+    "model": "chrono_circuits:item/oxidized_copper_grated_comparator"
   }
 }

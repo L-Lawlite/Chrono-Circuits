@@ -31,7 +31,7 @@ public class LanguageGenerator extends LanguageProvider {
         this.addBlock(ChronoBlockEntityTypes.LIGHT_DETECTOR_BLOCK,"Light Detector");
 
         this.addBlock(ChronoBlocks.COPPER_GRATED_REPEATER, "Copper Grated Repeater");
-        this.addBlock(ChronoBlocks.EXPOSED_COPPER_GRATED_REPEATER, "exposed Copper Grated Repeater");
+        this.addBlock(ChronoBlocks.EXPOSED_COPPER_GRATED_REPEATER, "Exposed Copper Grated Repeater");
         this.addBlock(ChronoBlocks.WEATHERED_COPPER_GRATED_REPEATER, "Weathered Copper Grated Repeater");
         this.addBlock(ChronoBlocks.OXIDIZED_COPPER_GRATED_REPEATER, "Oxidized Copper Grated Repeater");
         this.addBlock(ChronoBlocks.WAXED_COPPER_GRATED_REPEATER, "Waxed Copper Grated Repeater");

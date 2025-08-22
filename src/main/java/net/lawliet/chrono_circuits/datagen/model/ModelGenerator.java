@@ -1,8 +1,10 @@
 package net.lawliet.chrono_circuits.datagen.model;
 
 import net.lawliet.chrono_circuits.ChronoCircuits;
+import net.lawliet.chrono_circuits.blockEntity.gratedBlockEntity.comparator.WeatheringCopperGratedComparator;
 import net.lawliet.chrono_circuits.blockEntity.lightDetector.LightState;
 import net.lawliet.chrono_circuits.blockState.ChronoCircuitsBlockStateProperties;
+import net.lawliet.chrono_circuits.blocks.gratedBlocks.repeater.WeatheringCopperGratedRepeater;
 import net.lawliet.chrono_circuits.registration.ChronoBlockEntityTypes;
 import net.lawliet.chrono_circuits.registration.ChronoBlocks;
 import net.lawliet.chrono_circuits.registration.ChronoRegistries;
@@ -19,6 +21,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.ComparatorMode;
 
@@ -52,8 +55,16 @@ public class ModelGenerator extends ModelProvider {
         createHopper(ChronoBlockEntityTypes.GOLD_HOPPER_BLOCK.get());
         createPipe(ChronoBlockEntityTypes.PIPE_BLOCK.get());
 
-        createRepeater(ChronoBlocks.COPPER_GRATED_REPEATER.get(), ChronoBlocks.COPPER_GRATED_REPEATER_ITEM.get());
-        createComparator(ChronoBlockEntityTypes.COPPER_GRATED_COMPARATOR.get(), ChronoBlockEntityTypes.COPPER_GRATED_COMPARATOR_ITEM.get());
+        createRepeater(ChronoBlocks.COPPER_GRATED_REPEATER.get(), ChronoBlocks.WAXED_COPPER_GRATED_REPEATER.get());
+        createRepeater(ChronoBlocks.EXPOSED_COPPER_GRATED_REPEATER.get(), ChronoBlocks.WAXED_EXPOSED_COPPER_GRATED_REPEATER.get());
+        createRepeater(ChronoBlocks.WEATHERED_COPPER_GRATED_REPEATER.get(), ChronoBlocks.WAXED_WEATHERED_COPPER_GRATED_REPEATER.get());
+        createRepeater(ChronoBlocks.OXIDIZED_COPPER_GRATED_REPEATER.get(), ChronoBlocks.WAXED_OXIDIZED_COPPER_GRATED_REPEATER.get());
+
+        createComparator(ChronoBlockEntityTypes.COPPER_GRATED_COMPARATOR.get(), ChronoBlockEntityTypes.WAXED_COPPER_GRATED_COMPARATOR.get());
+        createComparator(ChronoBlockEntityTypes.EXPOSED_COPPER_GRATED_COMPARATOR.get(), ChronoBlockEntityTypes.WAXED_EXPOSED_COPPER_GRATED_COMPARATOR.get());
+        createComparator(ChronoBlockEntityTypes.WEATHERED_COPPER_GRATED_COMPARATOR.get(), ChronoBlockEntityTypes.WAXED_WEATHERED_COPPER_GRATED_COMPARATOR.get());
+        createComparator(ChronoBlockEntityTypes.OXIDIZED_COPPER_GRATED_COMPARATOR.get(), ChronoBlockEntityTypes.WAXED_OXIDIZED_COPPER_GRATED_COMPARATOR.get());
+
         createRedstoneTorch(ChronoBlocks.COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.COPPER_GRATED_REDSTONE_WALL_TORCH.get(), ChronoBlocks.WAXED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.WAXED_COPPER_GRATED_REDSTONE_WALL_TORCH.get());
         createRedstoneTorch(ChronoBlocks.EXPOSED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.EXPOSED_COPPER_GRATED_REDSTONE_WALL_TORCH.get(), ChronoBlocks.WAXED_EXPOSED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.WAXED_EXPOSED_COPPER_GRATED_REDSTONE_WALL_TORCH.get());
         createRedstoneTorch(ChronoBlocks.WEATHERED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.WEATHERED_COPPER_GRATED_REDSTONE_WALL_TORCH.get(), ChronoBlocks.WAXED_WEATHERED_COPPER_GRATED_REDSTONE_TORCH.get(), ChronoBlocks.WAXED_WEATHERED_COPPER_GRATED_REDSTONE_WALL_TORCH.get());
@@ -113,6 +124,124 @@ public class ModelGenerator extends ModelProvider {
                                 )
                                 .with(BlockModelGenerators.ROTATION_HORIZONTAL_FACING_ALT))
         ;
+    }
+
+    public void createRepeater(Block unwaxedRepeater, Block waxedRepeater) {
+        blockModels.registerSimpleFlatItemModel(unwaxedRepeater.asItem());
+        itemModels.itemModelOutput.copy(unwaxedRepeater.asItem(), waxedRepeater.asItem());
+        // Need to be modified
+        WeatheringCopperGratedRepeater weatheringUnwaxedBlock = (WeatheringCopperGratedRepeater) unwaxedRepeater;
+        String bottomPrefix = weatheringUnwaxedBlock.getAge() == WeatheringCopper.WeatherState.UNAFFECTED ? "" : weatheringUnwaxedBlock.getAge().getSerializedName() + "_";
+        ResourceLocation topTexture = TextureMapping.getBlockTexture(unwaxedRepeater, "_opening");
+        ResourceLocation sideTexture = ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID, "copper_grated_slab").withPrefix(bottomPrefix).withPrefix("block/");
+        ResourceLocation bottomTexture = ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID, "copper_grated_redstone_bottom").withPrefix(bottomPrefix).withPrefix("block/");
+        TextureMapping textureMapping = new TextureMapping()
+                .put(TextureSlot.TOP, topTexture)
+                .put(TextureSlot.SIDE, sideTexture)
+                .put(TextureSlot.BOTTOM, bottomTexture);
+
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_1TICK.createWithSuffix(unwaxedRepeater, "_1tick", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_1TICK_LOCKED.createWithSuffix(unwaxedRepeater, "_1tick_locked", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_1TICK_ON.createWithSuffix(unwaxedRepeater, "_1tick_on", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_1TICK_ON_LOCKED.createWithSuffix(unwaxedRepeater, "_1tick_on_locked", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_2TICK_LOCKED.createWithSuffix(unwaxedRepeater, "_2tick_locked", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_2TICK.createWithSuffix(unwaxedRepeater, "_2tick", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_2TICK_ON.createWithSuffix(unwaxedRepeater, "_2tick_on", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_2TICK_ON_LOCKED.createWithSuffix(unwaxedRepeater, "_2tick_on_locked", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_3TICK.createWithSuffix(unwaxedRepeater, "_3tick", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_3TICK_LOCKED.createWithSuffix(unwaxedRepeater, "_3tick_locked", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_3TICK_ON.createWithSuffix(unwaxedRepeater, "_3tick_on", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_3TICK_ON_LOCKED.createWithSuffix(unwaxedRepeater, "_3tick_on_locked", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_4TICK_LOCKED.createWithSuffix(unwaxedRepeater, "_4tick_locked", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_4TICK.createWithSuffix(unwaxedRepeater, "_4tick", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_4TICK_ON.createWithSuffix(unwaxedRepeater, "_4tick_on", textureMapping, blockModels.modelOutput);
+        ChronoCircuitsModelTemplates.COPPER_GRATED_REPEATER_4TICK_ON_LOCKED.createWithSuffix(unwaxedRepeater, "_4tick_on_locked", textureMapping, blockModels.modelOutput);
+
+        blockModels.blockStateOutput
+                .accept(
+                        MultiVariantGenerator.dispatch(unwaxedRepeater)
+                                .with(
+                                        PropertyDispatch.initial(BlockStateProperties.DELAY, BlockStateProperties.LOCKED, BlockStateProperties.POWERED)
+                                                .generate((delay, locked, powered) -> {
+                                                    StringBuilder stringbuilder = new StringBuilder();
+                                                    stringbuilder.append('_').append(delay).append("tick");
+                                                    if (powered) {
+                                                        stringbuilder.append("_on");
+                                                    }
+
+                                                    if (locked) {
+                                                        stringbuilder.append("_locked");
+                                                    }
+
+                                                    return BlockModelGenerators.plainVariant(TextureMapping.getBlockTexture(unwaxedRepeater, stringbuilder.toString()));
+                                                })
+                                )
+                                .with(BlockModelGenerators.ROTATION_HORIZONTAL_FACING_ALT)
+                );
+        blockModels.blockStateOutput
+                .accept(
+                        MultiVariantGenerator.dispatch(waxedRepeater)
+                                .with(
+                                        PropertyDispatch.initial(BlockStateProperties.DELAY, BlockStateProperties.LOCKED, BlockStateProperties.POWERED)
+                                                .generate((delay, locked, powered) -> {
+                                                    StringBuilder stringbuilder = new StringBuilder();
+                                                    stringbuilder.append('_').append(delay).append("tick");
+                                                    if (powered) {
+                                                        stringbuilder.append("_on");
+                                                    }
+
+                                                    if (locked) {
+                                                        stringbuilder.append("_locked");
+                                                    }
+
+                                                    return BlockModelGenerators.plainVariant(TextureMapping.getBlockTexture(unwaxedRepeater, stringbuilder.toString()));
+                                                })
+                                )
+                                .with(BlockModelGenerators.ROTATION_HORIZONTAL_FACING_ALT)
+                );
+    }
+
+    public void createComparator(Block unwaxedBlock, Block waxedBlock) {
+        blockModels.registerSimpleFlatItemModel(unwaxedBlock.asItem());
+        itemModels.itemModelOutput.copy(unwaxedBlock.asItem(), waxedBlock.asItem());
+        WeatheringCopperGratedComparator weatheringUnwaxedBlock = (WeatheringCopperGratedComparator) unwaxedBlock;
+        String bottomPrefix = weatheringUnwaxedBlock.getAge() == WeatheringCopper.WeatherState.UNAFFECTED ? "" : weatheringUnwaxedBlock.getAge().getSerializedName() + "_";
+        ResourceLocation topTexture = TextureMapping.getBlockTexture(unwaxedBlock, "_opening");
+        ResourceLocation sideTexture = ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID, "copper_grated_slab").withPrefix(bottomPrefix).withPrefix("block/");
+        ResourceLocation bottomTexture = ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID, "copper_grated_redstone_bottom").withPrefix(bottomPrefix).withPrefix("block/");
+        TextureMapping textureMapping = new TextureMapping()
+                .put(TextureSlot.TOP, topTexture)
+                .put(TextureSlot.SIDE, sideTexture)
+                .put(TextureSlot.BOTTOM, bottomTexture);
+
+        ResourceLocation comparator = ChronoCircuitsModelTemplates.COPPER_GRATED_COMPARATOR.create(unwaxedBlock, textureMapping, blockModels.modelOutput);
+        ResourceLocation comparatorOn = ChronoCircuitsModelTemplates.COPPER_GRATED_COMPARATOR_ON.createWithSuffix(unwaxedBlock, "_on", textureMapping, blockModels.modelOutput);
+        ResourceLocation comparatorOnSubtract = ChronoCircuitsModelTemplates.COPPER_GRATED_COMPARATOR_ON_SUBTRACT.createWithSuffix(unwaxedBlock, "_on_subtract", textureMapping, blockModels.modelOutput);
+        ResourceLocation comparatorSubtract = ChronoCircuitsModelTemplates.COPPER_GRATED_COMPARATOR_SUBTRACT.createWithSuffix(unwaxedBlock, "_subtract", textureMapping, blockModels.modelOutput);
+
+        blockModels.blockStateOutput
+                .accept(
+                        MultiVariantGenerator.dispatch(unwaxedBlock)
+                                .with(
+                                        PropertyDispatch.initial(BlockStateProperties.MODE_COMPARATOR, BlockStateProperties.POWERED)
+                                                .select(ComparatorMode.COMPARE, false,BlockModelGenerators.plainVariant(comparator))
+                                                .select(ComparatorMode.COMPARE, true,BlockModelGenerators.plainVariant(comparatorOn))
+                                                .select(ComparatorMode.SUBTRACT, false,BlockModelGenerators.plainVariant(comparatorSubtract))
+                                                .select(ComparatorMode.SUBTRACT, true,BlockModelGenerators.plainVariant(comparatorOnSubtract))
+                                )
+                                .with(BlockModelGenerators.ROTATION_HORIZONTAL_FACING_ALT));
+        blockModels.blockStateOutput
+                .accept(
+                        MultiVariantGenerator.dispatch(waxedBlock)
+                                .with(
+                                        PropertyDispatch.initial(BlockStateProperties.MODE_COMPARATOR, BlockStateProperties.POWERED)
+                                                .select(ComparatorMode.COMPARE, false,BlockModelGenerators.plainVariant(comparator))
+                                                .select(ComparatorMode.COMPARE, true,BlockModelGenerators.plainVariant(comparatorOn))
+                                                .select(ComparatorMode.SUBTRACT, false,BlockModelGenerators.plainVariant(comparatorSubtract))
+                                                .select(ComparatorMode.SUBTRACT, true,BlockModelGenerators.plainVariant(comparatorOnSubtract))
+                                )
+                                .with(BlockModelGenerators.ROTATION_HORIZONTAL_FACING_ALT));
+
     }
 
     public void CopperPressurePlateModelGenerator(Block pressurePlateBlock, Block textureMappingBlock) {
