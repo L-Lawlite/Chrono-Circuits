@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class CopperGratedComparatorBlockEntity extends BlockEntity {
-    private int output;
+    private int output = 0;
 
 
     public CopperGratedComparatorBlockEntity(BlockPos pos, BlockState blockState) {
@@ -16,15 +16,15 @@ public class CopperGratedComparatorBlockEntity extends BlockEntity {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag p_187493_, HolderLookup.Provider p_323979_) {
-        super.saveAdditional(p_187493_, p_323979_);
-        p_187493_.putInt("OutputSignal", this.output);
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider provider) {
+        super.saveAdditional(tag, provider);
+        tag.putInt("OutputSignal", this.output);
     }
 
     @Override
-    protected void loadAdditional(CompoundTag p_338778_, HolderLookup.Provider p_338355_) {
-        super.loadAdditional(p_338778_, p_338355_);
-        this.output = p_338778_.getInt("OutputSignal");
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider provider) {
+        super.loadAdditional(tag, provider);
+        this.output = tag.getIntOr("OutputSignal", 0);
     }
 
     @SuppressWarnings("unused")
