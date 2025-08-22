@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": "minecraft:redstone_torch",
+    "G": "minecraft:waxed_oxidized_copper_grate"
+  },
+  "pattern": [
+    " C ",
+    "CGC",
+    " C "
+  ],
+  "result": {
+    "count": 4,
+    "id": "chrono_circuits:waxed_oxidized_copper_grated_redstone_torch"
+  }
+}

@@ -122,6 +122,22 @@ public class ChronoBlockEntityTypes {
                 properties -> new WeatheringCopperHopperBlock(WeatheringCopper.WeatherState.OXIDIZED, properties),
                 copperHopperBlockProperties().mapColor(MapColor.WARPED_NYLIUM)
         );
+        WAXED_COPPER_HOPPER_BLOCK = ChronoRegistries.BLOCKS.registerBlock("waxed_copper_hopper_block",
+                CopperHopperBlock::new,
+                copperHopperBlockProperties().mapColor(MapColor.COLOR_ORANGE)
+        );
+        WAXED_EXPOSED_COPPER_HOPPER_BLOCK = ChronoRegistries.BLOCKS.registerBlock("waxed_exposed_copper_hopper_block",
+                CopperHopperBlock::new,
+                copperHopperBlockProperties().mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
+        );
+        WAXED_WEATHERED_COPPER_HOPPER_BLOCK = ChronoRegistries.BLOCKS.registerBlock("waxed_weathered_copper_hopper_block",
+                CopperHopperBlock::new,
+                copperHopperBlockProperties().mapColor(MapColor.WARPED_STEM)
+        );
+        WAXED_OXIDIZED_COPPER_HOPPER_BLOCK = ChronoRegistries.BLOCKS.registerBlock("waxed_oxidized_copper_hopper_block",
+                CopperHopperBlock::new,
+                copperHopperBlockProperties().mapColor(MapColor.WARPED_NYLIUM)
+        );
         GOLD_HOPPER_BLOCK = ChronoRegistries.BLOCKS.registerBlock(
                 "gold_hopper",
                 GoldHopperBlock::new,
@@ -168,22 +184,6 @@ public class ChronoBlockEntityTypes {
                 CopperGratedComparator::new,
                 copperComparatorBlockProperties()
                 );
-        WAXED_COPPER_HOPPER_BLOCK = ChronoRegistries.BLOCKS.registerBlock("waxed_copper_hopper_block",
-                CopperHopperBlock::new,
-                copperHopperBlockProperties().mapColor(MapColor.COLOR_ORANGE)
-                );
-        WAXED_EXPOSED_COPPER_HOPPER_BLOCK = ChronoRegistries.BLOCKS.registerBlock("waxed_exposed_copper_hopper_block",
-                CopperHopperBlock::new,
-                copperHopperBlockProperties().mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
-                );
-        WAXED_WEATHERED_COPPER_HOPPER_BLOCK = ChronoRegistries.BLOCKS.registerBlock("waxed_weathered_copper_hopper_block",
-                CopperHopperBlock::new,
-                copperHopperBlockProperties().mapColor(MapColor.WARPED_STEM)
-                );
-        WAXED_OXIDIZED_COPPER_HOPPER_BLOCK = ChronoRegistries.BLOCKS.registerBlock("waxed_oxidized_copper_hopper_block",
-                CopperHopperBlock::new,
-                copperHopperBlockProperties().mapColor(MapColor.WARPED_NYLIUM)
-                );
     }
 
     private static BlockBehaviour.Properties copperComparatorBlockProperties() {
@@ -197,6 +197,10 @@ public class ChronoBlockEntityTypes {
         EXPOSED_COPPER_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(EXPOSED_COPPER_HOPPER_BLOCK);
         WEATHERED_COPPER_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WEATHERED_COPPER_HOPPER_BLOCK);
         OXIDIZED_COPPER_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(OXIDIZED_COPPER_HOPPER_BLOCK);
+        WAXED_COPPER_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WAXED_COPPER_HOPPER_BLOCK);
+        WAXED_EXPOSED_COPPER_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WAXED_EXPOSED_COPPER_HOPPER_BLOCK);
+        WAXED_WEATHERED_COPPER_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WAXED_WEATHERED_COPPER_HOPPER_BLOCK);
+        WAXED_OXIDIZED_COPPER_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WAXED_OXIDIZED_COPPER_HOPPER_BLOCK);
         GOLD_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(GOLD_HOPPER_BLOCK);
         PIPE_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(PIPE_BLOCK);
         COPPER_GRATED_COMPARATOR_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(COPPER_GRATED_COMPARATOR);
@@ -207,10 +211,6 @@ public class ChronoBlockEntityTypes {
         WAXED_EXPOSED_COPPER_GRATED_COMPARATOR_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WAXED_EXPOSED_COPPER_GRATED_COMPARATOR);
         WAXED_OXIDIZED_COPPER_GRATED_COMPARATOR_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WAXED_OXIDIZED_COPPER_GRATED_COMPARATOR);
         WAXED_WEATHERED_COPPER_GRATED_COMPARATOR_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WAXED_WEATHERED_COPPER_GRATED_COMPARATOR);
-        WAXED_COPPER_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WAXED_COPPER_HOPPER_BLOCK);
-        WAXED_EXPOSED_COPPER_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WAXED_EXPOSED_COPPER_HOPPER_BLOCK);
-        WAXED_WEATHERED_COPPER_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WAXED_WEATHERED_COPPER_HOPPER_BLOCK);
-        WAXED_OXIDIZED_COPPER_HOPPER_BLOCK_ITEM = ChronoRegistries.ITEMS.registerSimpleBlockItem(WAXED_OXIDIZED_COPPER_HOPPER_BLOCK);
 
     }
 
