@@ -7,14 +7,12 @@ import net.lawliet.chrono_circuits.blockState.ChronoCircuitsBlockStateProperties
 import net.lawliet.chrono_circuits.blocks.gratedBlocks.repeater.WeatheringCopperGratedRepeater;
 import net.lawliet.chrono_circuits.registration.ChronoBlockEntityTypes;
 import net.lawliet.chrono_circuits.registration.ChronoBlocks;
-import net.lawliet.chrono_circuits.registration.ChronoRegistries;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.blockstates.*;
 import net.minecraft.client.data.models.model.*;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
@@ -24,8 +22,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.ComparatorMode;
-
-import java.util.stream.Stream;
 
 import static net.minecraft.client.data.models.BlockModelGenerators.createHorizontalFacingDispatchAlt;
 
@@ -131,7 +127,7 @@ public class ModelGenerator extends ModelProvider {
                                 stringBuilder.append("_locked");
                             }
                             return Variant.variant().with(VariantProperties.MODEL, TextureMapping.getBlockTexture(unwaxedRepeater, stringBuilder.toString()));
-                        }))
+                        })).with(createHorizontalFacingDispatchAlt())
         );
         blockModels.blockStateOutput.accept(
                 MultiVariantGenerator.multiVariant(waxedRepeater)
@@ -145,7 +141,7 @@ public class ModelGenerator extends ModelProvider {
                                 stringBuilder.append("_locked");
                             }
                             return Variant.variant().with(VariantProperties.MODEL, TextureMapping.getBlockTexture(unwaxedRepeater, stringBuilder.toString()));
-                        }))
+                        })).with(createHorizontalFacingDispatchAlt())
         );
     }
 
@@ -325,8 +321,8 @@ public class ModelGenerator extends ModelProvider {
         blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(pipeBlock,ResourceLocation.parse("chrono_circuits:block/pipe")));
     }
 
-    @Override
-    protected Stream<? extends Holder<Block>> getKnownBlocks() {
-        return ChronoRegistries.BLOCKS.getEntries().stream().filter(block -> !block.getId().getPath().contains("repeater"));
-    }
+//    @Override
+//    protected Stream<? extends Holder<Block>> getKnownBlocks() {
+//        return ChronoRegistries.BLOCKS.getEntries().stream();
+//    }
 }
