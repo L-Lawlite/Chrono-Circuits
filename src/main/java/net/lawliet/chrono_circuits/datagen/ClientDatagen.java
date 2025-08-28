@@ -21,7 +21,7 @@ import org.slf4j.Logger;
 import java.util.List;
 import java.util.Set;
 
-@EventBusSubscriber(modid = ChronoCircuits.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = ChronoCircuits.MODID)
 public class ClientDatagen {
     private static final Logger LOGGER = LogUtils.getLogger();
 

@@ -135,5 +135,11 @@ public class ChronoCircuitsBlockTagProvider extends BlockTagsProvider {
                 .addTag(ChronoCircuitsTags.Blocks.PRESSURE_PLATES);
 
 
+        // Don't modify unless you know what you are doing
+        this.tag(ChronoCircuitsTags.Blocks.OXIDIZATION_SHOULD_KEEP_BLOCK_ENTITY)
+//                .add(ChronoBlockEntityTypes.COPPER_HOPPER_BLOCK.get())
+                .add(ChronoBlockEntityTypes.EXPOSED_COPPER_HOPPER_BLOCK.get())
+                .add(ChronoBlockEntityTypes.WEATHERED_COPPER_HOPPER_BLOCK.get())
+                .add(ChronoBlockEntityTypes.OXIDIZED_COPPER_HOPPER_BLOCK.get());
     }
 }

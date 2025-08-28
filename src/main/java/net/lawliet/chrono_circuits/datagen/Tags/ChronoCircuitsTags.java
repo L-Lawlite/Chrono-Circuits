@@ -21,6 +21,8 @@ public class ChronoCircuitsTags {
         public static final TagKey<Block> COMPARATORS = chronoCircuitsTag("comparators");
         public static final TagKey<Block> GRATED_BLOCKS = chronoCircuitsTag("grated_blocks");
 
+        public static final TagKey<Block> OXIDIZATION_SHOULD_KEEP_BLOCK_ENTITY = chronoCircuitsTag("oxidization_should_keep_block_entity");
+
         private static TagKey<Block> chronoCircuitsTag(String name) {
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(ChronoCircuits.MODID, name));
         }

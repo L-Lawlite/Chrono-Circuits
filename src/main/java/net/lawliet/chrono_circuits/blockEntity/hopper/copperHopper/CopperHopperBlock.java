@@ -1,8 +1,10 @@
 package net.lawliet.chrono_circuits.blockEntity.hopper.copperHopper;
 
+import net.lawliet.chrono_circuits.datagen.Tags.ChronoCircuitsTags;
 import net.lawliet.chrono_circuits.registration.ChronoBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -41,6 +43,16 @@ public class CopperHopperBlock extends HopperBlock {
         }
 
         return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (!state.is(newState.getBlock()) && !newState.is(ChronoCircuitsTags.Blocks.OXIDIZATION_SHOULD_KEEP_BLOCK_ENTITY)) {
+            Containers.dropContentsOnDestroy(state, newState, level, pos);
+            if (state.hasBlockEntity()) {
+                level.removeBlockEntity(pos);
+            }
+        }
     }
 
     @Override
