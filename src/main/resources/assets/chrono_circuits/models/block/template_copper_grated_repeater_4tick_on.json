@@ -2,9 +2,8 @@
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"repeater": "chrono_circuits:block/repeater_on_grate",
-		"torch_on": "minecraft:block/redstone_torch",
-        "particle": "#top"
+		"comparator": "chrono_circuits:block/repeater_on_grate",
+		"torch_on": "block/redstone_torch"
 	},
 	"elements": [
 		{
@@ -40,7 +39,7 @@
 				"east": {"uv": [1, 1, 15, 2], "texture": "#bottom"},
 				"south": {"uv": [1, 14, 15, 15], "texture": "#bottom"},
 				"west": {"uv": [1, 14, 15, 15], "texture": "#bottom"},
-				"up": {"uv": [1, 1, 15, 15], "texture": "#repeater"}
+				"up": {"uv": [1, 1, 15, 15], "texture": "#comparator"}
 			}
 		},
 		{
@@ -168,6 +167,19 @@
 			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 6]},
 			"faces": {
 				"west": {"uv": [6, 7, 7, 8], "texture": "#torch_on"}
+			}
+		},
+		{
+			"name": "invert",
+			"from": [16, 1, 0],
+			"to": [0, 3, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [16, 1, 0]},
+			"faces": {
+				"north": {"uv": [0, 8, 16, 10], "texture": "#side"},
+				"east": {"uv": [0, 8, 16, 10], "texture": "#side"},
+				"south": {"uv": [0, 8, 16, 10], "texture": "#side"},
+				"west": {"uv": [0, 8, 16, 10], "texture": "#side"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#side"}
 			}
 		}
 	]

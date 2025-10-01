@@ -44,6 +44,18 @@
 				"up": {"uv": [1, 12, 4, 16], "texture": "#copper_grate"},
 				"down": {"uv": [0, 9, 4, 12], "texture": "#copper_grate"}
 			}
+		},
+		{
+			"from": [1, 3, 10],
+			"to": [4, 9, 6],
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 3, 10]},
+			"faces": {
+				"north": {"uv": [10, 4, 13, 10], "texture": "#copper_grate"},
+				"east": {"uv": [0, 4, 4, 10], "texture": "#copper_grate"},
+				"south": {"uv": [13, 4, 16, 10], "texture": "#copper_grate"},
+				"up": {"uv": [1, 12, 4, 16], "texture": "#copper_grate"},
+				"down": {"uv": [0, 9, 4, 12], "texture": "#copper_grate"}
+			}
 		}
 	]
 }

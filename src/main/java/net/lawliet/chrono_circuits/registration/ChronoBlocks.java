@@ -306,6 +306,6 @@ public class ChronoBlocks {
     }
 
     public static void modifyRenderLayer() {
-        ChronoRegistries.BLOCKS.getEntries().stream().filter(blockHolder -> blockHolder.getId().getPath().contains("grated")).forEach(block -> ItemBlockRenderTypes.setRenderLayer(block.get(), RenderType.CUTOUT));
+        ChronoRegistries.BLOCKS.getEntries().stream().filter(blockHolder -> blockHolder.getId().getPath().contains("grated")).forEach(block -> ItemBlockRenderTypes.setRenderLayer(block.get(), RenderType.CUTOUT_MIPPED));
     }
 }
