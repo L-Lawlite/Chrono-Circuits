@@ -25,6 +25,5 @@ public abstract class AbstractHopperScreen extends AbstractContainerScreen<Abstr
         int y = (height - imageHeight) / 2;
 
         guiGraphics.blit(RenderType::guiTextured,GUI_TEXTURE,x,y,0.0F,0.0F,imageWidth,imageHeight,256,256);
-
     }
 }
