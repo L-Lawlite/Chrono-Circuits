@@ -1,4 +1,4 @@
-package net.lawliet.chrono_circuits.datagen.tags;
+package net.lawliet.chrono_circuits.datagen.Tags;
 
 import net.lawliet.chrono_circuits.ChronoCircuits;
 import net.lawliet.chrono_circuits.registration.ChronoBlockEntityTypes;
@@ -119,7 +119,7 @@ public class ChronoCircuitsBlockTagProvider extends BlockTagsProvider {
                 .add(ChronoBlockEntityTypes.WAXED_WEATHERED_COPPER_GRATED_COMPARATOR.get())
                 .add(ChronoBlockEntityTypes.WAXED_OXIDIZED_COPPER_GRATED_COMPARATOR.get());
 
-        // Vanilla tags start here
+        // Vanilla Tags start here
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .addTag(ChronoCircuitsTags.Blocks.PRESSURE_PLATES)
                 .addTag(ChronoCircuitsTags.Blocks.HOPPERS)

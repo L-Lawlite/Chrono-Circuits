@@ -1,7 +1,7 @@
 package net.lawliet.chrono_circuits.registration;
 
-import net.lawliet.chrono_circuits.blocks.copperPressurePlate.PlayerPressurePlate;
-import net.lawliet.chrono_circuits.blocks.copperPressurePlate.WeatheringPlayerPressurePlate;
+import net.lawliet.chrono_circuits.blocks.CopperPressurePlate.PlayerPressurePlate;
+import net.lawliet.chrono_circuits.blocks.CopperPressurePlate.WeatheringPlayerPressurePlate;
 import net.lawliet.chrono_circuits.blocks.gratedBlocks.repeater.WeatheringCopperGratedRepeater;
 import net.lawliet.chrono_circuits.blocks.gratedBlocks.torch.CopperGratedRedstoneTorch;
 import net.lawliet.chrono_circuits.blocks.gratedBlocks.torch.CopperGratedRedstoneWallTorch;

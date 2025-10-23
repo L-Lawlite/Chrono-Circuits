@@ -1,4 +1,4 @@
-package net.lawliet.chrono_circuits.datagen.tags;
+package net.lawliet.chrono_circuits.datagen.Tags;
 
 import net.lawliet.chrono_circuits.ChronoCircuits;
 import net.minecraft.resources.ResourceLocation;

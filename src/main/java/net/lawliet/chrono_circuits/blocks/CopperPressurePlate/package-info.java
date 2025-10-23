@@ -1,6 +1,6 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-package net.lawliet.chrono_circuits.blocks.copperPressurePlate;
+package net.lawliet.chrono_circuits.blocks.CopperPressurePlate;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 

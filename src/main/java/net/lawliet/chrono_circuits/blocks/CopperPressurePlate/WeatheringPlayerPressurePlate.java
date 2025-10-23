@@ -1,4 +1,4 @@
-package net.lawliet.chrono_circuits.blocks.copperPressurePlate;
+package net.lawliet.chrono_circuits.blocks.CopperPressurePlate;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
