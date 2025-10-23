@@ -2,8 +2,8 @@ package net.lawliet.chrono_circuits.datagen;
 
 import com.mojang.logging.LogUtils;
 import net.lawliet.chrono_circuits.ChronoCircuits;
-import net.lawliet.chrono_circuits.datagen.Tags.ChronoCircuitsBlockTagProvider;
-import net.lawliet.chrono_circuits.datagen.Tags.ChronoCircuitsItemTagProvider;
+import net.lawliet.chrono_circuits.datagen.tags.ChronoCircuitsBlockTagProvider;
+import net.lawliet.chrono_circuits.datagen.tags.ChronoCircuitsItemTagProvider;
 import net.lawliet.chrono_circuits.datagen.datamap.DataMapGenerator;
 import net.lawliet.chrono_circuits.datagen.lang.LanguageGenerator;
 import net.lawliet.chrono_circuits.datagen.lootTables.ChronoCircuitsLootTableSubProvider;

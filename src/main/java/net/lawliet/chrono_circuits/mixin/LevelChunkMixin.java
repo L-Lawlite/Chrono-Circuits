@@ -2,7 +2,7 @@ package net.lawliet.chrono_circuits.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import net.lawliet.chrono_circuits.datagen.Tags.ChronoCircuitsTags;
+import net.lawliet.chrono_circuits.datagen.tags.ChronoCircuitsTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;

@@ -1,4 +1,4 @@
-package net.lawliet.chrono_circuits.datagen.Tags;
+package net.lawliet.chrono_circuits.datagen.tags;
 
 import net.lawliet.chrono_circuits.registration.ChronoBlockEntityTypes;
 import net.lawliet.chrono_circuits.registration.ChronoBlocks;

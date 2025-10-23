@@ -1,6 +1,6 @@
 package net.lawliet.chrono_circuits.blockEntity.hopper.copperHopper;
 
-import net.lawliet.chrono_circuits.datagen.Tags.ChronoCircuitsTags;
+import net.lawliet.chrono_circuits.datagen.tags.ChronoCircuitsTags;
 import net.lawliet.chrono_circuits.registration.ChronoBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
