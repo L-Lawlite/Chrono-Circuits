@@ -3,15 +3,22 @@ package net.lawliet.chrono_circuits.blockEntity.gratedBlockEntity.comparator;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ComparatorBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.ComparatorBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -19,8 +26,10 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.ComparatorMode;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.ticks.TickPriority;
 
 public class CopperGratedComparator extends ComparatorBlock implements SimpleWaterloggedBlock {
     @SuppressWarnings("unused")
@@ -41,7 +50,7 @@ public class CopperGratedComparator extends ComparatorBlock implements SimpleWat
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new CopperGratedComparatorBlockEntity(pos,state);
+        return CopperGratedComparatorBlockEntity.make(pos, state);
     }
 
     @Override
@@ -51,7 +60,6 @@ public class CopperGratedComparator extends ComparatorBlock implements SimpleWat
         }
         return super.updateShape(state1, level, tickAccess, pos1, direction, pos2, state2, source);
     }
-
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {

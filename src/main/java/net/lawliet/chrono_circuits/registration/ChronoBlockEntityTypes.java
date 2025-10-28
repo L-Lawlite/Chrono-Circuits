@@ -254,7 +254,7 @@ public class ChronoBlockEntityTypes {
         COPPER_GRATED_COMPARATOR_BLOCK_ENTITY = ChronoRegistries.BLOCK_ENTITY_TYPES.register(
                 "copper_grated_comparator",
                 () -> new BlockEntityType<>(
-                        CopperGratedComparatorBlockEntity::new,
+                        CopperGratedComparatorBlockEntity::make,
                         COPPER_GRATED_COMPARATOR.get(),
                         EXPOSED_COPPER_GRATED_COMPARATOR.get(),
                         WEATHERED_COPPER_GRATED_COMPARATOR.get(),

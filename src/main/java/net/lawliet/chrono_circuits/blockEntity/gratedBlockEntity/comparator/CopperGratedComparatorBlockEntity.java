@@ -4,36 +4,29 @@ import net.lawliet.chrono_circuits.registration.ChronoBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.block.ComparatorBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.ComparatorBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class CopperGratedComparatorBlockEntity extends BlockEntity {
-    private int output;
+import java.util.function.Supplier;
 
-
-    public CopperGratedComparatorBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ChronoBlockEntityTypes.COPPER_GRATED_COMPARATOR_BLOCK_ENTITY.get(), pos, blockState);
+public class CopperGratedComparatorBlockEntity extends ComparatorBlockEntity {
+    public static ThreadLocal<BlockEntityType<?>> SURROGATE_TYPE = new ThreadLocal<>();
+    private CopperGratedComparatorBlockEntity(BlockPos pos, BlockState blockState) {
+        super(pos, blockState);
     }
 
-    @Override
-    protected void saveAdditional(CompoundTag p_187493_, HolderLookup.Provider p_323979_) {
-        super.saveAdditional(p_187493_, p_323979_);
-        p_187493_.putInt("OutputSignal", this.output);
+    public static CopperGratedComparatorBlockEntity make(BlockPos pos, BlockState blockState) {
+        try {
+            SURROGATE_TYPE.set(
+                    ChronoBlockEntityTypes.COPPER_GRATED_COMPARATOR_BLOCK_ENTITY.get()
+            );
+            return new CopperGratedComparatorBlockEntity(pos, blockState);
+        } finally {
+            SURROGATE_TYPE.remove();
+        }
     }
 
-    @Override
-    protected void loadAdditional(CompoundTag p_338778_, HolderLookup.Provider p_338355_) {
-        super.loadAdditional(p_338778_, p_338355_);
-        this.output = p_338778_.getInt("OutputSignal");
-    }
-
-    @SuppressWarnings("unused")
-    public int getOutputSignal() {
-        return this.output;
-    }
-
-    @SuppressWarnings("unused")
-    public void setOutputSignal(int output) {
-        this.output = output;
-    }
 }
