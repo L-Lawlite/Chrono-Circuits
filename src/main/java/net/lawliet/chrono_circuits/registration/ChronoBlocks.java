@@ -205,7 +205,7 @@ public class ChronoBlocks {
                 gratedRedstoneTorchProperties(7)
         );
         WAXED_COPPER_GRATED_REDSTONE_WALL_TORCH = ChronoRegistries.BLOCKS.registerBlock("waxed_copper_grated_redstone_wall_torch",
-                properties -> new CopperGratedRedstoneWallTorch(wallVariant(COPPER_GRATED_REDSTONE_TORCH.get(), properties, true)),
+                properties -> new CopperGratedRedstoneWallTorch(wallVariant(WAXED_COPPER_GRATED_REDSTONE_TORCH.get(), properties, true)),
                 gratedRedstoneTorchProperties(7)
         );
         WAXED_EXPOSED_COPPER_GRATED_REDSTONE_TORCH = ChronoRegistries.BLOCKS.registerBlock("waxed_exposed_copper_grated_redstone_torch",
@@ -213,7 +213,7 @@ public class ChronoBlocks {
                 gratedRedstoneTorchProperties(7)
         );
         WAXED_EXPOSED_COPPER_GRATED_REDSTONE_WALL_TORCH = ChronoRegistries.BLOCKS.registerBlock("waxed_exposed_copper_grated_redstone_wall_torch",
-                properties -> new CopperGratedRedstoneWallTorch(wallVariant(COPPER_GRATED_REDSTONE_TORCH.get(), properties, true)),
+                properties -> new CopperGratedRedstoneWallTorch(wallVariant(WAXED_EXPOSED_COPPER_GRATED_REDSTONE_TORCH.get(), properties, true)),
                 gratedRedstoneTorchProperties(7)
         );
         WAXED_WEATHERED_COPPER_GRATED_REDSTONE_TORCH = ChronoRegistries.BLOCKS.registerBlock("waxed_weathered_copper_grated_redstone_torch",
@@ -221,7 +221,7 @@ public class ChronoBlocks {
                 gratedRedstoneTorchProperties(7)
         );
         WAXED_WEATHERED_COPPER_GRATED_REDSTONE_WALL_TORCH = ChronoRegistries.BLOCKS.registerBlock("waxed_weathered_copper_grated_redstone_wall_torch",
-                properties -> new CopperGratedRedstoneWallTorch(wallVariant(COPPER_GRATED_REDSTONE_TORCH.get(), properties, true)),
+                properties -> new CopperGratedRedstoneWallTorch(wallVariant(WAXED_WEATHERED_COPPER_GRATED_REDSTONE_TORCH.get(), properties, true)),
                 gratedRedstoneTorchProperties(7)
         );
         WAXED_OXIDIZED_COPPER_GRATED_REDSTONE_TORCH = ChronoRegistries.BLOCKS.registerBlock("waxed_oxidized_copper_grated_redstone_torch",
@@ -229,7 +229,7 @@ public class ChronoBlocks {
                 gratedRedstoneTorchProperties(7)
         );
         WAXED_OXIDIZED_COPPER_GRATED_REDSTONE_WALL_TORCH = ChronoRegistries.BLOCKS.registerBlock("waxed_oxidized_copper_grated_redstone_wall_torch",
-                properties -> new CopperGratedRedstoneWallTorch(wallVariant(COPPER_GRATED_REDSTONE_TORCH.get(), properties, true)),
+                properties -> new CopperGratedRedstoneWallTorch(wallVariant(WAXED_OXIDIZED_COPPER_GRATED_REDSTONE_TORCH.get(), properties, true)),
                 gratedRedstoneTorchProperties(7)
         );
     }
