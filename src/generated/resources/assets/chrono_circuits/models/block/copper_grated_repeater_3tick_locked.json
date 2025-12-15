@@ -1,0 +1,8 @@
+{
+  "parent": "chrono_circuits:block/template_copper_grated_repeater_3tick_locked",
+  "textures": {
+    "bottom": "chrono_circuits:block/copper_grated_redstone_bottom",
+    "side": "chrono_circuits:block/copper_grated_slab",
+    "top": "chrono_circuits:block/copper_grated_repeater_opening"
+  }
+}

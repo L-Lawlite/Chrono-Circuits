@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": "minecraft:repeater",
+    "G": "minecraft:oxidized_copper_grate"
+  },
+  "pattern": [
+    "G",
+    "C"
+  ],
+  "result": {
+    "count": 1,
+    "id": "chrono_circuits:oxidized_copper_grated_repeater"
+  }
+}

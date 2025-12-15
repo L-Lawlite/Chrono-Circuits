@@ -1,11 +1,12 @@
 package net.lawliet.chrono_circuits.blockEntity.hopper.copperHopper;
 
+import net.lawliet.chrono_circuits.datagen.Tags.ChronoCircuitsTags;
 import net.lawliet.chrono_circuits.registration.ChronoBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.HopperBlock;
@@ -45,7 +46,17 @@ public class CopperHopperBlock extends HopperBlock {
     }
 
     @Override
-    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier insideBlockEffectApplier) {
+    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (!state.is(newState.getBlock()) && !newState.is(ChronoCircuitsTags.Blocks.OXIDIZATION_SHOULD_KEEP_BLOCK_ENTITY)) {
+            Containers.dropContentsOnDestroy(state, newState, level, pos);
+            if (state.hasBlockEntity()) {
+                level.removeBlockEntity(pos);
+            }
+        }
+    }
+
+    @Override
+    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
         BlockEntity blockentity = level.getBlockEntity(pos);
         if (blockentity instanceof CopperHopperBlockEntity be) {
             CopperHopperBlockEntity.entityInside(level, pos, state, entity, be);

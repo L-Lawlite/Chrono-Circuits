@@ -5,11 +5,12 @@ import net.lawliet.chrono_circuits.blockEntity.hopper.copperHopper.CopperHopperS
 import net.lawliet.chrono_circuits.blockEntity.hopper.goldHopper.GoldHopperScreen;
 import net.lawliet.chrono_circuits.blockEntity.hopper.pipe.PipeScreen;
 import net.lawliet.chrono_circuits.registration.ChronoBlockEntityTypes;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
-@EventBusSubscriber(modid = ChronoCircuits.MODID)
+@EventBusSubscriber(modid = ChronoCircuits.MODID, value = Dist.CLIENT)
 public class RegisterScreen {
     @SubscribeEvent
     public static void registerScreen(RegisterMenuScreensEvent event) {

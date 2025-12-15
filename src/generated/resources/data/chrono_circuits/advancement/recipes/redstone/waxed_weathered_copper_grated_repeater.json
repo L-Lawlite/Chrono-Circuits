@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_copper_grate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:waxed_weathered_copper_grate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_repeater": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:repeater"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "chrono_circuits:waxed_weathered_copper_grated_repeater"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_repeater",
+      "has_copper_grate"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "chrono_circuits:waxed_weathered_copper_grated_repeater"
+    ]
+  }
+}
